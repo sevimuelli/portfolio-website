@@ -2,7 +2,9 @@
 
 A portfolio using structured content and a static site builder.
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio).
+Created from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio).
+
+Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4571-84cb-fbb367f8baaf/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-gatsbycloud/deploys)Studio:[![Netlify Status](https://api.netlify.com/api/v1/badges/5b4db275-9ce1-46a9-9aa7-e218428ae77d/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-studio-xnfhk7xz/deploys)
 
 ## What you have
 
@@ -35,4 +37,4 @@ Netlify automatically deploys new changes commited to the `master` branch on Git
 
 [![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
 
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+Join [Sanity’s developer community](https://slack.sanity.io) or ping them [on twitter](https://twitter.com/sanity_io).
