@@ -25,7 +25,7 @@ export default {
                 },
                 {
                   title: 'Portfolio Website',
-                  name: 'gatsby-sanity-portfolio-web-qa4bsznk',
+                  name: 'gatsby-sanity-portfolio-gatsbycloud',
                   apiId: '897668a5-6c1b-4571-84cb-fbb367f8baaf'
                 }
               ]
