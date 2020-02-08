@@ -24,10 +24,9 @@ export default {
                   apiId: '5b4db275-9ce1-46a9-9aa7-e218428ae77d'
                 },
                 {
-                  buildHookId: '5e30d6a3b956f658de627ca0',
                   title: 'Portfolio Website',
                   name: 'gatsby-sanity-portfolio-web-qa4bsznk',
-                  apiId: '17a898d1-16f3-47e7-8779-f3cdb7d7ea11'
+                  apiId: '897668a5-6c1b-4571-84cb-fbb367f8baaf'
                 }
               ]
             }
@@ -41,7 +40,7 @@ export default {
           },
           {
             title: 'Frontend',
-            value: 'https://gatsby-sanity-portfolio-web-qa4bsznk.netlify.com',
+            value: 'https://severinmueller.ch',
             category: 'apps'
           }
         ]
