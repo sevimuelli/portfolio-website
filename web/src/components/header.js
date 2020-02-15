@@ -12,7 +12,11 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
         <Link to="/">{siteTitle}</Link>
       </div>
 
-      <button className={styles.toggleNavButton} onClick={showNav ? onHideNav : onShowNav}>
+      <button
+        className={styles.toggleNavButton}
+        onClick={showNav ? onHideNav : onShowNav}
+        type="button"
+      >
         <Icon symbol="hamburger" />
       </button>
 
