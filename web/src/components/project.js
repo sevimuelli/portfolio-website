@@ -1,16 +1,16 @@
-import {format, distanceInWords, differenceInDays} from 'date-fns'
-import React from 'react'
-import {Link} from 'gatsby'
-import {buildImageObj} from '../lib/helpers'
-import {imageUrlFor} from '../lib/image-url'
-import BlockContent from './block-content'
-import Container from './container'
-import RoleList from './role-list'
+import { format, distanceInWords, differenceInDays } from 'date-fns';
+import React from 'react';
+import { Link } from 'gatsby';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
+import BlockContent from './block-content';
+import Container from './container';
+import RoleList from './role-list';
 
-import styles from './project.module.css'
+import styles from './project.module.css';
 
-function Project (props) {
-  const {_rawBody, title, categories, mainImage, members, publishedAt, relatedProjects} = props
+function Project(props) {
+  const { _rawBody, title, categories, mainImage, members, publishedAt, relatedProjects } = props;
   return (
     <article className={styles.root}>
       {props.mainImage && mainImage.asset && (
@@ -39,7 +39,7 @@ function Project (props) {
                   : format(new Date(publishedAt), 'MMMM Do YYYY')}
               </div>
             )}
-            {members && members.length > 0 && <RoleList items={members} title='Project members' />}
+            {members && members.length > 0 && <RoleList items={members} title="Project members" />}
             {categories && categories.length > 0 && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Categories</h3>
@@ -70,7 +70,7 @@ function Project (props) {
         </div>
       </Container>
     </article>
-  )
+  );
 }
 
-export default Project
+export default Project;
