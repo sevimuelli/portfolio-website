@@ -3,6 +3,6 @@ import clientConfig from '../../client-config';
 
 const builder = imageUrlBuilder(clientConfig.sanity);
 
-export default function imageUrlFor(source) {
+export function imageUrlFor(source) {
   return builder.image(source);
 }
