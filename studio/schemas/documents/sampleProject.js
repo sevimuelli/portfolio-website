@@ -1,9 +1,11 @@
+import {FaTools} from 'react-icons/fa'
 import {format} from 'date-fns'
 
 export default {
   name: 'sampleProject',
   title: 'Sample project',
   type: 'document',
+  icon: FaTools,
   fields: [
     {
       name: 'title',
@@ -19,6 +21,12 @@ export default {
         source: 'title',
         maxLength: 96
       }
+    },
+    {
+      name: 'featured',
+      title: 'Featured project',
+      type: 'boolean',
+      description: 'When this is selected, is will be shown on the front-page'
     },
     {
       name: 'publishedAt',
@@ -51,6 +59,12 @@ export default {
       name: 'mainImage',
       title: 'Main image',
       type: 'figure'
+    },
+    {
+      name: 'imgGallery',
+      title: 'Image Gallery',
+      type: 'array',
+      of: [{type: 'figure'}]
     },
     {
       name: 'categories',

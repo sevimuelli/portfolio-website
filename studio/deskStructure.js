@@ -1,8 +1,10 @@
-import S from '@sanity/desk-tool/structure-builder'
-import {MdSettings} from 'react-icons/md/'
+import S from '@sanity/desk-tool/structure-builder';
+import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md/';
+import { FaHome } from 'react-icons/fa';
+import {GiMagnifyingGlass} from 'react-icons/gi'
 
 const hiddenDocTypes = listItem =>
-  !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
+  !['category', 'person', 'sampleProject', 'siteSettings', 'introPage', 'aboutMe', 'contact', 'projectOverview'].includes(listItem.getId());
 
 export default () =>
   S.list()
@@ -18,9 +20,51 @@ export default () =>
         )
         .icon(MdSettings),
       S.listItem()
+        .title('IntroPage')
+        .id('intro')
+        .child(
+          S.editor()
+            .id('introPage')
+            .schemaType('introPage')
+            .documentId('introPage')
+        )
+        .icon(FaHome),
+      S.listItem()
+        .title('About me')
+        .id('about')
+        .child(
+          S.editor()
+            .id('aboutMe')
+            .schemaType('aboutMe')
+            .documentId('aboutMe')
+        )
+        .icon(MdPerson),
+      S.listItem()
+        .title('Project overview')
+        .id('overview')
+        .child(
+          S.editor()
+            .id('projectOverview')
+            .schemaType('projectOverview')
+            .documentId('projectOverview')
+        )
+        .icon(GiMagnifyingGlass),
+      S.listItem()
+        .title('Contact')
+        .id('contactPage')
+        .child(
+          S.editor()
+            .id('contact')
+            .schemaType('contact')
+            .documentId('contact')
+        )
+        .icon(MdContactMail),
+      S.divider(),
+      S.listItem()
         .title('Sample projects')
         .schemaType('sampleProject')
         .child(S.documentTypeList('sampleProject').title('Sample projects')),
+      S.divider(),
       S.listItem()
         .title('People')
         .schemaType('person')
@@ -33,4 +77,4 @@ export default () =>
       // defined in schema.js. We filter out those that we have
       // defined the structure above
       ...S.documentTypeListItems().filter(hiddenDocTypes)
-    ])
+    ]);
