@@ -40,16 +40,6 @@ export default () =>
         )
         .icon(MdPerson),
       S.listItem()
-        .title('Project overview')
-        .id('overview')
-        .child(
-          S.editor()
-            .id('projectOverview')
-            .schemaType('projectOverview')
-            .documentId('projectOverview')
-        )
-        .icon(GiMagnifyingGlass),
-      S.listItem()
         .title('Contact')
         .id('contactPage')
         .child(
@@ -60,6 +50,16 @@ export default () =>
         )
         .icon(MdContactMail),
       S.divider(),
+      S.listItem()
+        .title('Project overview')
+        .id('overview')
+        .child(
+          S.editor()
+            .id('projectOverview')
+            .schemaType('projectOverview')
+            .documentId('projectOverview')
+        )
+        .icon(GiMagnifyingGlass),
       S.listItem()
         .title('Sample projects')
         .schemaType('sampleProject')
