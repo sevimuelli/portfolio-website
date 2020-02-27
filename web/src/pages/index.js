@@ -48,14 +48,16 @@ const IndexPage = ({ location, data, errors }) => {
     <Layout location={location}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <StyledMainContainer className="fillHeight">
-        <h1 hidden>Welcome to {site.title}</h1>
-          {projectNodes && (
-            <ProjectPreviewGrid
-              title="Latest projects"
-              nodes={projectNodes}
-              browseMoreHref="/archive/"
-            />
-          )}
+        {/* <h1 hidden>Welcome to {site.title}</h1> */}
+        <Hero data={data.intro.edges} />
+        <About data={data.about.edges} />
+        {projectNodes && (
+          <ProjectPreviewGrid
+            title="Latest projects"
+            nodes={projectNodes}
+            browseMoreHref="/archive/"
+          />
+        )}
       </StyledMainContainer>
     </Layout>
   );
@@ -85,6 +87,44 @@ export const query = graphql`
       title
       description
       keywords
+    }
+    intro: allSanityIntroPage {
+      edges {
+        node {
+          name
+          subtitle
+          title
+          _rawDescription
+        }
+      }
+    }
+    about: allSanityAboutMe {
+      edges {
+        node {
+          otherSkills
+          skills {
+            title
+            level
+            icon {
+              alt
+              asset {
+                _id
+              }
+            }
+          }
+          title
+          _rawDescription
+          photo {
+            alt
+            asset {
+              _id
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+      }
     }
     projects: allSanitySampleProject(
       limit: 6

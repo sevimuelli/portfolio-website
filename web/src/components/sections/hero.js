@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
+import BlockContent from '../block-content';
+
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
   flex-direction: column;
@@ -64,22 +66,24 @@ const Hero = ({ data }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const { frontmatter, html } = data[0].node;
+  const { name, subtitle, title, _rawDescription } = data[0].node;
 
   const one = () => (
-    <StyledOverline style={{ transitionDelay: '100ms' }}>{frontmatter.title}</StyledOverline>
+    <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>
   );
   const two = () => (
-    <StyledTitle style={{ transitionDelay: '200ms' }}>{frontmatter.name}.</StyledTitle>
+    <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>
   );
   const three = () => (
-    <StyledSubtitle style={{ transitionDelay: '300ms' }}>{frontmatter.subtitle}</StyledSubtitle>
+    <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
   );
   const four = () => (
     <StyledDescription
       style={{ transitionDelay: '400ms' }}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+      // dangerouslySetInnerHTML={{ __html: html }}
+    >
+      {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
+    </StyledDescription>
   );
   const five = () => (
     <div style={{ transitionDelay: '500ms' }}>

@@ -18,7 +18,8 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "media",
-    "dark-mode"
+    "dark-mode",
+    "@sanity/vision"
   ],
   "parts": [
     {

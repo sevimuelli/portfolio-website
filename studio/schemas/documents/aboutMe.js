@@ -15,8 +15,8 @@ export default {
       type: 'string'
     },
     {
-      title: 'Foto',
-      name: 'foto',
+      title: 'Photo',
+      name: 'photo',
       type: 'figure'
     },
     {

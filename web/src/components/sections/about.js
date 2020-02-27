@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
+import BlockContent from '../block-content';
+import { getFluidGatsbyImage } from 'gatsby-source-sanity';
+import clientConfig from '../../../client-config';
+
 const StyledContainer = styled(Section)`
   position: relative;
 `;
@@ -113,8 +117,10 @@ const StyledAvatarLink = styled.a`
 `;
 
 const About = ({ data }) => {
-  const { frontmatter, html } = data[0].node;
-  const { title, skills, avatar } = frontmatter;
+  const { skills, otherSkills, title, _rawDescription, photo } = data[0].node;
+  console.log(photo)
+  // const fluidProps = getFluidGatsbyImage(photo.asset._id, clientConfig.sanity);
+  // const { title, skills, avatar } = frontmatter;
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
@@ -123,14 +129,14 @@ const About = ({ data }) => {
       <Heading>{title}</Heading>
       <StyledFlexContainer>
         <StyledContent>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
           <SkillsContainer>
-            {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+            {otherSkills && otherSkills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
           </SkillsContainer>
         </StyledContent>
         <StyledPic>
           <StyledAvatarLink href={github}>
-            <StyledAvatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+            <StyledAvatar fluid={photo.asset.fluid} alt="photo.alt" />
           </StyledAvatarLink>
         </StyledPic>
       </StyledFlexContainer>
