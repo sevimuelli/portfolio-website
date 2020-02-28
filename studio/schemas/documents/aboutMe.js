@@ -27,8 +27,13 @@ export default {
       of: [{type: 'block'}]
     },
     {
-      name: 'work',
-      title: 'Work',
+      title: 'Worktitle',
+      name: 'workTitle',
+      type: 'string'
+    },
+    {
+      name: 'workplaces',
+      title: 'Workplaces',
       description: 'Where did i work.',
       type: 'array',
       of: [{type: 'work'}]

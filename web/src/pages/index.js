@@ -51,6 +51,7 @@ const IndexPage = ({ location, data, errors }) => {
         {/* <h1 hidden>Welcome to {site.title}</h1> */}
         <Hero data={data.intro.edges} />
         <About data={data.about.edges} />
+        <Jobs data={data.about.edges} />
         {projectNodes && (
           <ProjectPreviewGrid
             title="Latest projects"
@@ -122,6 +123,14 @@ export const query = graphql`
                 ...GatsbySanityImageFluid
               }
             }
+          }
+          workTitle
+          workplaces {
+            company
+            companyURL
+            range
+            position
+            tasks
           }
         }
       }

@@ -155,6 +155,7 @@ const StyledJobDetails = styled.h5`
 `;
 
 const Jobs = ({ data }) => {
+  const { workplaces, workTitle } = data[0].node;
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
@@ -195,12 +196,12 @@ const Jobs = ({ data }) => {
 
   return (
     <StyledContainer id="jobs" ref={revealContainer}>
-      <Heading>Where I&apos;ve Worked</Heading>
+      <Heading>{workTitle}</Heading>
       <StyledTabs>
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyPressed(e)}>
-          {data &&
-            data.map(({ node }, i) => {
-              const { company } = node.frontmatter;
+          {workplaces &&
+            workplaces.map((work , i) => {
+              const { company } = work;
               return (
                 <li key={i}>
                   <StyledTabButton
@@ -211,7 +212,8 @@ const Jobs = ({ data }) => {
                     role="tab"
                     aria-selected={activeTabId === i ? true : false}
                     aria-controls={`panel-${i}`}
-                    tabIndex={activeTabId === i ? '0' : '-1'}>
+                    tabIndex={activeTabId === i ? '0' : '-1'}
+                  >
                     <span>{company}</span>
                   </StyledTabButton>
                 </li>
@@ -220,10 +222,9 @@ const Jobs = ({ data }) => {
           <StyledHighlight activeTabId={activeTabId} />
         </StyledTabList>
 
-        {data &&
-          data.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { title, url, company, range } = frontmatter;
+        {workplaces &&
+          workplaces.map((work, i) => {
+            const { company, companyURL, range, position, tasks } = work;
             return (
               <StyledTabContent
                 key={i}
@@ -232,12 +233,13 @@ const Jobs = ({ data }) => {
                 role="tabpanel"
                 aria-labelledby={`tab-${i}`}
                 tabIndex={activeTabId === i ? '0' : '-1'}
-                hidden={activeTabId !== i}>
+                hidden={activeTabId !== i}
+              >
                 <StyledJobTitle>
-                  <span>{title}</span>
+                  <span>{position}</span>
                   <StyledCompany>
                     <span>&nbsp;@&nbsp;</span>
-                    <a href={url} target="_blank" rel="nofollow noopener noreferrer">
+                    <a href={companyURL} target="_blank" rel="nofollow noopener noreferrer">
                       {company}
                     </a>
                   </StyledCompany>
@@ -245,7 +247,13 @@ const Jobs = ({ data }) => {
                 <StyledJobDetails>
                   <span>{range}</span>
                 </StyledJobDetails>
-                <div dangerouslySetInnerHTML={{ __html: html }} />
+                <div>
+                  <ul>
+                    {tasks.map(task => {
+                      return <li>{task}</li>;
+                    })}
+                  </ul>
+                </div>
               </StyledTabContent>
             );
           })}
@@ -255,7 +263,7 @@ const Jobs = ({ data }) => {
 };
 
 Jobs.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Jobs;

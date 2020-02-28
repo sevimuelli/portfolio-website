@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Comany URL',
+      name: 'companyURL',
+      type: 'url'
+    },
+    {
       title: 'Position',
       name: 'position',
       type: 'string'
@@ -28,6 +33,12 @@ export default {
       name: 'endedAt',
       title: 'Ended at',
       type: 'date'
+    },
+    {
+      name: 'range',
+      title: 'Range',
+      description: 'Which time did I work there?',
+      type: 'string'
     },
     {
       name: 'present',
