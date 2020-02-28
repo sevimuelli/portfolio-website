@@ -148,6 +148,100 @@ const mixins = {
       }
     }
   `,
+
+  barAnimations: css`
+    @keyframes ratio10 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 10%
+      }
+    };
+
+    @keyframes ratio20 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 20%
+      }
+    };
+
+    @keyframes ratio30 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 83%
+      }
+    };
+
+    @keyframes ratio40 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 40%
+      }
+    };
+
+    @keyframes ratio50 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 50%
+      }
+    };
+
+    @keyframes ratio60 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 60%
+      }
+    };
+
+    @keyframes ratio70 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 70%
+      }
+    };
+
+    @keyframes ratio80 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 80%
+      }
+    };
+
+    @keyframes ratio90 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 90%
+      }
+    };
+
+    @keyframes ratio100 {
+      from {
+        width: 0%
+      }
+      to {
+        width: 100%
+      }
+    };
+
+
+  `
 };
 
 export default mixins;

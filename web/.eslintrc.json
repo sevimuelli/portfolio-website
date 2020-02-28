@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended", "prettier/react"],
-  "plugins": ["react", "prettier", "markdown"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0
@@ -14,6 +14,17 @@
     "react": {
       "pragma": "React",
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": [
+        ["@components", ".src/components"],
+        ["@config", ".src/config"],
+        ["@fonts", ".src/fonts"],
+        ["@images", ".src/images"],
+        ["@pages", ".src/pages"],
+        ["@styles", ".src/styles"],
+        ["@utils", ".src/utils"]
+      ]
     }
   }
 }
