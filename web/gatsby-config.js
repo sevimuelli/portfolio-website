@@ -18,7 +18,7 @@ module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     siteUrl: config.siteUrl,
-    description: config.siteDescription,
+    description: config.siteDescription
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -48,12 +48,12 @@ module.exports = {
         overlayDrafts: !isProd && token
       }
     },
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        implementation: require("sass"),
-      },
-    },
-    'gatsby-plugin-postcss',
+    // {
+    //   resolve: `gatsby-plugin-sass`,
+    //   options: {
+    //     implementation: require("sass"),
+    //   },
+    // },
+    'gatsby-plugin-postcss'
   ]
 };

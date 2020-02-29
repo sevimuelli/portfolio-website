@@ -26,11 +26,11 @@ const Head = ({ metadata }) => (
       {metadata.title}
     </title>
     <link rel="shortcut icon" href={favicon} />
-    <link rel="canonical" href="https://brittanychiang.com" />
+    <link rel="canonical" href="https://severinmueller.ch" />
 
     <meta name="description" content={metadata.description} />
     <meta name="keywords" content={config.siteKeywords} />
-    <meta name="google-site-verification" content={config.googleVerification} />
+    {/* <meta name="google-site-verification" content={config.googleVerification} /> */}
     <meta property="og:title" content={metadata.title} />
     <meta property="og:description" content={metadata.description} />
     <meta property="og:type" content="website" />
@@ -46,8 +46,8 @@ const Head = ({ metadata }) => (
     <meta itemProp="image" content={`${config.siteUrl}${ogImage}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={metadata.siteUrl} />
-    <meta name="twitter:site" content={config.twitterHandle} />
-    <meta name="twitter:creator" content={config.twitterHandle} />
+    {/* <meta name="twitter:site" content={config.twitterHandle} />
+    <meta name="twitter:creator" content={config.twitterHandle} /> */}
     <meta name="twitter:title" content={metadata.title} />
     <meta name="twitter:description" content={metadata.description} />
     <meta name="twitter:image" content={`${config.siteUrl}${ogImage}`} />

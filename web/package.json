@@ -1,8 +1,17 @@
 {
   "private": true,
   "name": "sanity-gatsby-portfolio-web",
+  "description": "Personal Portfolio Website",
   "version": "1.0.0",
-  "author": "Sanity <hello@sanity.io>",
+  "author": "Severin Müller",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sevimuelli/gatsby-sanity-portfolio"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",

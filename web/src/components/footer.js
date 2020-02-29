@@ -71,26 +71,26 @@ const StyledGitHubInfo = styled.div`
 `;
 
 const Footer = () => {
-  const [githubInfo, setGitHubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
+  // const [githubInfo, setGitHubInfo] = useState({
+  //   stars: null,
+  //   forks: null,
+  // });
 
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-    fetch('https://api.github.com/repos/bchiang7/v4')
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count, forks_count } = json;
-        setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
-        });
-      })
-      .catch(e => console.error(e));
-  }, []);
+  // useEffect(() => {
+  //   if (process.env.NODE_ENV !== 'production') {
+  //     return;
+  //   }
+  //   fetch('https://api.github.com/repos/sevimuelli/gatsby-sanity-portfolio')
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       const { stargazers_count, forks_count } = json;
+  //       setGitHubInfo({
+  //         stars: stargazers_count,
+  //         forks: forks_count,
+  //       });
+  //     })
+  //     .catch(e => console.error(e));
+  // }, []);
 
   return (
     <StyledContainer>
@@ -124,12 +124,12 @@ const Footer = () => {
       </StyledSocial>
       <StyledMetadata tabindex="-1">
         <StyledGitHubLink
-          href="https://github.com/bchiang7/v4"
+          href="https://github.com/sevimuelli/gatsby-sanity-portfolio"
           target="_blank"
           rel="nofollow noopener noreferrer">
-          <div>Designed &amp; Built by Brittany Chiang</div>
+          <div>Built by Severin Müller;</div>
 
-          {githubInfo.stars && githubInfo.forks && (
+          {/* {githubInfo.stars && githubInfo.forks && (
             <StyledGitHubInfo>
               <span>
                 <IconStar />
@@ -140,7 +140,13 @@ const Footer = () => {
                 <span>{githubInfo.forks}</span>
               </span>
             </StyledGitHubInfo>
-          )}
+          )} */}
+        </StyledGitHubLink>
+        <StyledGitHubLink
+          href="https://github.com/bchiang7/v4"
+          target="_blank"
+          rel="nofollow noopener noreferrer">
+          <div>Design adapted from Brittany Chiang</div>
         </StyledGitHubLink>
       </StyledMetadata>
     </StyledContainer>

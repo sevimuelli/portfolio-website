@@ -1,44 +1,43 @@
 module.exports = {
   siteTitle: 'Severin Müller | Software Engineer | Nerd',
-  siteDescription:
-    'Severin Müller is a software engineer based in Zurich, CH.',
+  siteDescription: 'Severin Müller is a software engineer based in Zurich, CH.',
   siteKeywords:
     'Severin Mulller, Severin Müller, software engineer, front-end engineer, web developer, javascript',
-  siteUrl: 'https://severinmueller.com',
+  siteUrl: 'https://severinmueller.ch',
   siteLanguage: 'en_US',
-  // googleAnalyticsID: 'UA-45666519-2',
-  // googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
+  googleAnalyticsID: '',
+  googleVerification: '',
   name: 'Severin Müller',
   location: 'Zurich, CH',
   github: 'https://github.com/sevimuelli',
   socialMedia: [
     {
       name: 'GitHub',
-      url: 'https://github.com/sevimuelli',
+      url: 'https://github.com/sevimuelli'
     },
     {
       name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/severin-m-19867514a',
+      url: 'https://www.linkedin.com/in/severin-m-19867514a'
     }
   ],
 
   navLinks: [
     {
       name: 'About',
-      url: '/#about',
+      url: '/#about'
     },
     {
       name: 'Experience',
-      url: '/#jobs',
+      url: '/#jobs'
     },
     {
       name: 'Work',
-      url: '/#projects',
+      url: '/#projects'
     },
     {
       name: 'Contact',
-      url: '/#contact',
-    },
+      url: '/#contact'
+    }
   ],
 
   navHeight: 100,
@@ -59,6 +58,6 @@ module.exports = {
     reset: false,
     useDelay: 'always',
     viewFactor: 0.25,
-    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
-  }),
+    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 }
+  })
 };
