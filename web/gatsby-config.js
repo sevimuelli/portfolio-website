@@ -18,7 +18,7 @@ module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     siteUrl: config.siteUrl,
-    description: config.siteDescription
+    description: config.siteDescription,
   },
   plugins: [
     'gatsby-plugin-react-helmet',

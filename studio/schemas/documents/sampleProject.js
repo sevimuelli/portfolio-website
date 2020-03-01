@@ -29,6 +29,26 @@ export default {
       description: 'When this is selected, is will be shown on the front-page'
     },
     {
+      name: 'externalLink',
+      titel: 'External Link',
+      type: 'url'
+    },
+    {
+      name: 'external',
+      title: 'Use external Link?',
+      type: 'boolean'
+    },
+    {
+      name: 'githubLink',
+      title: 'Github Link',
+      type: 'url'
+    },
+    {
+      name: 'github',
+      title: 'Use GitHub Link?',
+      type: 'boolean'
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       description: 'You can use this field to schedule projects where you show them',
@@ -38,6 +58,12 @@ export default {
       name: 'excerpt',
       title: 'Excerpt',
       type: 'simplePortableText'
+    },
+    {
+      name: 'tech',
+      title: 'Used tech',
+      type: 'array',
+      of: [{type: 'string'}]
     },
     {
       name: 'members',

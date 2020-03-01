@@ -53,7 +53,6 @@ const StyledContent = styled.div`
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
   const [isLoading, setIsLoading] = useState(isHome);
-
   useEffect(() => {
     if (isLoading || isHome) {
       return;
@@ -79,10 +78,21 @@ const Layout = ({ children, location }) => {
               siteUrl
               description
             }
+          },
+          cvFile: allSanityAboutMe {
+            edges {
+              node {
+                myFiles {
+                  asset {
+                    url
+                  }
+                }
+              }
+            }
           }
         }
       `}
-      render={({ site }) => (
+      render={({ site, cvFile }) => (
         <div id="root">
           <Head metadata={site.siteMetadata} />
 
@@ -95,7 +105,7 @@ const Layout = ({ children, location }) => {
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
-              <Nav isHome={isHome} />
+              <Nav isHome={isHome} fileURL={cvFile.edges[0].node.myFiles[0].asset.url} />
               <Social isHome={isHome} />
               {/* <Email isHome={isHome} /> */}
 
@@ -113,7 +123,7 @@ const Layout = ({ children, location }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export default Layout;

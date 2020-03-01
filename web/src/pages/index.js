@@ -22,7 +22,6 @@ const StyledMainContainer = styled(Main)`
 `;
 
 const IndexPage = ({ location, data, errors }) => {
-
   if (errors) {
     return (
       <Layout location={location}>
@@ -32,11 +31,20 @@ const IndexPage = ({ location, data, errors }) => {
   }
 
   const { site } = data || {};
-  const projectNodes = (data || {}).projects
-    ? mapEdgesToNodes(data.projects)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
-    : [];
+
+  // const featuredNodes = (data || {}).featured
+  //   ? mapEdgesToNodes(data.featured)
+  //       .filter(filterOutDocsWithoutSlugs)
+  //       .filter(filterOutDocsPublishedInTheFuture)
+  //   : [];
+
+  // const projectNodes = (data || {}).projects
+  //   ? mapEdgesToNodes(data.projects)
+  //       .filter(filterOutDocsWithoutSlugs)
+  //       .filter(filterOutDocsPublishedInTheFuture)
+  //   : [];
+
+  const featuredTitle = data.featuredTitle.edges[0].node.title;
 
   if (!site) {
     throw new Error(
@@ -52,13 +60,16 @@ const IndexPage = ({ location, data, errors }) => {
         <Hero data={data.intro.edges} />
         <About data={data.about.edges} />
         <Jobs data={data.about.edges} />
-        {projectNodes && (
+        {data.featured && (
+          <Featured featuredProjects={data.featured.edges} SectionTitle={featuredTitle} />
+        )}
+        {/* {projectNodes && (
           <ProjectPreviewGrid
             title="Latest projects"
             nodes={projectNodes}
             browseMoreHref="/archive/"
           />
-        )}
+        )} */}
       </StyledMainContainer>
     </Layout>
   );
@@ -72,12 +83,12 @@ const IndexPage = ({ location, data, errors }) => {
       <Projects data={data.projects.edges} />
       <Contact data={data.contact.edges} /> */}
     </StyledMainContainer>
-  </Layout>
+  </Layout>;
 };
 
 IndexPage.propTypes = {
   location: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default IndexPage;
@@ -132,6 +143,40 @@ export const query = graphql`
             position
             tasks
           }
+        }
+      }
+    }
+    featuredTitle: allSanityProjectOverview {
+      edges {
+        node {
+          title
+        }
+      }
+    }
+    featured: allSanitySampleProject(
+      limit: 4
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { eq: true } }
+    ) {
+      edges {
+        node {
+          slug {
+            current
+          }
+          title
+          mainImage {
+            asset {
+              fluid(maxWidth: 700) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+          _rawExcerpt
+          external
+          externalLink
+          github
+          githubLink
+          tech
         }
       }
     }

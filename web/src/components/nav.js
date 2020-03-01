@@ -231,10 +231,11 @@ class Nav extends Component {
 
   render() {
     const { isMounted, menuOpen, scrollDirection } = this.state;
-    const { isHome } = this.props;
+    const { isHome, fileURL } = this.props;
     const timeout = isHome ? 3000 : 0;
     const fadeClass = isHome ? 'fade' : '';
     const fadeDownClass = isHome ? 'fadedown' : '';
+    const website = "https://cdn.sanity.io/files/34stovf0/production/c82278d78a5fbbfca960b6a8ee76885c7e4133de.pdf";
 
     return (
       <StyledContainer scrollDirection={scrollDirection}>
@@ -294,7 +295,7 @@ class Nav extends Component {
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
                   <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
                     <StyledResumeButton
-                      href="/resume.pdf"
+                      href={`${fileURL}`}
                       target="_blank"
                       rel="nofollow noopener noreferrer">
                       Resume
