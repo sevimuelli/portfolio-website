@@ -63,6 +63,7 @@ const IndexPage = ({ location, data, errors }) => {
         {data.featured && (
           <Featured featuredProjects={data.featured.edges} SectionTitle={featuredTitle} />
         )}
+        <Contact data={data.contact.edges} />
         {/* {projectNodes && (
           <ProjectPreviewGrid
             title="Latest projects"
@@ -215,6 +216,14 @@ export const query = graphql`
           slug {
             current
           }
+        }
+      }
+    }
+    contact: allSanityContact {
+      edges {
+        node {
+          _rawDescription
+          title
         }
       }
     }

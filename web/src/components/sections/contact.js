@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig, email } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media, Section, Heading } from '@styles';
+import { theme, mixins, media, Section, Heading, Button } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+
+import BlockContent from '../block-content';
 
 const StyledContainer = styled(Section)`
   text-align: center;
@@ -43,9 +45,14 @@ const StyledEmailLink = styled.a`
   margin-top: 50px;
 `;
 
+const StyledMoreButton = styled(Button)`
+  margin: 100px auto 0;
+`;
+
+
 const Contact = ({ data }) => {
-  const { frontmatter, html } = data[0].node;
-  const { title } = frontmatter;
+  const { title, _rawDescription } = data[0].node;
+
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
@@ -55,17 +62,38 @@ const Contact = ({ data }) => {
 
       <StyledTitle>{title}</StyledTitle>
 
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
 
-      <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
+      <form name="contact" method="POST" data-netlify="true">
+        <p>
+          <label>
+            Your Name: <input type="text" name="name" />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your Email: <input type="email" name="email" />
+          </label>
+        </p>
+        <p>
+          <label>
+            Message: <textarea name="message"></textarea>
+          </label>
+        </p>
+        <p>
+          <StyledMoreButton type="submit">Send</StyledMoreButton>
+        </p>
+      </form>
+
+      {/* <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
         Say Hello
-      </StyledEmailLink>
+      </StyledEmailLink> */}
     </StyledContainer>
   );
 };
 
 Contact.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Contact;
