@@ -7,6 +7,7 @@ import { theme, mixins, media, Section } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 import BlockContent from '../block-content';
+import { Link } from 'gatsby';
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -53,7 +54,7 @@ const StyledDescription = styled.div`
     ${mixins.inlineLink};
   }
 `;
-const StyledEmailLink = styled.a`
+const StyledContactLink = styled(Link)`
   ${mixins.bigButton};
   margin-top: 50px;
 `;
@@ -68,12 +69,8 @@ const Hero = ({ data }) => {
 
   const { name, subtitle, title, _rawDescription } = data[0].node;
 
-  const one = () => (
-    <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>
-  );
-  const two = () => (
-    <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>
-  );
+  const one = () => <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>;
+  const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>;
   const three = () => (
     <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
   );
@@ -87,7 +84,7 @@ const Hero = ({ data }) => {
   );
   const five = () => (
     <div style={{ transitionDelay: '500ms' }}>
-      <StyledEmailLink href={`mailto:${email}`}>Get In Touch</StyledEmailLink>
+      <StyledContactLink to="/#contact">Get In Touch</StyledContactLink>
     </div>
   );
 
@@ -108,7 +105,7 @@ const Hero = ({ data }) => {
 };
 
 Hero.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Hero;

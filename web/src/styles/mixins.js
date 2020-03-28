@@ -16,6 +16,12 @@ const mixins = {
     align-items: center;
   `,
 
+  gridBetween: css`
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+  `,
+
   outline: css`
     outline: 1px solid red;
   `,

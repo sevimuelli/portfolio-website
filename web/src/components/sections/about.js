@@ -19,7 +19,9 @@ const StyledContainer = styled(Section)`
 const StyledFlexContainer = styled.div`
   ${mixins.flexBetween};
   align-items: flex-start;
-  ${media.tablet`display: block;`};
+  ${media.tablet`
+    flex-direction: column;
+  `};
 `;
 const StyledContent = styled.div`
   width: 60%;
@@ -58,7 +60,7 @@ const StyledPic = styled.div`
   width: 40%;
   max-width: 300px;
   margin-left: 60px;
-  ${media.tablet`margin: 60px auto 0;`};
+  ${media.tablet`margin: 20px auto 50px; order: -1;`};
   ${media.phablet`width: 70%;`};
   a {
     &:focus {
@@ -122,7 +124,7 @@ const StyledGridContainer = styled.div`
   display: grid;
   grid-template: 1fr / 1fr 1fr;
   grid-gap: 3rem;
-  margin: 4rem 5%;
+  margin: 7rem 5%;
   ${media.desktop`
     grid-gap: 3rem 1.5rem;
     margin: 80px 10px;
@@ -134,19 +136,6 @@ const StyledGridContainer = styled.div`
   `};
 `;
 
-const SkillBigContainer = styled.div`
-  display: flex;
-  align-items: center;
-  ${'' /* height: 200px; */}
-  ${'' /* justify-content: space-between; */}
-`;
-
-const SkillBigPictureContainter = styled.div`
-  ${'' /* align-self: center; */}
-  width: 11%;
-  justify-self: start;
-`;
-
 const SkillBigPicture = styled.img`
   ${'' /* display: block;
   height: 50px;
@@ -156,6 +145,33 @@ const SkillBigPicture = styled.img`
   height: auto;
   vertical-align: middle;
   width: 100%;
+  background-color: ${colors.navy};
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1);
+  transition: ${theme.transition};
+`;
+
+const SkillBigContainer = styled.div`
+  display: flex;
+  align-items: center;
+  animation-play-state: paused;
+  ${'' /* height: 200px; */}
+  ${'' /* justify-content: space-between; */}
+  &:hover,
+  &:focus {
+    ${SkillBigPicture} {
+      mix-blend-mode: normal;
+      filter: none;
+      ${'' /* background-color: none; */}
+    }
+  }
+`;
+
+const SkillBigPictureContainter = styled.div`
+  ${'' /* align-self: center; */}
+  width: 11%;
+  justify-self: start;
+  background-color: ${colors.green};
 `;
 
 const SkillBigDetail = styled.div`
@@ -219,32 +235,53 @@ const SkillBigBarIntern = styled.div`
   border-radius: 10px;
   ${'' /* width: 80%; */}
   background-image: linear-gradient(to right, ${colors.navy}, ${colors.green});
-  ${'' /* animation-duration: 1.5s;
+  ${
+    '' /* animation-duration: 1.5s;
   animation-timing-function: ease;
   animation-delay: 0s;
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: forwards;
-  animation-play-state: running; */}
+  animation-play-state: running; */
+  }
   ${'' /* animation-name: ratio; */}
 
   ${mixins.barAnimations}
 `;
+
+const startAnimation = ( {id}) => {
+  // const id = domEl.getAttribute('key');
+  // console.log(id);
+  const el = document.getElementById(`skill_${id}`);
+  console.log(el);
+  el.style.animationPlayState = 'running';
+};
 
 const About = ({ data }) => {
   const { skills, otherSkills, title, _rawDescription, photo } = data[0].node;
   console.log(photo);
   // const fluidProps = getFluidGatsbyImage(photo.asset._id, clientConfig.sanity);
   // const { title, skills, avatar } = frontmatter;
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
-
-
+  const revealTitle = useRef(null);
+  const revealFlexContainer = useRef(null);
+  const revealSkills = useRef([]);
+  useEffect(() => {
+    sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealFlexContainer.current, srConfig());
+    revealSkills.current.forEach((ref, i) =>
+      sr.reveal(ref, {
+        ...srConfig(i * 100),
+        afterReveal: function() {
+          return startAnimation({id: i});
+        }
+      })
+    );
+  }, []);
 
   return (
-    <StyledContainer id="about" ref={revealContainer}>
-      <Heading>{title}</Heading>
-      <StyledFlexContainer>
+    <StyledContainer id="about">
+      <Heading ref={revealTitle}>{title}</Heading>
+      <StyledFlexContainer ref={revealFlexContainer}>
         <StyledContent>
           {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
           <SkillsContainer>
@@ -261,19 +298,25 @@ const About = ({ data }) => {
         {skills &&
           skills.map((skill, i) => {
             const barLength = {
-              animation: `ratio${skill.level}0 3s forwards`
+              animation: `ratio${skill.level}0 3s 0.3s forwards`,
+              animationPlayState: 'paused'
             };
+            const src = imageUrlFor(buildImageObj(skill.icon))
+              .height(200)
+              // .width(200)
+              // .fit('min')
+              .url();
+
+            {
+              /* const style = {
+              maskImage: src
+            }; */
+            }
+
             return (
-              <SkillBigContainer>
+              <SkillBigContainer key={i} ref={el => (revealSkills.current[i] = el)}>
                 <SkillBigPictureContainter>
-                  <SkillBigPicture
-                    src={imageUrlFor(buildImageObj(skill.icon))
-                      .height(200)
-                      // .width(200)
-                      // .fit('min')
-                      .url()}
-                    alt={skill.title}
-                  />
+                  <SkillBigPicture src={src} alt={skill.title} />
                 </SkillBigPictureContainter>
                 <SkillBigDetail>
                   <SkillBigMeta>
@@ -281,7 +324,7 @@ const About = ({ data }) => {
                     <SkillBigProcent>{`${skill.level}0%`}</SkillBigProcent>
                   </SkillBigMeta>
                   <SkillBigBar>
-                    <SkillBigBarIntern style={barLength}/>
+                    <SkillBigBarIntern id={'skill_' + i} style={barLength} />
                   </SkillBigBar>
                 </SkillBigDetail>
               </SkillBigContainer>

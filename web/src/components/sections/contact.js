@@ -45,8 +45,36 @@ const StyledEmailLink = styled.a`
   margin-top: 50px;
 `;
 
+const StyledForm = styled.div`
+  margin: 60px auto;
+`;
+
+const StyledLabel = styled.label`
+  display: block;
+  margin: 20px auto;
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  margin: 8px auto;
+  background-color: ${colors.lightGrey};
+  border-color: ${colors.green}
+`;
+const StyledTextArea = styled.textarea`
+  display: block;
+  resize: none;
+  width: 60%;
+  height: 100px;
+  margin: 8px auto;
+  background-color: ${colors.lightGrey};
+  border-color: ${colors.green};
+
+  ${media.tablet`width: 80%;`};
+
+`;
+
 const StyledMoreButton = styled(Button)`
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 `;
 
 
@@ -64,27 +92,30 @@ const Contact = ({ data }) => {
 
       {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
 
-      <form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
-        <input type="hidden" name="bot-field" />
-        <p>
-          <label>
-            Your Name: <input type="text" name="name" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your Email: <input type="email" name="email" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Message: <textarea name="message"></textarea>
-          </label>
-        </p>
-        <p>
-          <StyledMoreButton type="submit">Send</StyledMoreButton>
-        </p>
-      </form>
+      <StyledForm>
+        <form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
+          <input type="hidden" name="bot-field" />
+          <p>
+            <StyledLabel>
+              Your Name:
+              <StyledInput type="text" name="name" />
+            </StyledLabel>
+          </p>
+          <p>
+            <StyledLabel>
+              Your Email: <StyledInput type="email" name="email" />
+            </StyledLabel>
+          </p>
+          <p>
+            <StyledLabel>
+              Message: <StyledTextArea name="message"></StyledTextArea>
+            </StyledLabel>
+          </p>
+          <p>
+            <StyledMoreButton type="submit">Send</StyledMoreButton>
+          </p>
+        </form>
+      </StyledForm>
 
       {/* <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
         Say Hello
