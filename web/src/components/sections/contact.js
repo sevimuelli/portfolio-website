@@ -45,7 +45,7 @@ const StyledEmailLink = styled.a`
   margin-top: 50px;
 `;
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
   margin: 60px auto;
 `;
 
@@ -58,7 +58,7 @@ const StyledInput = styled.input`
   display: block;
   margin: 8px auto;
   background-color: ${colors.lightGrey};
-  border-color: ${colors.green}
+  border-color: ${colors.green};
 `;
 const StyledTextArea = styled.textarea`
   display: block;
@@ -70,51 +70,75 @@ const StyledTextArea = styled.textarea`
   border-color: ${colors.green};
 
   ${media.tablet`width: 80%;`};
-
 `;
 
 const StyledMoreButton = styled(Button)`
   margin: 50px auto 0;
 `;
 
-
 const Contact = ({ data }) => {
   const { title, _rawDescription } = data[0].node;
 
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+  const revealHeading = useRef(null);
+  const revealTitle = useRef(null);
+  const revealDescription = useRef(null);
+  const revealNameLabel = useRef(null);
+  const revealNameInput = useRef(null);
+  const revealMailLabel = useRef(null);
+  const revealMailInput = useRef(null);
+  const revealMessageLabel = useRef(null);
+  const revealMessageInput = useRef(null);
+  const revealButton = useRef(null);
+  useEffect(() => {
+    sr.reveal(revealHeading.current, srConfig());
+    sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealDescription.current, srConfig());
+    sr.reveal(revealNameLabel.current, srConfig());
+    sr.reveal(revealNameInput.current, srConfig());
+    sr.reveal(revealMailLabel.current, srConfig());
+    sr.reveal(revealMailInput.current, srConfig());
+    sr.reveal(revealMessageLabel.current, srConfig());
+    sr.reveal(revealMessageInput.current, srConfig());
+    sr.reveal(revealButton.current, srConfig());
+  }, []);
 
   return (
-    <StyledContainer id="contact" ref={revealContainer}>
-      <StyledHeading>What&apos;s Next?</StyledHeading>
+    <StyledContainer id="contact">
+      <StyledHeading ref={revealHeading}>What&apos;s Next?</StyledHeading>
 
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitle ref={revealTitle}>{title}</StyledTitle>
 
-      {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
+      {_rawDescription && <BlockContent ref={revealDescription} blocks={_rawDescription || []} />}
 
-      <StyledForm>
-        <form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
-          <input type="hidden" name="bot-field" />
-          <p>
-            <StyledLabel>
-              Your Name:
-              <StyledInput type="text" name="name" />
-            </StyledLabel>
-          </p>
-          <p>
-            <StyledLabel>
-              Your Email: <StyledInput type="email" name="email" />
-            </StyledLabel>
-          </p>
-          <p>
-            <StyledLabel>
-              Message: <StyledTextArea name="message"></StyledTextArea>
-            </StyledLabel>
-          </p>
-          <p>
-            <StyledMoreButton type="submit">Send</StyledMoreButton>
-          </p>
-        </form>
+      <StyledForm
+        name="contact"
+        method="post"
+        netlify-honeypot="bot-field"
+        data-netlify="true"
+        action="/success"
+      >
+        <input type="hidden" name="bot-field" />
+        <p>
+          <StyledLabel ref={revealNameLabel}>
+            Your Name:
+            <StyledInput ref={revealNameInput} type="text" name="name" />
+          </StyledLabel>
+        </p>
+        <p>
+          <StyledLabel ref={revealMailLabel}>
+            Your Email: <StyledInput ref={revealMailInput} type="email" name="email" />
+          </StyledLabel>
+        </p>
+        <p>
+          <StyledLabel ref={revealMessageLabel}>
+            Message: <StyledTextArea ref={revealMessageInput} name="message" />
+          </StyledLabel>
+        </p>
+        <p>
+          <StyledMoreButton ref={revealButton} type="submit">
+            Send
+          </StyledMoreButton>
+        </p>
       </StyledForm>
 
       {/* <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
