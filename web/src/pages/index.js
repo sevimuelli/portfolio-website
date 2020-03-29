@@ -44,7 +44,8 @@ const IndexPage = ({ location, data, errors }) => {
   //       .filter(filterOutDocsPublishedInTheFuture)
   //   : [];
 
-  const featuredTitle = data.featuredTitle.edges[0].node.title;
+  const featuredProjectTitle = data.projectsTitles.edges[0].node.featuredTitle;
+  const otherProjectTitle = data.projectsTitles.edges[0].node.otherProjectsTitle;
 
   if (!site) {
     throw new Error(
@@ -61,7 +62,10 @@ const IndexPage = ({ location, data, errors }) => {
         <About data={data.about.edges} />
         <Jobs data={data.about.edges} />
         {data.featured && (
-          <Featured featuredProjects={data.featured.edges} SectionTitle={featuredTitle} />
+          <Featured featuredProjects={data.featured.edges} SectionTitle={featuredProjectTitle} />
+        )}
+        {data.projects && (
+          <Projects projects={data.projects.edges} sectionTitle={otherProjectTitle} />
         )}
         <Contact data={data.contact.edges} />
         {/* {projectNodes && (
@@ -75,16 +79,16 @@ const IndexPage = ({ location, data, errors }) => {
     </Layout>
   );
 
-  <Layout location={location}>
-    <StyledMainContainer className="fillHeight">
-      {/* <Hero data={data.hero.edges} />
-      <About data={data.about.edges} />
-      <Jobs data={data.jobs.edges} />
-      <Featured data={data.featured.edges} />
-      <Projects data={data.projects.edges} />
-      <Contact data={data.contact.edges} /> */}
-    </StyledMainContainer>
-  </Layout>;
+  // <Layout location={location}>
+  //   <StyledMainContainer className="fillHeight">
+  //     {/* <Hero data={data.hero.edges} />
+  //     <About data={data.about.edges} />
+  //     <Jobs data={data.jobs.edges} />
+  //     <Featured data={data.featured.edges} />
+  //     <Projects data={data.projects.edges} />
+  //     <Contact data={data.contact.edges} /> */}
+  //   </StyledMainContainer>
+  // </Layout>;
 };
 
 IndexPage.propTypes = {
@@ -147,10 +151,11 @@ export const query = graphql`
         }
       }
     }
-    featuredTitle: allSanityProjectOverview {
+    projectsTitles: allSanityProjectOverview {
       edges {
         node {
-          title
+          featuredTitle
+          otherProjectsTitle
         }
       }
     }
@@ -182,36 +187,23 @@ export const query = graphql`
       }
     }
     projects: allSanitySampleProject(
-      limit: 6
       sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { ne: true } }
     ) {
       edges {
         node {
-          id
+          title
+          tech
+          github
+          githubLink
+          externalLink
+          external
           mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
             asset {
               _id
             }
             alt
           }
-          title
           _rawExcerpt
           slug {
             current

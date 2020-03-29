@@ -57,7 +57,7 @@ const StyledLabel = styled.label`
 const StyledInput = styled.input`
   display: block;
   margin: 8px auto;
-  background-color: ${colors.lightGrey};
+  background-color: ${colors.lightNavy};
   border-color: ${colors.green};
 `;
 const StyledTextArea = styled.textarea`
@@ -66,7 +66,7 @@ const StyledTextArea = styled.textarea`
   width: 60%;
   height: 100px;
   margin: 8px auto;
-  background-color: ${colors.lightGrey};
+  background-color: ${colors.lightNavy};
   border-color: ${colors.green};
 
   ${media.tablet`width: 80%;`};

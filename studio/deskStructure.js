@@ -1,6 +1,6 @@
 import S from '@sanity/desk-tool/structure-builder';
 import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md/';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaArchive } from 'react-icons/fa';
 import {GiMagnifyingGlass} from 'react-icons/gi'
 
 const hiddenDocTypes = listItem =>
@@ -64,6 +64,16 @@ export default () =>
         .title('Sample projects')
         .schemaType('sampleProject')
         .child(S.documentTypeList('sampleProject').title('Sample projects')),
+      S.listItem()
+        .title('Archive')
+        .id('archiveSettings')
+        .child(
+          S.editor()
+            .id('archive')
+            .schemaType('archive')
+            .documentId('archive')
+        )
+        .icon(FaArchive),
       S.divider(),
       S.listItem()
         .title('People')

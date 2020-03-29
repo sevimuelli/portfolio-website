@@ -138,6 +138,9 @@ const GlobalStyle = createGlobalStyle`
   input, textarea {
     border-radius: 0;
     outline: 0;
+    color: ${colors.lightSlate};
+    background-color: ${colors.lightNavy};
+    border-color: ${colors.green};
 
     &:focus {
       outline: 0;

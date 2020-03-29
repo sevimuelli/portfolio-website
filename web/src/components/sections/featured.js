@@ -267,7 +267,7 @@ const Featured = ({ featuredProjects, SectionTitle }) => {
                   <StyledLinkWrapper>
                     {githubLink && (
                       <a
-                        href={github}
+                        href={githubLink}
                         target="_blank"
                         rel="nofollow noopener noreferrer"
                         aria-label="GitHub Link"

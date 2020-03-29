@@ -10,8 +10,13 @@ export default {
   // ],
   fields: [
     {
-      name: 'title',
-      title: 'Title',
+      name: 'featuredTitle',
+      title: 'Featured Porjects Title',
+      type: 'string'
+    },
+    {
+      name: 'otherProjectsTitle',
+      title: 'Other Porjects Title',
       type: 'string'
     },
     {

@@ -6,6 +6,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // Document types
 import aboutMe from './documents/aboutMe'
+import archive from './documents/archive'
 import category from './documents/category'
 import contact from './documents/contact'
 import introPage from './documents/introPage'
@@ -44,6 +45,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     aboutMe,
+    archive,
     category,
     contact,
     introPage,

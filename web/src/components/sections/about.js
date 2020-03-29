@@ -145,10 +145,10 @@ const SkillBigPicture = styled.img`
   height: auto;
   vertical-align: middle;
   width: 100%;
-  background-color: ${colors.navy};
-  mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1);
+  background-color: #0b2040;
   transition: ${theme.transition};
+  mix-blend-mode: multiply;
 `;
 
 const SkillBigContainer = styled.div`
@@ -172,6 +172,8 @@ const SkillBigPictureContainter = styled.div`
   width: 11%;
   justify-self: start;
   background-color: ${colors.green};
+  ${'' /* backdrop-filter: opacity(30%); */}
+  z-index: -1;
 `;
 
 const SkillBigDetail = styled.div`
