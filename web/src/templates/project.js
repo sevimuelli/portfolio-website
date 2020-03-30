@@ -1,15 +1,39 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import Project from '../components/project';
 import SEO from '../components/seo';
-import Layout from '../containers/layout';
+
+import { Layout } from '@components';
+import styled from 'styled-components';
+import { Main, theme } from '@styles';
+
+const StyledContainer = styled(Main)`
+  max-width: 1000px;
+`;
+
+const ProjectTemplate = ({ data, location, errors }) => {
+  const project = data && data.sampleProject;
+  return (
+    <Layout location={location}>
+      {errors && <SEO title="GraphQL Error" />}
+      {project && <SEO title={project.title || 'Untitled'} />}
+
+      <StyledContainer>
+        {errors && <GraphQLErrorList errors={errors} />}
+        {project && <Project data={project} />}
+      </StyledContainer>
+    </Layout>
+  );
+};
+
+export default ProjectTemplate;
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
     sampleProject: sanitySampleProject(id: { eq: $id }) {
       id
+      tech
       publishedAt
       categories {
         _id
@@ -49,54 +73,14 @@ export const query = graphql`
         current
       }
       _rawBody
-      members {
-        _key
-        person {
-          image {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-          }
-          name
+      _rawIntroText
+      imgGallery {
+        asset {
+          _id
         }
-        roles
+        caption
+        alt
       }
     }
   }
 `;
-
-const ProjectTemplate = props => {
-  const { data, errors } = props;
-  const project = data && data.sampleProject;
-  return (
-    <Layout>
-      {errors && <SEO title="GraphQL Error" />}
-      {project && <SEO title={project.title || 'Untitled'} />}
-
-      {errors && (
-        <Container>
-          <GraphQLErrorList errors={errors} />
-        </Container>
-      )}
-      {project && <Project {...project} />}
-    </Layout>
-  );
-};
-
-export default ProjectTemplate;

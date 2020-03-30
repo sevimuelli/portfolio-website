@@ -176,7 +176,8 @@ const Projects = ({ projects, sectionTitle }) => {
   // const projects = data.filter(({ node }) => node);
   const firstSix = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstSix;
-  console.log(projectsToShow);
+  const moreProjects = projects.length > GRID_LIMIT;
+  console.log('Project length: ' + projects.length);
 
   return (
     <StyledContainer>
@@ -274,9 +275,9 @@ const Projects = ({ projects, sectionTitle }) => {
         </TransitionGroup>
       </StyledGrid>
 
-      <StyledMoreButton onClick={() => setShowMore(!showMore)}>
+      {moreProjects && <StyledMoreButton onClick={() => setShowMore(!showMore)}>
         Show {showMore ? 'Less' : 'More'}
-      </StyledMoreButton>
+      </StyledMoreButton>}
     </StyledContainer>
   );
 };

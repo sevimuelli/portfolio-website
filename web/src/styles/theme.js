@@ -40,6 +40,7 @@ const theme = {
     lg: '18px',
     xl: '20px',
     xxl: '22px',
+    xxxl: '25px',
     h3: '32px',
   },
 

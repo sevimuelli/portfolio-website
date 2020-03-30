@@ -29,6 +29,22 @@ export default {
       description: 'When this is selected, is will be shown on the front-page'
     },
     {
+      name: 'publishedAt',
+      title: 'Published at',
+      description: 'You can use this field to schedule projects where you show them',
+      type: 'datetime'
+    },
+    {
+      name: 'startedAt',
+      title: 'Started at',
+      type: 'datetime'
+    },
+    {
+      name: 'endedAt',
+      title: 'Ended at',
+      type: 'datetime'
+    },
+    {
       name: 'externalLink',
       titel: 'External Link',
       type: 'url'
@@ -49,10 +65,16 @@ export default {
       type: 'boolean'
     },
     {
-      name: 'publishedAt',
-      title: 'Published at',
-      description: 'You can use this field to schedule projects where you show them',
-      type: 'datetime'
+      name: 'tech',
+      title: 'Used tech',
+      type: 'array',
+      of: [{type: 'string'}]
+    },
+    {
+      name: 'relatedProjects',
+      title: 'Related projects',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'sampleProject'}}]
     },
     {
       name: 'excerpt',
@@ -60,26 +82,14 @@ export default {
       type: 'simplePortableText'
     },
     {
-      name: 'tech',
-      title: 'Used tech',
-      type: 'array',
-      of: [{type: 'string'}]
+      name: 'introTitle',
+      title: 'Intro-Title',
+      type: 'string'
     },
     {
-      name: 'members',
-      title: 'Members',
-      type: 'array',
-      of: [{type: 'projectMember'}]
-    },
-    {
-      name: 'startedAt',
-      title: 'Started at',
-      type: 'datetime'
-    },
-    {
-      name: 'endedAt',
-      title: 'Ended at',
-      type: 'datetime'
+      name: 'introText',
+      title: 'Intro-Text',
+      type: 'projectPortableText'
     },
     {
       name: 'mainImage',
@@ -93,33 +103,35 @@ export default {
       of: [{type: 'figure'}]
     },
     {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}]
-    },
-    {
       name: 'body',
       title: 'Body',
       type: 'projectPortableText'
     },
     {
-      name: 'relatedProjects',
-      title: 'Related projects',
+      name: 'members',
+      title: 'Members',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'sampleProject'}}]
+      of: [{type: 'projectMember'}]
+    },
+    {
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'category'}}]
     }
   ],
   preview: {
     select: {
-      title: 'title',
+      heading: 'title',
       publishedAt: 'publishedAt',
       slug: 'slug',
-      media: 'mainImage'
+      media: 'mainImage',
+      featured: 'featured'
     },
-    prepare({title = 'No title', publishedAt, slug = {}, media}) {
+    prepare({heading = 'No title', publishedAt, slug = {}, media, featured = false}) {
       const dateSegment = format(publishedAt, 'YYYY/MM')
       const path = `/${dateSegment}/${slug.current}/`
+      const title = featured ? `FEA: ${heading}` : heading
       return {
         title,
         media,
