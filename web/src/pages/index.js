@@ -182,7 +182,12 @@ export const query = graphql`
           externalLink
           github
           githubLink
-          tech
+          tags {
+            title
+            slug {
+              current
+            }
+          }
         }
       }
     }
@@ -207,6 +212,12 @@ export const query = graphql`
           _rawExcerpt
           slug {
             current
+          }
+          tags {
+            title
+            slug {
+              current
+            }
           }
         }
       }

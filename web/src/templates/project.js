@@ -41,7 +41,6 @@ export const query = graphql`
       }
       relatedProjects {
         title
-        _id
         slug {
           current
         }
@@ -67,6 +66,7 @@ export const query = graphql`
           _id
         }
         alt
+        caption
       }
       title
       slug {
@@ -80,6 +80,12 @@ export const query = graphql`
         }
         caption
         alt
+      }
+      tags {
+        title
+        slug {
+          current
+        }
       }
     }
   }

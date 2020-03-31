@@ -141,6 +141,10 @@ const StyledTechList = styled.ul`
   }
 `;
 
+const StyledTechListLink = styled(Link)`
+  ${mixins.inlineLink};
+`;
+
 const StyledProjectLinks = styled.div`
   ${'' /* margin-right: -10px; */}
   color: ${colors.lightSlate};
@@ -199,7 +203,8 @@ const Projects = ({ projects, sectionTitle }) => {
                 externalLink,
                 github,
                 githubLink,
-                tech
+                tech,
+                tags
               } = node;
               return (
                 <CSSTransition
@@ -240,8 +245,12 @@ const Projects = ({ projects, sectionTitle }) => {
                       </header>
                       <StyledFooter>
                         <StyledTechList>
-                          {tech.map((tech, i) => (
-                            <li key={i}>{tech}</li>
+                          {tags.map((tag, i) => (
+                            <li key={i}>
+                              <StyledTechListLink key={i} to={`/tags/${tag.slug.current}`}>
+                                #{tag.title}
+                              </StyledTechListLink>
+                            </li>
                           ))}
                         </StyledTechList>
                         <StyledProjectLinks>
@@ -275,9 +284,11 @@ const Projects = ({ projects, sectionTitle }) => {
         </TransitionGroup>
       </StyledGrid>
 
-      {moreProjects && <StyledMoreButton onClick={() => setShowMore(!showMore)}>
-        Show {showMore ? 'Less' : 'More'}
-      </StyledMoreButton>}
+      {moreProjects && (
+        <StyledMoreButton onClick={() => setShowMore(!showMore)}>
+          Show {showMore ? 'Less' : 'More'}
+        </StyledMoreButton>
+      )}
     </StyledContainer>
   );
 };

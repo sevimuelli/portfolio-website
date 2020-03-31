@@ -1,10 +1,21 @@
 import S from '@sanity/desk-tool/structure-builder';
 import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md/';
-import { FaHome, FaArchive } from 'react-icons/fa';
-import {GiMagnifyingGlass} from 'react-icons/gi'
+import { FaHome, FaArchive, FaHashtag } from 'react-icons/fa';
+import { GiMagnifyingGlass } from 'react-icons/gi';
 
 const hiddenDocTypes = listItem =>
-  !['category', 'person', 'sampleProject', 'siteSettings', 'introPage', 'aboutMe', 'contact', 'projectOverview'].includes(listItem.getId());
+  ![
+    'category',
+    'person',
+    'sampleProject',
+    'siteSettings',
+    'introPage',
+    'aboutMe',
+    'contact',
+    'projectOverview',
+    'archive',
+    'tag'
+  ].includes(listItem.getId());
 
 export default () =>
   S.list()
@@ -74,6 +85,10 @@ export default () =>
             .documentId('archive')
         )
         .icon(FaArchive),
+      S.listItem()
+        .title('Tags')
+        .schemaType('tag')
+        .child(S.documentTypeList('tag').title('Tags')),
       S.divider(),
       S.listItem()
         .title('People')

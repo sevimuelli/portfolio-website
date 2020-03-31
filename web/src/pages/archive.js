@@ -85,13 +85,21 @@ const StyledTable = styled.table`
   }
 `;
 
+
+const StyledTechListLink = styled(Link)`
+  ${mixins.inlineLink};
+
+  &::after {
+    bottom: 0.2em;
+  }
+`;
+
 const StyledLink = styled(Link)``;
 
 const ArchivePage = ({ location, data }) => {
   const projects = data.projects.edges;
   const archiveTitle = data.titles.edges[0].node.title;
   const archiveSubtitle = data.titles.edges[0].node.subtitle;
-
 
   const revealTitle = useRef(null);
   const revealTable = useRef(null);
@@ -128,19 +136,25 @@ const ArchivePage = ({ location, data }) => {
             <tbody>
               {projects.length > 0 &&
                 projects.map(({ node }, i) => {
-                  const { slug, publishedAt, githubLink, externalLink, title, tech } = node;
+                  const { slug, publishedAt, githubLink, externalLink, title, tech, tags } = node;
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
                       <td className="overline year">{`${new Date(publishedAt).getFullYear()}`}</td>
 
-                      <td className="title"><StyledLink to={`/project/${slug.current}`}>{title}</StyledLink></td>
+                      <td className="title">
+                        <StyledLink to={`/project/${slug.current}`}>{title}</StyledLink>
+                      </td>
 
                       <td className="tech hide-on-mobile">
-                        {tech.length > 0 &&
-                          tech.map((item, i) => (
+                        {tags.length > 0 &&
+                          tags.map((tag, i) => (
                             <span key={i}>
-                              <span key={i}>{item}</span>
-                              {i !== tech.length - 1 && <span>&nbsp;&middot;&nbsp;</span>}
+                              <span key={i}>
+                                <StyledTechListLink key={i} to={`/tags/${tag.slug.current}`}>
+                                  #{tag.title}
+                                </StyledTechListLink>
+                              </span>
+                              {i !== tags.length - 1 && <span>&nbsp;&middot;&nbsp;</span>}
                             </span>
                           ))}
                       </td>
@@ -152,7 +166,8 @@ const ArchivePage = ({ location, data }) => {
                               href={githubLink}
                               target="_blank"
                               rel="nofollow noopener noreferrer"
-                              aria-label="GitHub Link">
+                              aria-label="GitHub Link"
+                            >
                               <IconGitHub />
                             </a>
                           ) : (
@@ -163,7 +178,8 @@ const ArchivePage = ({ location, data }) => {
                               href={externalLink}
                               target="_blank"
                               rel="nofollow noopener noreferrer"
-                              aria-label="External Link">
+                              aria-label="External Link"
+                            >
                               <IconExternal />
                             </a>
                           ) : (
@@ -183,7 +199,7 @@ const ArchivePage = ({ location, data }) => {
 };
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default ArchivePage;
@@ -206,6 +222,12 @@ export const pageQuery = graphql`
             current
           }
           publishedAt
+          tags {
+            title
+            slug {
+              current
+            }
+          }
         }
       }
     }

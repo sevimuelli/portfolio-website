@@ -71,6 +71,12 @@ export default {
       of: [{type: 'string'}]
     },
     {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'tag'}}]
+    },
+    {
       name: 'relatedProjects',
       title: 'Related projects',
       type: 'array',

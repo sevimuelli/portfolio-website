@@ -14,6 +14,7 @@ import person from './documents/person'
 import projectOverview from './documents/projectOverview'
 import sampleProject from './documents/sampleProject'
 import siteSettings from './documents/siteSettings'
+import tag from './documents/tag'
 
 // Object types
 import bioPortableText from './objects/bioPortableText'
@@ -52,6 +53,7 @@ export default createSchema({
     person,
     projectOverview,
     sampleProject,
-    siteSettings
+    siteSettings,
+    tag
   ])
 })

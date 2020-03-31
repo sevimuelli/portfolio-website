@@ -27,9 +27,11 @@ const StyledPostHeader = styled.header`
 const StyledRelatedProjects = styled.div`
   margin: 35px 0px;
   font-size: ${fontSizes.xxxl};
+  color: ${colors.lightSlate};
 `;
 
 const StyledRelatedProjectLink = styled(Link)`
+  ${mixins.inlineLink};
   margin-left: 20px;
 `;
 
@@ -51,9 +53,24 @@ const StyledPostContent = styled.div`
   }
 `;
 
-const StyledCaruselContainer = styled.div``;
+const StyledCaruselContainer = styled.div`
+  .slick-dots li button::before {
+    color: ${colors.green};
+  }
+
+  .slick-dots li.slick-active button::before {
+    color: ${colors.green};
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    color: ${colors.lightSlate};
+  }
+`;
 
 const StyledCaruselImgContainter = styled.div`
+  ${'' /* padding-right: 20px;
+  padding-left: 20px; */}
 `;
 
 const slickSettings = {
@@ -70,7 +87,7 @@ const slickSettings = {
     {
       breakpoint: 700,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 1
         // className: '',
         // centerMode: false,
         // centerPadding: '0px'
@@ -88,7 +105,8 @@ function Project({ data }) {
     publishedAt,
     relatedProjects,
     tech,
-    imgGallery
+    imgGallery,
+    tags
   } = data;
   return (
     <div>
@@ -107,15 +125,15 @@ function Project({ data }) {
             })}
           </time>
           <span>&nbsp;&mdash;&nbsp;</span>
-          {tech &&
-            tech.length > 0 &&
-            tech.map((tech, i) => (
-              <Link key={i} to={'#'} className="tag">
-                #{tech}
+          {tags &&
+            tags.length > 0 &&
+            tags.map((tag, i) => (
+              <Link key={i} to={`/tags/${tag.slug.current}`} className="tag">
+                #{tag.title}
               </Link>
             ))}
         </p>
-        {relatedProjects && (
+        {relatedProjects.length > 0 && (
           <StyledRelatedProjects>
             <strong>Related Projects: </strong>
             {relatedProjects.map((project, i) => (
@@ -137,18 +155,30 @@ function Project({ data }) {
         {_rawIntroText && <BlockContent blocks={_rawIntroText || []} />}
         <StyledCaruselContainer>
           <Slider {...slickSettings} arrows>
-            {imgGallery.map((img, i) => (
+            {mainImage && (
               <StyledCaruselImgContainter>
                 <img
-                  key={i}
-                  src={imageUrlFor(buildImageObj(img))
+                  src={imageUrlFor(buildImageObj(mainImage))
                     .width(600)
                     .height(Math.floor((9 / 16) * 600))
                     .url()}
-                  alt={img.alt}
+                  alt={mainImage.alt}
                 />
               </StyledCaruselImgContainter>
-            ))}
+            )}
+            {imgGallery.length > 0 &&
+              imgGallery.map((img, i) => (
+                <StyledCaruselImgContainter>
+                  <img
+                    key={i}
+                    src={imageUrlFor(buildImageObj(img))
+                      .width(600)
+                      .height(Math.floor((9 / 16) * 600))
+                      .url()}
+                    alt={img.alt}
+                  />
+                </StyledCaruselImgContainter>
+              ))}
           </Slider>
         </StyledCaruselContainer>
         {_rawBody && <BlockContent blocks={_rawBody || []} />}

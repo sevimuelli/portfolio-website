@@ -82,8 +82,8 @@ const StyledTechList = styled.ul`
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.smish};
     color: ${colors.slate};
-    margin-right: ${theme.margin};
     margin-bottom: 7px;
+    margin-right: ${theme.margin};
     white-space: nowrap;
     &:last-of-type {
       margin-right: 0;
@@ -94,6 +94,15 @@ const StyledTechList = styled.ul`
     `};
   }
 `;
+
+const StyledTechListLink = styled(Link)`
+  ${mixins.inlineLink};
+
+  &::after {
+    bottom: 0.05em;
+  }
+`;
+
 const StyledLinkWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -233,7 +242,7 @@ const Featured = ({ featuredProjects, SectionTitle }) => {
               externalLink,
               github,
               githubLink,
-              tech
+              tags
             } = node;
 
             return (
@@ -257,10 +266,14 @@ const Featured = ({ featuredProjects, SectionTitle }) => {
                   <StyledDescription>
                     {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
                   </StyledDescription>
-                  {tech && (
+                  {tags && (
                     <StyledTechList>
-                      {tech.map((techItems, i) => (
-                        <li key={i}>{techItems}</li>
+                      {tags.map((tag, i) => (
+                        <li key={i}>
+                          <StyledTechListLink key={i} to={`/tags/${tag.slug.current}`}>
+                            #{tag.title}
+                          </StyledTechListLink>
+                        </li>
                       ))}
                     </StyledTechList>
                   )}
@@ -297,9 +310,9 @@ const Featured = ({ featuredProjects, SectionTitle }) => {
                     <StyledFeaturedImg fluid={mainImage.asset.fluid} alt={title} />
                   </StyledImgContainer>
                 ) : ( */}
-                  <StyledImgContainer to={`/project/${slug.current}`}>
-                    <StyledFeaturedImg fluid={mainImage.asset.fluid} alt={title} />
-                  </StyledImgContainer>
+                <StyledImgContainer to={`/project/${slug.current}`}>
+                  <StyledFeaturedImg fluid={mainImage.asset.fluid} alt={title} />
+                </StyledImgContainer>
                 {/* )} */}
               </StyledProject>
             );
