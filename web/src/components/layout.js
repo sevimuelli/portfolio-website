@@ -103,7 +103,7 @@ const Layout = ({ children, location }) => {
           <SkipToContent href="#content">Skip to Content</SkipToContent>
 
           {/* isLoading && isHome */}
-          {isLoading && isHome && isProd && false ? (
+          {isLoading && isHome && isProd && true ? (
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>

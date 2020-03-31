@@ -112,12 +112,19 @@ const Contact = ({ data }) => {
 
       <StyledForm
         name="contact"
-        method="post"
-        netlify-honeypot="bot-field"
-        data-netlify="true"
-        action="/success"
+        // method="post"
+        // netlify-honeypot="bot-field"
+        // data-netlify="true"
+        action="https://submit-form.com/TxKOmyYThxTKFA1XKXtkD"
+        target="_self"
       >
-        <input type="hidden" name="bot-field" />
+        <input
+          type="checkbox"
+          name="_honeypot"
+          style={{ display: 'none' }}
+          tabIndex="-1"
+          autoComplete="off"
+        />
         <p>
           <StyledLabel ref={revealNameLabel}>
             Your Name:
