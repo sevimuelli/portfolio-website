@@ -60,7 +60,7 @@ function TagsPage({ data, location }) {
       <StyledTagsContainer>
         <span className="breadcrumb">
           <span className="arrow">&larr;</span>
-          <Link to="/pensieve">All memories</Link>
+          <Link to="/archive">Back to archive</Link>
         </span>
 
         <h1>Tags</h1>
