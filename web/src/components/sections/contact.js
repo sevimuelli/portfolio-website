@@ -125,6 +125,7 @@ const Contact = ({ data }) => {
           tabIndex="-1"
           autoComplete="off"
         />
+        <input type="hidden" name="_redirect" value="https://severinmueller.ch/success" />
         <p>
           <StyledLabel ref={revealNameLabel}>
             Your Name:
