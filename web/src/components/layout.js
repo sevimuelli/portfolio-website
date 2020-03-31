@@ -81,7 +81,7 @@ const Layout = ({ children, location }) => {
               description
             }
           },
-          cvFile: allSanityAboutMe {
+          resumeFile: allSanityAboutMe {
             edges {
               node {
                 myFiles {
@@ -94,7 +94,7 @@ const Layout = ({ children, location }) => {
           }
         }
       `}
-      render={({ site, cvFile }) => (
+      render={({ site, resumeFile }) => (
         <div id="root">
           <Head metadata={site.siteMetadata} />
 
@@ -107,7 +107,7 @@ const Layout = ({ children, location }) => {
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
-              <Nav isHome={isHome} fileURL={cvFile.edges[0].node.myFiles[0].asset.url} />
+              <Nav isHome={isHome} fileURL={resumeFile.edges[0].node.myFiles[0].asset.url} />
               <Social isHome={isHome} />
               {/* <Email isHome={isHome} /> */}
 

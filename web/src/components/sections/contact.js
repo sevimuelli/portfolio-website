@@ -112,9 +112,6 @@ const Contact = ({ data }) => {
 
       <StyledForm
         name="contact"
-        // method="post"
-        // netlify-honeypot="bot-field"
-        // data-netlify="true"
         action="https://submit-form.com/TxKOmyYThxTKFA1XKXtkD"
         target="_self"
       >
