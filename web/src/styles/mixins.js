@@ -179,7 +179,7 @@ const mixins = {
         width: 0%
       }
       to {
-        width: 83%
+        width: 30%
       }
     };
 

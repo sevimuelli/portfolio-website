@@ -160,6 +160,8 @@ const Jobs = ({ data }) => {
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
 
+  workplaces.sort((a, b) => a > b);
+
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
@@ -200,7 +202,7 @@ const Jobs = ({ data }) => {
       <StyledTabs>
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyPressed(e)}>
           {workplaces &&
-            workplaces.map((work , i) => {
+            workplaces.map((work, i) => {
               const { company } = work;
               return (
                 <li key={i}>
