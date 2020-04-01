@@ -80,7 +80,7 @@ const ResumeLink = styled.a`
   width: max-content;
 `;
 
-const Menu = ({ menuOpen, toggleMenu }) => {
+const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
   const handleMenuClick = e => {
     const target = e.target;
     const isLink = target.hasAttribute('href');
@@ -107,7 +107,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
                 </NavListItem>
               ))}
           </NavList>
-          <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
+          <ResumeLink href={`${fileURL}`} target="_blank" rel="nofollow noopener noreferrer">
             Resume
           </ResumeLink>
         </NavLinks>

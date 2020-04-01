@@ -235,7 +235,6 @@ class Nav extends Component {
     const timeout = isHome ? 3000 : 0;
     const fadeClass = isHome ? 'fade' : '';
     const fadeDownClass = isHome ? 'fadedown' : '';
-    const website = "https://cdn.sanity.io/files/34stovf0/production/c82278d78a5fbbfca960b6a8ee76885c7e4133de.pdf";
 
     return (
       <StyledContainer scrollDirection={scrollDirection}>
@@ -307,7 +306,7 @@ class Nav extends Component {
           </StyledLink>
         </StyledNav>
 
-        <Menu menuOpen={menuOpen} toggleMenu={this.toggleMenu} />
+        <Menu menuOpen={menuOpen} toggleMenu={this.toggleMenu} fileURL={fileURL} />
       </StyledContainer>
     );
   }
