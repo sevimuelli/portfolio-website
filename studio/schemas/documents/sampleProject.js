@@ -6,6 +6,9 @@ export default {
   title: 'Sample project',
   type: 'document',
   icon: FaTools,
+  initialValue: {
+    aspectRatioImgGal: 0.75
+  },
   fields: [
     {
       name: 'title',
@@ -107,6 +110,12 @@ export default {
       title: 'Image Gallery',
       type: 'array',
       of: [{type: 'figure'}]
+    },
+    {
+      name: 'aspectRatioImgGal',
+      title: 'Aspect ratio Imgage Gallery',
+      type: 'number',
+      validation: Rule => Rule.required()
     },
     {
       name: 'body',

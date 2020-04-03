@@ -32,6 +32,7 @@ export default ProjectTemplate;
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
     sampleProject: sanitySampleProject(id: { eq: $id }) {
+      aspectRatioImgGal
       id
       tech
       publishedAt

@@ -54,6 +54,8 @@ const StyledPostContent = styled.div`
 `;
 
 const StyledCaruselContainer = styled.div`
+  margin-top: 50px;
+  margin-bottom: 30px;
   .slick-dots li button::before {
     color: ${colors.green};
   }
@@ -98,6 +100,7 @@ const slickSettings = {
 
 function Project({ data }) {
   const {
+    aspectRatioImgGal,
     _rawBody,
     _rawIntroText,
     title,
@@ -160,7 +163,7 @@ function Project({ data }) {
                 <img
                   src={imageUrlFor(buildImageObj(mainImage))
                     .width(600)
-                    .height(Math.floor((9 / 16) * 600))
+                    .height(Math.floor(aspectRatioImgGal * 600))
                     .url()}
                   alt={mainImage.alt}
                 />
@@ -173,7 +176,7 @@ function Project({ data }) {
                     key={i}
                     src={imageUrlFor(buildImageObj(img))
                       .width(600)
-                      .height(Math.floor((9 / 16) * 600))
+                      .height(Math.floor(aspectRatioImgGal * 600))
                       .url()}
                     alt={img.alt}
                   />
