@@ -127,7 +127,7 @@ const slickSettings = {
   slidesToScroll: 1,
   initialSlide: 0,
   fade: true,
-  autoplay: false,
+  autoplay: true,
   autoplaySpeed: 3500,
   cssEase: 'linear',
   pauseOnHover: true
