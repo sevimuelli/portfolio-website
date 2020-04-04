@@ -10,9 +10,10 @@ import RoleList from './role-list';
 import styles from './project.module.css';
 
 import styled from 'styled-components';
-import { Main, theme, mixins } from '@styles';
+import { Main, theme, mixins, media } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 import Slider from 'react-slick';
+import { IconGitHub, IconExternal } from '@components/icons';
 
 const StyledPostContainer = styled(Main)`
   max-width: 1000px;
@@ -75,27 +76,72 @@ const StyledCaruselImgContainter = styled.div`
   padding-left: 20px; */}
 `;
 
+const StyledImgOverlay = styled.div`
+  position: absolute;
+  padding: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: ${fontSizes.xxl};
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  ${media.tablet`
+    padding: 10px;
+    font-size: ${fontSizes.lg}
+  `}
+`;
+
+const StyledImgCaption = styled.div`
+  padding: 5px;
+`;
+
+const StyledLinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 10px;
+  margin-left: -10px;
+  color: ${colors.lightestSlate};
+  a {
+    padding: 10px;
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+`;
+
 const slickSettings = {
   // className: 'center',
   // centerMode: true,
   // centerPadding: '100px',
   dots: true,
   infinite: true,
-  speed: 500,
+  speed: 1000,
   slidesToShow: 1,
   slidesToScroll: 1,
   initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 700,
-      settings: {
-        slidesToShow: 1
-        // className: '',
-        // centerMode: false,
-        // centerPadding: '0px'
-      }
-    }
-  ]
+  fade: true,
+  autoplay: false,
+  autoplaySpeed: 3500,
+  cssEase: 'linear',
+  pauseOnHover: true
+  // responsive: [
+  //   {
+  //     breakpoint: 700,
+  //     settings: {
+  //       slidesToShow: 1
+  //       // className: '',
+  //       // centerMode: false,
+  //       // centerPadding: '0px'
+  //     }
+  //   }
+  // ]
 };
 
 function Project({ data }) {
@@ -109,7 +155,9 @@ function Project({ data }) {
     relatedProjects,
     tech,
     imgGallery,
-    tags
+    tags,
+    githubLink,
+    externalLink
   } = data;
   return (
     <div>
@@ -136,6 +184,28 @@ function Project({ data }) {
               </Link>
             ))}
         </p>
+        <StyledLinkWrapper>
+          {githubLink && (
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              aria-label="GitHub Link"
+            >
+              <IconGitHub />
+            </a>
+          )}
+          {externalLink && (
+            <a
+              href={externalLink}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              aria-label="External Link"
+            >
+              <IconExternal />
+            </a>
+          )}
+        </StyledLinkWrapper>
         {relatedProjects.length > 0 && (
           <StyledRelatedProjects>
             <strong>Related Projects: </strong>
@@ -167,6 +237,16 @@ function Project({ data }) {
                     .url()}
                   alt={mainImage.alt}
                 />
+                <StyledImgOverlay>
+                  <StyledImgCaption
+                    style={{
+                      backgroundColor: mainImage.asset.metadata.palette.vibrant.background,
+                      color: mainImage.asset.metadata.palette.vibrant.foreground
+                    }}
+                  >
+                    {mainImage.caption}
+                  </StyledImgCaption>
+                </StyledImgOverlay>
               </StyledCaruselImgContainter>
             )}
             {imgGallery.length > 0 &&
@@ -180,6 +260,16 @@ function Project({ data }) {
                       .url()}
                     alt={img.alt}
                   />
+                  <StyledImgOverlay>
+                    <StyledImgCaption
+                      style={{
+                        backgroundColor: img.asset.metadata.palette.vibrant.background,
+                        color: img.asset.metadata.palette.vibrant.foreground
+                      }}
+                    >
+                      {img.caption}
+                    </StyledImgCaption>
+                  </StyledImgOverlay>
                 </StyledCaruselImgContainter>
               ))}
           </Slider>

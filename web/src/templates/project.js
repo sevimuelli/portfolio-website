@@ -36,6 +36,8 @@ export const query = graphql`
       id
       tech
       publishedAt
+      githubLink
+      externalLink
       categories {
         _id
         title
@@ -65,6 +67,18 @@ export const query = graphql`
         }
         asset {
           _id
+          metadata {
+            palette {
+              vibrant {
+                foreground
+                background
+              }
+              dominant {
+                foreground
+                background
+              }
+            }
+          }
         }
         alt
         caption
@@ -78,6 +92,18 @@ export const query = graphql`
       imgGallery {
         asset {
           _id
+          metadata {
+            palette {
+              vibrant {
+                foreground
+                background
+              }
+              dominant {
+                foreground
+                background
+              }
+            }
+          }
         }
         caption
         alt

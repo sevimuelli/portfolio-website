@@ -162,7 +162,7 @@ export const query = graphql`
     }
     featured: allSanitySampleProject(
       limit: 4
-      sort: { fields: [publishedAt], order: DESC }
+      sort: { fields: [order], order: ASC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { eq: true } }
     ) {
       edges {
@@ -193,7 +193,7 @@ export const query = graphql`
       }
     }
     projects: allSanitySampleProject(
-      sort: { fields: [publishedAt], order: DESC }
+      sort: { fields: [order], order: ASC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { ne: true } }
     ) {
       edges {

@@ -32,6 +32,11 @@ export default {
       description: 'When this is selected, is will be shown on the front-page'
     },
     {
+      name: 'order',
+      title: 'Order',
+      type: 'number'
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       description: 'You can use this field to schedule projects where you show them',

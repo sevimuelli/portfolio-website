@@ -26,10 +26,20 @@ export default {
       of: [{type: 'block'}]
     },
     {
-      name: 'mainDescription',
-      title: 'Main description',
+      name: 'frontImage',
+      title: 'Front image',
+      type: 'figure'
+    },
+    {
+      name: 'archiveDescription',
+      title: 'Archive description',
       type: 'array',
       of: [{type: 'block'}]
+    },
+    {
+      name: 'archiveImage',
+      title: 'Archive image',
+      type: 'figure'
     }
   ]
 }
