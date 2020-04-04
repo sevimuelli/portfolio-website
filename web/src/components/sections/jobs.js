@@ -160,7 +160,13 @@ const Jobs = ({ data }) => {
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
 
-  workplaces.sort((a, b) => a > b);
+  console.log(`workplaces before sorting:`);
+  console.log(workplaces);
+
+  workplaces.sort((a, b) => parseInt(a.startedAt) - parseInt(b.startedAt));
+
+  console.log(`workplaces after sorting:`);
+  console.log(workplaces);
 
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);

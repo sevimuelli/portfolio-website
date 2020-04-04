@@ -156,7 +156,7 @@ export const query = graphql`
             range
             position
             tasks
-            startedAt
+            startedAt(difference: "days")
           }
         }
       }
