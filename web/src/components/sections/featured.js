@@ -216,19 +216,114 @@ const StyledProject = styled.div`
   }
 `;
 
-const Featured = ({ featuredProjects, SectionTitle }) => {
+const StyledFlexContainer = styled.div`
+  ${mixins.flexBetween};
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 100px;
+  ${media.tablet`
+    flex-direction: column;
+  `};
+`;
+const StyledIntroContent = styled.div`
+  width: 50%;
+  max-width: 480px;
+  ${media.tablet`width: 100%;`};
+  a {
+    ${mixins.inlineLink};
+  }
+`;
+
+const StyledPic = styled.div`
+  position: relative;
+  width: 50%;
+  max-width: 400px;
+  margin-left: 60px;
+  ${media.tablet`margin: 20px auto 50px; order: -1;`};
+  ${media.phablet`width: 70%;`};
+  a {
+    &:focus {
+      outline: 0;
+    }
+  }
+`;
+const StyledAvatar = styled(Img)`
+  position: relative;
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1);
+  border-radius: ${theme.borderRadius};
+  transition: ${theme.transition};
+`;
+const StyledAvatarLink = styled.div`
+  ${mixins.boxShadow};
+  width: 100%;
+  position: relative;
+  border-radius: ${theme.borderRadius};
+  background-color: ${colors.green};
+  margin-left: -20px;
+  &:hover,
+  &:focus {
+    background: transparent;
+    &:after {
+      top: 15px;
+      left: 15px;
+    }
+    ${StyledAvatar} {
+      filter: none;
+      mix-blend-mode: normal;
+    }
+  }
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: ${theme.borderRadius};
+    transition: ${theme.transition};
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${colors.navy};
+    mix-blend-mode: screen;
+  }
+  &:after {
+    border: 2px solid ${colors.green};
+    top: 20px;
+    left: 20px;
+    z-index: -1;
+  }
+`;
+
+const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontImage }) => {
   // const featuredProjects = data.filter(({ node }) => node);
 
   const revealTitle = useRef(null);
+  const revealFlexContainer = useRef(null);
   const revealProjects = useRef([]);
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealFlexContainer.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
   return (
     <StyledContainer id="projects">
       <Heading ref={revealTitle}>{SectionTitle}</Heading>
+      <StyledFlexContainer ref={revealFlexContainer}>
+        <StyledIntroContent>
+          {_rawFrontDescription && <BlockContent blocks={_rawFrontDescription || []} />}
+        </StyledIntroContent>
+        <StyledPic>
+          <StyledAvatarLink>
+            <StyledAvatar fluid={frontImage.asset.fluid} alt="photo.alt" />
+          </StyledAvatarLink>
+        </StyledPic>
+      </StyledFlexContainer>
 
       <div>
         {featuredProjects &&

@@ -44,8 +44,12 @@ const IndexPage = ({ location, data, errors }) => {
   //       .filter(filterOutDocsPublishedInTheFuture)
   //   : [];
 
-  const featuredProjectTitle = data.projectsTitles.edges[0].node.featuredTitle;
-  const otherProjectTitle = data.projectsTitles.edges[0].node.otherProjectsTitle;
+  const {
+    featuredTitle,
+    otherProjectsTitle,
+    _rawFrontDescription,
+    frontImage
+  } = data.projectsOverview.edges[0].node;
 
   if (!site) {
     throw new Error(
@@ -62,10 +66,15 @@ const IndexPage = ({ location, data, errors }) => {
         <About data={data.about.edges} />
         <Jobs data={data.about.edges} />
         {data.featured && (
-          <Featured featuredProjects={data.featured.edges} SectionTitle={featuredProjectTitle} />
+          <Featured
+            featuredProjects={data.featured.edges}
+            SectionTitle={featuredTitle}
+            _rawFrontDescription={_rawFrontDescription}
+            frontImage={frontImage}
+          />
         )}
         {data.projects && (
-          <Projects projects={data.projects.edges} sectionTitle={otherProjectTitle} />
+          <Projects projects={data.projects.edges} sectionTitle={otherProjectsTitle} />
         )}
         <Contact data={data.contact.edges} />
         {/* {projectNodes && (
@@ -152,11 +161,21 @@ export const query = graphql`
         }
       }
     }
-    projectsTitles: allSanityProjectOverview {
+    projectsOverview: allSanityProjectOverview {
       edges {
         node {
           featuredTitle
           otherProjectsTitle
+          _rawFrontDescription
+          frontImage {
+            asset {
+              _id
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
+            alt
+          }
         }
       }
     }

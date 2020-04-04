@@ -78,26 +78,24 @@ const StyledCaruselImgContainter = styled.div`
 
 const StyledImgOverlay = styled.div`
   position: absolute;
-  padding: 15px;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: ${fontSizes.xxl};
+  font-size: ${fontSizes.md};
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
   ${media.tablet`
-    padding: 10px;
-    font-size: ${fontSizes.lg}
+    font-size: ${fontSizes.xs}
   `}
 `;
 
 const StyledImgCaption = styled.div`
-  padding: 5px;
+  padding: 2px;
 `;
 
 const StyledLinkWrapper = styled.div`
