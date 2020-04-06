@@ -3,9 +3,9 @@ module.exports = {
   siteDescription: 'Severin Müller is a software engineer based in Zurich, CH.',
   siteKeywords:
     'Severin Mulller, Severin Müller, software engineer, front-end engineer, web developer, javascript',
-  siteUrl: 'https://severinmueller.ch',
+  siteUrl: 'https://severinmueller.io',
   siteLanguage: 'en_US',
-  googleAnalyticsID: '',
+  googleAnalyticsID: '223955185',
   googleVerification: '',
   name: 'Severin Müller',
   location: 'Zurich, CH',

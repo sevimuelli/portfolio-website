@@ -18,27 +18,28 @@ module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     siteUrl: config.siteUrl,
-    description: config.siteDescription,
+    description: config.siteDescription
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
-    'gatsby-transformer-sharp',
-    // {
-    //   resolve: `gatsby-plugin-alias-imports`,
-    //   options: {
-    //     alias: {
-    //       '@components': path.resolve(__dirname, 'src/components'),
-    //       '@styles': path.resolve(__dirname, 'src/styles'),
-    //       '@fonts': path.resolve(__dirname, 'src/fonts'),
-    //       '@config': path.resolve(__dirname, 'src/config'),
-    //       '@images': path.resolve(__dirname, 'src/images'),
-    //       '@utils': path.resolve(__dirname, 'src/utils')
-    //     },
-    //     extensions: []
-    //   }
-    // },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'SeverinMüller',
+        short_name: 'SeverinMüller',
+        start_url: '/',
+        background_color: config.darkNavyColor,
+        theme_color: config.navyColor,
+        display: 'minimal-ui',
+        icon: 'src/images/logo.png'
+      }
+    },
+    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -48,12 +49,12 @@ module.exports = {
         overlayDrafts: !isProd && token
       }
     },
-    // {
-    //   resolve: `gatsby-plugin-sass`,
-    //   options: {
-    //     implementation: require("sass"),
-    //   },
-    // },
-    'gatsby-plugin-postcss'
+    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.googleAnalyticsID
+      }
+    }
   ]
 };
