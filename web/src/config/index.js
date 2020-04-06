@@ -5,7 +5,7 @@ module.exports = {
     'Severin Mulller, Severin Müller, software engineer, front-end engineer, web developer, javascript',
   siteUrl: 'https://severinmueller.io',
   siteLanguage: 'en_US',
-  googleAnalyticsID: '223955185',
+  googleAnalyticsID: 'UA-159364889-1',
   googleVerification: '',
   name: 'Severin Müller',
   location: 'Zurich, CH',
