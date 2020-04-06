@@ -1,8 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import GraphQLErrorList from '../components/graphql-error-list';
 import Project from '../components/project';
-import SEO from '../components/seo';
 
 import { Layout } from '@components';
 import styled from 'styled-components';
@@ -12,17 +10,11 @@ const StyledContainer = styled(Main)`
   max-width: 1000px;
 `;
 
-const ProjectTemplate = ({ data, location, errors }) => {
+const ProjectTemplate = ({ data, location }) => {
   const project = data && data.sampleProject;
   return (
     <Layout location={location}>
-      {errors && <SEO title="GraphQL Error" />}
-      {project && <SEO title={project.title || 'Untitled'} />}
-
-      <StyledContainer>
-        {errors && <GraphQLErrorList errors={errors} />}
-        {project && <Project data={project} />}
-      </StyledContainer>
+      <StyledContainer>{project && <Project data={project} />}</StyledContainer>
     </Layout>
   );
 };

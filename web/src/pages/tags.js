@@ -55,7 +55,10 @@ function TagsPage({ data, location }) {
 
   return (
     <Layout location={location}>
-      <Helmet title={title} />
+      <Helmet>
+        <title>Tags | Severin Müller</title>
+        <link rel="canonical" href="https://severinmueller.io/tags" />
+      </Helmet>
 
       <StyledTagsContainer>
         <span className="breadcrumb">

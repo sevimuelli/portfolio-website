@@ -12,10 +12,6 @@ import {
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
 } from '../lib/helpers';
-// import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
-import ProjectPreviewGrid from '../components/project-preview-grid';
-import SEO from '../components/seo';
 
 const StyledMainContainer = styled(Main)`
   counter-reset: section;
@@ -59,7 +55,6 @@ const IndexPage = ({ location, data, errors }) => {
 
   return (
     <Layout location={location}>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <StyledMainContainer className="fillHeight">
         {/* <h1 hidden>Welcome to {site.title}</h1> */}
         <Hero data={data.intro.edges} />

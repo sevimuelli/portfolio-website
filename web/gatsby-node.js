@@ -1,4 +1,3 @@
-const { isFuture } = require('date-fns');
 const path = require('path');
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -40,27 +39,25 @@ async function createProjectPages(graphql, actions, reporter) {
 
   const projectEdges = (result.data.projects || {}).edges || [];
 
-  projectEdges
-    .filter(edge => !isFuture(edge.node.publishedAt))
-    .forEach(edge => {
-      const { id } = edge.node;
-      const slug = edge.node.slug.current;
-      const path = `/project/${slug}/`;
+  projectEdges.forEach((edge) => {
+    const { id } = edge.node;
+    const slug = edge.node.slug.current;
+    const path = `/project/${slug}/`;
 
-      reporter.info(`Creating project page: ${path}`);
+    reporter.info(`Creating project page: ${path}`);
 
-      createPage({
-        path,
-        component: require.resolve('./src/templates/project.js'),
-        context: { id }
-      });
+    createPage({
+      path,
+      component: require.resolve('./src/templates/project.js'),
+      context: { id },
     });
+  });
 
   // Extract tag data from query
   const tags = result.data.tags.edges;
 
   // Make tag pages
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     const { title, slug } = tag.node;
 
     const path = `/tags/${slug.current}`;
@@ -70,8 +67,8 @@ async function createProjectPages(graphql, actions, reporter) {
       path,
       component: require.resolve('./src/templates/tag.js'),
       context: {
-        tag: title
-      }
+        tag: title,
+      },
     });
   });
 }
@@ -89,14 +86,14 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
         rules: [
           {
             test: /scrollreveal/,
-            use: loaders.null()
+            use: loaders.null(),
           },
           {
             test: /animejs/,
-            use: loaders.null()
-          }
-        ]
-      }
+            use: loaders.null(),
+          },
+        ],
+      },
     });
   }
 
@@ -109,8 +106,8 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
         '@images': path.resolve(__dirname, 'src/images'),
         '@pages': path.resolve(__dirname, 'src/pages'),
         '@styles': path.resolve(__dirname, 'src/styles'),
-        '@utils': path.resolve(__dirname, 'src/utils')
-      }
-    }
+        '@utils': path.resolve(__dirname, 'src/utils'),
+      },
+    },
   });
 };

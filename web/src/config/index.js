@@ -10,6 +10,7 @@ module.exports = {
   name: 'Severin Müller',
   location: 'Zurich, CH',
   github: 'https://github.com/sevimuelli',
+  twitterHandle: '@Sevimuelli',
   socialMedia: [
     {
       name: 'GitHub',

@@ -114,7 +114,7 @@ const ArchivePage = ({ location, data }) => {
     <Layout location={location}>
       <Helmet>
         <title>{archiveTitle}</title>
-        <link rel="canonical" href="https://severinmueller.ch/archive" />
+        <link rel="canonical" href="https://severinmueller.io/archive" />
       </Helmet>
 
       <StyledMainContainer>
