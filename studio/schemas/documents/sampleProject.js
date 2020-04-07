@@ -1,5 +1,5 @@
 import {FaTools} from 'react-icons/fa'
-import {format} from 'date-fns'
+import {format, parseISO} from 'date-fns'
 
 export default {
   name: 'sampleProject',
@@ -149,7 +149,8 @@ export default {
       featured: 'featured'
     },
     prepare({heading = 'No title', publishedAt, slug = {}, media, featured = false}) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
+      const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
+      // const dateSegment = 'sometest'
       const path = `/${dateSegment}/${slug.current}/`
       const title = featured ? `FEA: ${heading}` : heading
       return {

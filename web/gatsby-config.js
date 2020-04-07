@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // Load variables from `.env` as soon as possible
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
 
 const path = require('path');
@@ -18,7 +18,7 @@ module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     siteUrl: config.siteUrl,
-    description: config.siteDescription
+    description: config.siteDescription,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -36,8 +36,8 @@ module.exports = {
         background_color: config.darkNavyColor,
         theme_color: config.navyColor,
         display: 'minimal-ui',
-        icon: 'src/images/logo.png'
-      }
+        icon: 'src/images/logo.png',
+      },
     },
     `gatsby-plugin-offline`,
     {
@@ -46,15 +46,15 @@ module.exports = {
         ...clientConfig.sanity,
         token,
         watchMode: !isProd,
-        overlayDrafts: !isProd && token
-      }
+        overlayDrafts: !isProd && token,
+      },
     },
     `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: config.googleAnalyticsID
-      }
-    }
-  ]
+        trackingId: config.googleAnalyticsID,
+      },
+    },
+  ],
 };
