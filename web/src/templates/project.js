@@ -5,6 +5,7 @@ import Project from '../components/project';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import { Main, theme } from '@styles';
+import { Helmet } from 'react-helmet';
 
 const StyledContainer = styled(Main)`
   max-width: 1000px;
@@ -14,6 +15,19 @@ const ProjectTemplate = ({ data, location }) => {
   const project = data && data.sampleProject;
   return (
     <Layout location={location}>
+      <Helmet>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charset="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+      </Helmet>
       <StyledContainer>{project && <Project data={project} />}</StyledContainer>
     </Layout>
   );

@@ -68,18 +68,6 @@ const Head = ({ metadata }) => (
     <meta name="msapplication-TileColor" content={config.navyColor} />
     <meta name="msapplication-TileImage" content={msIcon144x144} />
     <meta name="theme-color" content={config.navyColor} />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      charset="UTF-8"
-      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-    />
   </Helmet>
 );
 
