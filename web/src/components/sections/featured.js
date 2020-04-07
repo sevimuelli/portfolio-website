@@ -320,7 +320,7 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
         </StyledIntroContent>
         <StyledPic>
           <StyledAvatarLink>
-            <StyledAvatar fluid={frontImage.asset.fluid} alt="photo.alt" />
+            <StyledAvatar fluid={frontImage.asset.fluid} alt={frontImage.alt} />
           </StyledAvatarLink>
         </StyledPic>
       </StyledFlexContainer>

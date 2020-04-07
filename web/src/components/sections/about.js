@@ -292,7 +292,7 @@ const About = ({ data }) => {
         </StyledContent>
         <StyledPic>
           <StyledAvatarLink href={github}>
-            <StyledAvatar fluid={photo.asset.fluid} alt="photo.alt" />
+            <StyledAvatar fluid={photo.asset.fluid} alt={photo.alt} />
           </StyledAvatarLink>
         </StyledPic>
       </StyledFlexContainer>
