@@ -225,8 +225,8 @@ function Project({ data }) {
               <StyledCaruselImgContainter>
                 <img
                   src={imageUrlFor(buildImageObj(mainImage))
-                    .width(600)
-                    .height(Math.floor(aspectRatioImgGal * 600))
+                    .width(800)
+                    .height(Math.floor(aspectRatioImgGal * 800))
                     .url()}
                   alt={mainImage.alt}
                 />
@@ -248,8 +248,8 @@ function Project({ data }) {
                   <img
                     key={i}
                     src={imageUrlFor(buildImageObj(img))
-                      .width(600)
-                      .height(Math.floor(aspectRatioImgGal * 600))
+                      .width(800)
+                      .height(Math.floor(aspectRatioImgGal * 800))
                       .url()}
                     alt={img.alt}
                   />
