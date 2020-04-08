@@ -1,16 +1,10 @@
 # gatsby-sanity-portfolio
 
-A portfolio using structured content and a static site builder.
-
-Created from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio).
+A portfolio using structured content from [Sanity.io](https://www.sanity.io), [Gatsby.js](https://gatsbyjs.org) as a static site builder and hosted on [Netlify](https://netlify.com)
 
 Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4571-84cb-fbb367f8baaf/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-gatsbycloud/deploys)Studio:[![Netlify Status](https://api.netlify.com/api/v1/badges/5b4db275-9ce1-46a9-9aa7-e218428ae77d/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-studio-xnfhk7xz/deploys)
 
-## What you have
-
-- A blazing fast portfolio with [Gatsby.js](https://gatsbyjs.org)
-- Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+![demo](https://raw.githubusercontent.com/sevimuelli/gatsby-sanity-portfolio/master/web/src/images/demo.png)
 
 ## Quick start
 
@@ -29,12 +23,15 @@ Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4
 
 If you want to disable the preview you can set `watchMode: false` in gatsby-config.js. If you just want to preview published changes you can set `overlayDrafts: false` in gatsby-config.js.
 
-## Deploy changes
+##  Color Reference
 
-Netlify automatically deploys new changes commited to the `master` branch on GitHub. If you want to change the deployment branch you may do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
-
-## Get help
-
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
-
-Join [Sanity’s developer community](https://slack.sanity.io) or ping them [on twitter](https://twitter.com/sanity_io).
+| Color          | Hex                                                                |
+| -------------- | ------------------------------------------------------------------ |
+| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
+| Light Navy     | ![#172a45](https://via.placeholder.com/10/0a192f?text=+) `#172a45` |
+| Dark Grey      | ![#333f58](https://via.placeholder.com/10/333f58?text=+) `#333f58` |
+| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
+| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
+| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
+| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
+| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
