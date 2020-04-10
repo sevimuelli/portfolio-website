@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 const { colors, fontSizes } = theme;
@@ -47,12 +47,13 @@ const StyledTagsContainer = styled(Main)`
 `;
 
 const TagTemplate = ({ pageContext, data, location }) => {
-  const { tag } = pageContext;
+  const { tag, slug } = pageContext;
   const { edges } = data.allSanitySampleProject;
 
 
   return (
     <Layout location={location}>
+      <SEO siteTitle={`#${tag}`} sitePath={`/tags/${slug}`} />
       <StyledTagsContainer>
         <span className="breadcrumb">
           <span className="arrow">&larr;</span>

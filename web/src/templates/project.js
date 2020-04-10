@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Project from '../components/project';
 
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { Main, theme } from '@styles';
 import { Helmet } from 'react-helmet';
+import Project from '../components/project';
 
 const StyledContainer = styled(Main)`
   max-width: 1000px;
@@ -15,7 +15,10 @@ const ProjectTemplate = ({ data, location }) => {
   const project = data && data.sampleProject;
   return (
     <Layout location={location}>
-      <Helmet>
+      <SEO
+        siteTitle={data.sampleProject.title}
+        sitePath={`/project/${data.sampleProject.slug.current}`}
+      >
         <link
           rel="stylesheet"
           type="text/css"
@@ -27,7 +30,7 @@ const ProjectTemplate = ({ data, location }) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-      </Helmet>
+      </SEO>
       <StyledContainer>{project && <Project data={project} />}</StyledContainer>
     </Layout>
   );

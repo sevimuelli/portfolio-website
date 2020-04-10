@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link, graphql } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -55,10 +55,7 @@ function TagsPage({ data, location }) {
 
   return (
     <Layout location={location}>
-      <Helmet>
-        <title>Tags | Severin Müller</title>
-        <link rel="canonical" href="https://severinmueller.io/tags" />
-      </Helmet>
+      <SEO siteTitle="Tags" sitePath="/tags" />
 
       <StyledTagsContainer>
         <span className="breadcrumb">

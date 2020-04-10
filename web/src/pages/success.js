@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 const { colors, fonts } = theme;
@@ -41,6 +41,7 @@ const Success = ({ location }) => {
 
   return (
     <Layout location={location}>
+      <SEO siteTitle="Success page" sitePath="/success" />
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition timeout={500} classNames="fade">

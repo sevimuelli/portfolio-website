@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 const { colors, fonts } = theme;
@@ -40,6 +40,7 @@ const NotFoundPage = ({ location }) => {
 
   return (
     <Layout location={location}>
+      <SEO siteTitle="404" sitePath="/404" />
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition timeout={500} classNames="fade">

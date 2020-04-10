@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
-import { Layout } from '@components';
+import { Layout, SEO } from '@components';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
@@ -112,11 +112,7 @@ const ArchivePage = ({ location, data }) => {
 
   return (
     <Layout location={location}>
-      <Helmet>
-        <title>{archiveTitle}</title>
-        <link rel="canonical" href="https://severinmueller.io/archive" />
-      </Helmet>
-
+      <SEO siteTitle={archiveTitle} sitePath="/archive" />
       <StyledMainContainer>
         <header ref={revealTitle}>
           <h1 className="big-title">{archiveTitle}</h1>

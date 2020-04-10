@@ -68,6 +68,7 @@ async function createProjectPages(graphql, actions, reporter) {
       component: require.resolve('./src/templates/tag.js'),
       context: {
         tag: title,
+        slug: slug.current,
       },
     });
   });
