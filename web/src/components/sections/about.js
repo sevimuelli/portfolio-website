@@ -252,18 +252,12 @@ const SkillBigBarIntern = styled.div`
 `;
 
 const startAnimation = ( {id}) => {
-  // const id = domEl.getAttribute('key');
-  // console.log(id);
   const el = document.getElementById(`skill_${id}`);
-  console.log(el);
   el.style.animationPlayState = 'running';
 };
 
 const About = ({ data }) => {
   const { skills, otherSkills, title, _rawDescription, photo } = data[0].node;
-  console.log(photo);
-  // const fluidProps = getFluidGatsbyImage(photo.asset._id, clientConfig.sanity);
-  // const { title, skills, avatar } = frontmatter;
   const revealTitle = useRef(null);
   const revealFlexContainer = useRef(null);
   const revealSkills = useRef([]);
@@ -304,7 +298,7 @@ const About = ({ data }) => {
               animationPlayState: 'paused'
             };
             const src = imageUrlFor(buildImageObj(skill.icon))
-              .height(200)
+              .height(70)
               // .width(200)
               // .fit('min')
               .url();

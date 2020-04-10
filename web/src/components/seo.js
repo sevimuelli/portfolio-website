@@ -21,7 +21,6 @@ const SEO = ({ siteTitle, sitePath, children }) => {
         const metadata = site.siteMetadata;
         const title = siteTitle ? `${siteTitle} | ${metadata.title}` : metadata.title;
         const siteURL = sitePath ? `${metadata.siteUrl}${sitePath}` : metadata.siteUrl;
-        console.log(`SEO: tite: ${title}, siteURL: ${siteURL}`);
         return (
           <Helmet>
             <title itemProp="name" lang="en">

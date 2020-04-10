@@ -118,9 +118,6 @@ const StyledAvatarLink = styled.a`
 
 const About = ({ data }) => {
   const { skills, otherSkills, title, _rawDescription, photo } = data[0].node;
-  console.log(photo);
-  // const fluidProps = getFluidGatsbyImage(photo.asset._id, clientConfig.sanity);
-  // const { title, skills, avatar } = frontmatter;
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 

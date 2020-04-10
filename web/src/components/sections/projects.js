@@ -181,7 +181,6 @@ const Projects = ({ projects, sectionTitle }) => {
   const firstSix = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstSix;
   const moreProjects = projects.length > GRID_LIMIT;
-  console.log('Project length: ' + projects.length);
 
   return (
     <StyledContainer>

@@ -165,7 +165,7 @@ export const query = graphql`
           frontImage {
             asset {
               _id
-              fluid {
+              fluid(maxWidth: 400){
                 ...GatsbySanityImageFluid
               }
             }

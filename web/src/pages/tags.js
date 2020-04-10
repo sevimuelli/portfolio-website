@@ -44,12 +44,10 @@ function TagsPage({ data, location }) {
 
   var tagsHolder = [];
   projectEdges.map(({ node }) => node.tags.map(({ title }) => tagsHolder.push(title)));
-  console.log(tagsHolder);
   var counts = {};
   for (let i = 0; i < tagsHolder.length; i++) {
     counts[tagsHolder[i]] = 1 + (counts[tagsHolder[i]] || 0);
   }
-  console.log(counts);
 
   const filteredTags = tagEdges.filter(({ node }) => counts[node.title] > 0);
 
