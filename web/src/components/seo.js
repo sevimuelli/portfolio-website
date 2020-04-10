@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-const SEO = ({ siteTitle, sitePath }) => {
+const SEO = ({ siteTitle, sitePath, children }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -20,8 +20,8 @@ const SEO = ({ siteTitle, sitePath }) => {
       render={({ site }) => {
         const metadata = site.siteMetadata;
         const title = siteTitle ? `${siteTitle} | ${metadata.title}` : metadata.title;
-        const siteURL = sitePath ? `${metadata.siteUrl}/${sitePath}` : metadata.siteUrl;
-
+        const siteURL = sitePath ? `${metadata.siteUrl}${sitePath}` : metadata.siteUrl;
+        console.log(`SEO: tite: ${title}, siteURL: ${siteURL}`);
         return (
           <Helmet>
             <title itemProp="name" lang="en">
@@ -34,6 +34,7 @@ const SEO = ({ siteTitle, sitePath }) => {
             <meta itemProp="name" content={title} />
             <meta name="twitter:url" content={siteURL} />
             <meta name="twitter:title" content={title} />
+            {children}
           </Helmet>
         );
       }}
