@@ -4,7 +4,7 @@ A portfolio using structured content from [Sanity.io](https://www.sanity.io), [G
 
 Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4571-84cb-fbb367f8baaf/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-gatsbycloud/deploys)Studio:[![Netlify Status](https://api.netlify.com/api/v1/badges/5b4db275-9ce1-46a9-9aa7-e218428ae77d/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-studio-xnfhk7xz/deploys)
 
-![demo](https://raw.githubusercontent.com/sevimuelli/gatsby-sanity-portfolio/master/web/src/images/demo.png)
+![demo](https://raw.githubusercontent.com/sevimuelli/gatsby-sanity-portfolio/master/web/src/images/og.png)
 
 ## Quick start
 
