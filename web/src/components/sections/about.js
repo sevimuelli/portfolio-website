@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import sr from '@utils/sr';
 import { srConfig, github } from '@config';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
-
-import BlockContent from '../block-content';
-import { getFluidGatsbyImage } from 'gatsby-source-sanity';
-import clientConfig from '../../../client-config';
+import { BlockContent } from '@components';
 import { buildImageObj } from '../../lib/helpers';
 import { imageUrlFor } from '../../lib/image-url';
+
+const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   position: relative;
@@ -31,6 +29,7 @@ const StyledContent = styled.div`
     ${mixins.inlineLink};
   }
 `;
+
 const SkillsContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -39,6 +38,7 @@ const SkillsContainer = styled.ul`
   margin: 20px 0 0 0;
   list-style: none;
 `;
+
 const Skill = styled.li`
   position: relative;
   margin-bottom: 10px;
@@ -55,6 +55,7 @@ const Skill = styled.li`
     line-height: 12px;
   }
 `;
+
 const StyledPic = styled.div`
   position: relative;
   width: 40%;
@@ -251,7 +252,7 @@ const SkillBigBarIntern = styled.div`
   ${mixins.barAnimations}
 `;
 
-const startAnimation = ( {id}) => {
+const startAnimation = ({ id }) => {
   const el = document.getElementById(`skill_${id}`);
   el.style.animationPlayState = 'running';
 };
@@ -267,9 +268,9 @@ const About = ({ data }) => {
     revealSkills.current.forEach((ref, i) =>
       sr.reveal(ref, {
         ...srConfig(i * 100),
-        afterReveal: function() {
-          return startAnimation({id: i});
-        }
+        afterReveal() {
+          return startAnimation({ id: i });
+        },
       })
     );
   }, []);
@@ -295,22 +296,12 @@ const About = ({ data }) => {
           skills.map((skill, i) => {
             const barLength = {
               animation: `ratio${skill.level}0 3s 0.3s forwards`,
-              animationPlayState: 'paused'
+              animationPlayState: 'paused',
             };
-            const src = imageUrlFor(buildImageObj(skill.icon))
-              .height(70)
-              // .width(200)
-              // .fit('min')
-              .url();
-
-            {
-              /* const style = {
-              maskImage: src
-            }; */
-            }
+            const src = imageUrlFor(buildImageObj(skill.icon)).height(70).url();
 
             return (
-              <SkillBigContainer key={i} ref={el => (revealSkills.current[i] = el)}>
+              <SkillBigContainer key={i} ref={(el) => (revealSkills.current[i] = el)}>
                 <SkillBigPictureContainter>
                   <SkillBigPicture src={src} alt={skill.title} />
                 </SkillBigPictureContainter>
@@ -320,7 +311,7 @@ const About = ({ data }) => {
                     <SkillBigProcent>{`${skill.level}0%`}</SkillBigProcent>
                   </SkillBigMeta>
                   <SkillBigBar>
-                    <SkillBigBarIntern id={'skill_' + i} style={barLength} />
+                    <SkillBigBarIntern id={`skill_${i}`} style={barLength} />
                   </SkillBigBar>
                 </SkillBigDetail>
               </SkillBigContainer>
@@ -332,7 +323,7 @@ const About = ({ data }) => {
 };
 
 About.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default About;

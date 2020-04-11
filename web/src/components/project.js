@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { buildImageObj } from '../lib/helpers';
-import { imageUrlFor } from '../lib/image-url';
-import BlockContent from './block-content';
-
+import { BlockContent } from '@components';
 import styled from 'styled-components';
 import { Main, theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts } = theme;
 import Slider from 'react-slick';
 import { IconGitHub, IconExternal } from '@components/icons';
+import { imageUrlFor } from '../lib/image-url';
+import { buildImageObj } from '../lib/helpers';
+
+const { colors, fontSizes, fonts } = theme;
 
 const StyledPostContainer = styled(Main)`
   max-width: 1000px;
@@ -110,9 +110,6 @@ const StyledLinkWrapper = styled.div`
 `;
 
 const slickSettings = {
-  // className: 'center',
-  // centerMode: true,
-  // centerPadding: '100px',
   dots: true,
   infinite: true,
   speed: 1000,
@@ -123,18 +120,7 @@ const slickSettings = {
   autoplay: true,
   autoplaySpeed: 3500,
   cssEase: 'linear',
-  pauseOnHover: true
-  // responsive: [
-  //   {
-  //     breakpoint: 700,
-  //     settings: {
-  //       slidesToShow: 1
-  //       // className: '',
-  //       // centerMode: false,
-  //       // centerPadding: '0px'
-  //     }
-  //   }
-  // ]
+  pauseOnHover: true,
 };
 
 function Project({ data }) {
@@ -146,11 +132,10 @@ function Project({ data }) {
     mainImage,
     publishedAt,
     relatedProjects,
-    tech,
     imgGallery,
     tags,
     githubLink,
-    externalLink
+    externalLink,
   } = data;
   return (
     <div>
@@ -165,7 +150,7 @@ function Project({ data }) {
             {new Date(publishedAt).toLocaleDateString('en-GB', {
               year: 'numeric',
               month: 'long',
-              day: 'numeric'
+              day: 'numeric',
             })}
           </time>
           <span>&nbsp;&mdash;&nbsp;</span>
@@ -234,7 +219,7 @@ function Project({ data }) {
                   <StyledImgCaption
                     style={{
                       backgroundColor: mainImage.asset.metadata.palette.vibrant.background,
-                      color: mainImage.asset.metadata.palette.vibrant.foreground
+                      color: mainImage.asset.metadata.palette.vibrant.foreground,
                     }}
                   >
                     {mainImage.caption}
@@ -257,7 +242,7 @@ function Project({ data }) {
                     <StyledImgCaption
                       style={{
                         backgroundColor: img.asset.metadata.palette.vibrant.background,
-                        color: img.asset.metadata.palette.vibrant.foreground
+                        color: img.asset.metadata.palette.vibrant.foreground,
                       }}
                     >
                       {img.caption}
@@ -274,64 +259,3 @@ function Project({ data }) {
 }
 
 export default Project;
-
-{
-  /* <article className={styles.root}>
-  {mainImage && mainImage.asset && (
-    <div className={styles.mainImage}>
-      <img
-        src={imageUrlFor(buildImageObj(mainImage))
-          .width(1200)
-          .height(Math.floor((9 / 16) * 1200))
-          .fit('crop')
-          .url()}
-        alt={mainImage.alt}
-      />
-    </div>
-  )}
-  <Container>
-    <div className={styles.grid}>
-      <div className={styles.mainContent}>
-        <h1 className={styles.title}>{title}</h1>
-        {_rawBody && <BlockContent blocks={_rawBody || []} />}
-      </div>
-      <aside className={styles.metaContent}>
-        {publishedAt && (
-          <div className={styles.publishedAt}>
-            {differenceInDays(new Date(publishedAt), new Date()) > 3
-              ? distanceInWords(new Date(publishedAt), new Date())
-              : format(new Date(publishedAt), 'MMMM Do YYYY')}
-          </div>
-        )}
-        {members && members.length > 0 && <RoleList items={members} title="Project members" />}
-        {categories && categories.length > 0 && (
-          <div className={styles.categories}>
-            <h3 className={styles.categoriesHeadline}>Categories</h3>
-            <ul>
-              {categories.map(category => (
-                <li key={category._id}>{category.title}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {relatedProjects && relatedProjects.length > 0 && (
-          <div className={styles.relatedProjects}>
-            <h3 className={styles.relatedProjectsHeadline}>Related projects</h3>
-            <ul>
-              {relatedProjects.map(project => (
-                <li key={`related_${project._id}`}>
-                  {project.slug ? (
-                    <Link to={`/project/${project.slug.current}`}>{project.title}</Link>
-                  ) : (
-                    <span>{project.title}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </aside>
-    </div>
-  </Container>
-</article>; */
-}

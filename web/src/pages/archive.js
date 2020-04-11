@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
-import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -8,6 +7,7 @@ import { Layout, SEO } from '@components';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
+
 const { colors, fonts, fontSizes } = theme;
 
 const StyledMainContainer = styled(Main)``;
@@ -84,7 +84,6 @@ const StyledTable = styled.table`
     }
   }
 `;
-
 
 const StyledTechListLink = styled(Link)`
   ${mixins.inlineLink};

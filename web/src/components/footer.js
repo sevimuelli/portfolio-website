@@ -12,6 +12,7 @@ import {
 import { socialMedia } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
+
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled.footer`
@@ -103,7 +104,8 @@ const Footer = () => {
                   href={url}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  aria-label={name}>
+                  aria-label={name}
+                >
                   {name === 'GitHub' ? (
                     <IconGitHub />
                   ) : name === 'Linkedin' ? (
@@ -126,7 +128,8 @@ const Footer = () => {
         <StyledGitHubLink
           href="https://github.com/sevimuelli/gatsby-sanity-portfolio"
           target="_blank"
-          rel="nofollow noopener noreferrer">
+          rel="nofollow noopener noreferrer"
+        >
           <div>Built by Severin Müller;</div>
 
           {/* {githubInfo.stars && githubInfo.forks && (
@@ -145,7 +148,8 @@ const Footer = () => {
         <StyledGitHubLink
           href="https://github.com/bchiang7/v4"
           target="_blank"
-          rel="nofollow noopener noreferrer">
+          rel="nofollow noopener noreferrer"
+        >
           <div>Design adapted from Brittany Chiang</div>
         </StyledGitHubLink>
       </StyledMetadata>

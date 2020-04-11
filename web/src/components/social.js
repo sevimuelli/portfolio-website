@@ -5,6 +5,7 @@ import { Side } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme } from '@styles';
+
 const { colors } = theme;
 
 const StyledList = styled.ul`
@@ -15,7 +16,7 @@ const StyledList = styled.ul`
   margin: 0;
   list-style: none;
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     width: 1px;
@@ -30,10 +31,12 @@ const StyledList = styled.ul`
 `;
 const StyledLink = styled.a`
   padding: 10px;
+
   &:hover,
   &:focus {
     transform: translateY(-3px);
   }
+
   svg {
     width: 18px;
     height: 18px;

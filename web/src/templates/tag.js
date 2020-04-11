@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
+
 const { colors, fontSizes } = theme;
 
 const StyledTagsContainer = styled(Main)`
@@ -27,13 +27,16 @@ const StyledTagsContainer = styled(Main)`
   ul {
     li {
       font-size: 24px;
+
       h2 {
         font-size: inherit;
         margin: 0;
+
         a {
           color: ${colors.lightSlate};
         }
       }
+
       .subtitle {
         color: ${colors.slate};
         font-size: ${fontSizes.sm};
@@ -49,7 +52,6 @@ const StyledTagsContainer = styled(Main)`
 const TagTemplate = ({ pageContext, data, location }) => {
   const { tag, slug } = pageContext;
   const { edges } = data.allSanitySampleProject;
-
 
   return (
     <Layout location={location}>
@@ -80,7 +82,7 @@ const TagTemplate = ({ pageContext, data, location }) => {
                     {new Date(publishedAt).toLocaleDateString('en-GB', {
                       year: 'numeric',
                       month: 'long',
-                      day: 'numeric'
+                      day: 'numeric',
                     })}
                   </time>
                   <span>&nbsp;&mdash;&nbsp;</span>
@@ -103,26 +105,7 @@ const TagTemplate = ({ pageContext, data, location }) => {
 
 export default TagTemplate;
 
-TagTemplate.propTypes = {
-  pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired
-  }),
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      totalCount: PropTypes.number.isRequired,
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            frontmatter: PropTypes.shape({
-              title: PropTypes.string.isRequired
-            })
-          })
-        }).isRequired
-      )
-    })
-  }),
-  location: PropTypes.object
-};
+TagTemplate.propTypes = {};
 
 export const pageQuery = graphql`
   query($tag: String!) {

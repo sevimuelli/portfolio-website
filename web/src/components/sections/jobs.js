@@ -4,6 +4,7 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -72,7 +73,7 @@ const StyledTabButton = styled.button`
   white-space: nowrap;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
-  color: ${props => (props.isActive ? colors.green : colors.lightGrey)};
+  color: ${(props) => (props.isActive ? colors.green : colors.lightGrey)};
   ${media.tablet`padding: 0 15px 2px;`};
   ${media.thone`
     ${mixins.flexCenter};
@@ -100,7 +101,7 @@ const StyledHighlight = styled.span`
   transition-delay: 0.1s;
   z-index: 10;
   transform: translateY(
-    ${props => (props.activeTabId > 0 ? props.activeTabId * theme.tabHeight : 0)}px
+    ${(props) => (props.activeTabId > 0 ? props.activeTabId * theme.tabHeight : 0)}px
   );
   ${media.thone`
     width: 100%;
@@ -109,7 +110,7 @@ const StyledHighlight = styled.span`
     top: auto;
     bottom: 0;
     transform: translateX(
-      ${props => (props.activeTabId > 0 ? props.activeTabId * theme.tabWidth : 0)}px
+      ${(props) => (props.activeTabId > 0 ? props.activeTabId * theme.tabWidth : 0)}px
     );
     margin-left: 50px;
   `};
@@ -160,7 +161,6 @@ const Jobs = ({ data }) => {
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
 
-
   workplaces.sort((a, b) => parseInt(a.startedAt, 10) - parseInt(b.startedAt, 10));
 
   const revealContainer = useRef(null);
@@ -184,7 +184,7 @@ const Jobs = ({ data }) => {
   // Only re-run the effect if tabFocus changes
   useEffect(() => focusTab(), [tabFocus]);
 
-  const onKeyPressed = e => {
+  const onKeyPressed = (e) => {
     if (e.keyCode === 38 || e.keyCode === 40) {
       e.preventDefault();
       if (e.keyCode === 40) {
@@ -201,7 +201,7 @@ const Jobs = ({ data }) => {
     <StyledContainer id="jobs" ref={revealContainer}>
       <Heading>{workTitle}</Heading>
       <StyledTabs>
-        <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyPressed(e)}>
+        <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={(e) => onKeyPressed(e)}>
           {workplaces &&
             workplaces.map((work, i) => {
               const { company } = work;
@@ -210,10 +210,10 @@ const Jobs = ({ data }) => {
                   <StyledTabButton
                     isActive={activeTabId === i}
                     onClick={() => setActiveTabId(i)}
-                    ref={el => (tabs.current[i] = el)}
+                    ref={(el) => (tabs.current[i] = el)}
                     id={`tab-${i}`}
                     role="tab"
-                    aria-selected={activeTabId === i ? true : false}
+                    aria-selected={activeTabId === i}
                     aria-controls={`panel-${i}`}
                     tabIndex={activeTabId === i ? '0' : '-1'}
                   >
@@ -252,7 +252,7 @@ const Jobs = ({ data }) => {
                 </StyledJobDetails>
                 <div>
                   <ul>
-                    {tasks.map(task => {
+                    {tasks.map((task) => {
                       return <li>{task}</li>;
                     })}
                   </ul>
@@ -266,7 +266,7 @@ const Jobs = ({ data }) => {
 };
 
 Jobs.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default Jobs;

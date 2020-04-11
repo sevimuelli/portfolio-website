@@ -1,10 +1,9 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import { getFluidGatsbyImage } from 'gatsby-source-sanity';
-import clientConfig from '../../client-config';
-
 import styled from 'styled-components';
-import { Main, theme, mixins, media } from '@styles';
+import { media } from '@styles';
+import clientConfig from '../../client-config';
 
 const StyledImageContainter = styled.figure`
   margin-left: 80px;

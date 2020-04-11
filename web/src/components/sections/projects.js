@@ -7,11 +7,11 @@ import { srConfig } from '@config';
 import { IconGitHub, IconExternal, IconFolder } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
-const { colors, fontSizes, fonts } = theme;
-
-import BlockContent from '../block-content';
+import { BlockContent } from '@components';
 import { buildImageObj } from '../../lib/helpers';
 import { imageUrlFor } from '../../lib/image-url';
+
+const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -32,7 +32,8 @@ const StyledArchiveLink = styled(Link)`
   margin: 0 auto;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.sm};
-  &:after {
+
+  &::after {
     bottom: 0.1em;
   }
 `;
@@ -43,7 +44,6 @@ const StyledGrid = styled.div`
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    ${'' /* grid-template-column: 1fr 1fr 1fr; */}
     grid-gap: 15px;
     position: relative;
     ${media.desktop`grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));`};
@@ -221,6 +221,7 @@ const Projects = ({ projects, sectionTitle }) => {
                     }}
                   >
                     <StyledProjectInner to={`/project/${slug.current}`}>
+                      <h1 hidden>{title}</h1>
                       <header>
                         {/* <StyledProjectHeader>
                           <StyledFolder>

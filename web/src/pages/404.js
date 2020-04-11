@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
+
 const { colors, fonts } = theme;
 
 const StyledMainContainer = styled(Main)`

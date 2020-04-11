@@ -1,10 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
-import { Main, theme } from '@styles';
-import { Helmet } from 'react-helmet';
+import { Main } from '@styles';
 import Project from '../components/project';
 
 const StyledContainer = styled(Main)`

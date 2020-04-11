@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { navLinks } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
+
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled.div`
@@ -16,8 +17,8 @@ const StyledContainer = styled.div`
   z-index: 10;
   outline: 0;
   transition: ${theme.transition};
-  transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
-  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
+  transform: translateX(${(props) => (props.menuOpen ? 0 : 100)}vw);
+  visibility: ${(props) => (props.menuOpen ? 'visible' : 'hidden')};
   display: none;
   ${media.tablet`display: block;`};
 `;
@@ -81,8 +82,8 @@ const ResumeLink = styled.a`
 `;
 
 const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
-  const handleMenuClick = e => {
-    const target = e.target;
+  const handleMenuClick = (e) => {
+    const { target } = e;
     const isLink = target.hasAttribute('href');
     const isNotMenu = target.classList && target.classList[0].includes('StyledContainer');
 
@@ -96,7 +97,8 @@ const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
       menuOpen={menuOpen}
       onClick={handleMenuClick}
       aria-hidden={!menuOpen}
-      tabIndex={menuOpen ? 1 : -1}>
+      tabIndex={menuOpen ? 1 : -1}
+    >
       <Sidebar>
         <NavLinks>
           <NavList>

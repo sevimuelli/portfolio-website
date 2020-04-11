@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
+import { Link } from 'gatsby';
+import { BlockContent } from '@components';
+
 const { colors, fontSizes, fonts } = theme;
 
-import BlockContent from '../block-content';
-import { Link } from 'gatsby';
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};

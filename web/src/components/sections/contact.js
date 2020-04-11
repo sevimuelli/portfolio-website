@@ -4,9 +4,9 @@ import sr from '@utils/sr';
 import { srConfig, email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading, Button } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { BlockContent } from '@components';
 
-import BlockContent from '../block-content';
+const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   text-align: center;
@@ -154,7 +154,7 @@ const Contact = ({ data }) => {
 };
 
 Contact.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default Contact;

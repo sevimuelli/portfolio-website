@@ -7,9 +7,10 @@ import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import { BlockContent } from '@components';
+
 const { colors, fontSizes, fonts } = theme;
 
-import BlockContent from '../block-content';
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -337,7 +338,7 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
               externalLink,
               github,
               githubLink,
-              tags
+              tags,
             } = node;
 
             return (

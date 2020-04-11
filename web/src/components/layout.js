@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
-const { colors, fontSizes, fonts } = theme;
 
+const { colors, fontSizes, fonts } = theme;
 const isProd = process.env.NODE_ENV === 'production';
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
@@ -103,7 +103,7 @@ const Layout = ({ children, location }) => {
           <SkipToContent href="#content">Skip to Content</SkipToContent>
 
           {/* isLoading && isHome */}
-          {isLoading && isHome && isProd && false ? (
+          {isLoading && isHome && isProd && true ? (
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
