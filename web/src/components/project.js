@@ -109,6 +109,24 @@ const StyledLinkWrapper = styled.div`
   }
 `;
 
+const StyledFigure = styled.figure`
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background: #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const StyledFigureImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 1s ease-in;
+  border-bottom: solid 1px ${colors.navy};
+`;
+
 const slickSettings = {
   dots: true,
   infinite: true,
@@ -204,14 +222,21 @@ function Project({ data }) {
             {imgGallery.length > 0 &&
               imgGallery.map((img, i) => (
                 <StyledCaruselImgContainter>
-                  <img
-                    key={i}
-                    src={imageUrlFor(buildImageObj(img))
-                      .width(800)
-                      .height(Math.floor(aspectRatioImgGal * 800))
-                      .url()}
-                    alt={img.alt}
-                  />
+                  <StyledFigure
+                    style={{
+                      backgroundImage: `url(${img.asset.metadata.lqip})`,
+                      paddingTop: `calc(100% * ${aspectRatioImgGal})`,
+                    }}
+                  >
+                    <StyledFigureImage
+                      key={i}
+                      src={imageUrlFor(buildImageObj(img))
+                        .width(800)
+                        .height(Math.floor(aspectRatioImgGal * 800))
+                        .url()}
+                      alt={img.alt}
+                    />
+                  </StyledFigure>
                   <StyledImgOverlay>
                     <StyledImgCaption
                       style={{

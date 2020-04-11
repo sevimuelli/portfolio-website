@@ -11,13 +11,18 @@ export default {
   fields: [
     {
       name: 'featuredTitle',
-      title: 'Featured Porjects Title',
+      title: 'Featured projects title',
       type: 'string'
     },
     {
       name: 'otherProjectsTitle',
-      title: 'Other Porjects Title',
+      title: 'Other projects title',
       type: 'string'
+    },
+    {
+      name: 'otherProjectsAspectRatio',
+      title: 'Oher projects aspect ratio',
+      type: 'number'
     },
     {
       name: 'frontDescription',

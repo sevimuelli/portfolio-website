@@ -101,6 +101,10 @@ export const query = graphql`
         asset {
           _id
           metadata {
+            lqip
+            dimensions {
+              aspectRatio
+            }
             palette {
               vibrant {
                 foreground

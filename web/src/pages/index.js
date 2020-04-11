@@ -10,7 +10,7 @@ import { Main } from '@styles';
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture
+  filterOutDocsPublishedInTheFuture,
 } from '../lib/helpers';
 
 const StyledMainContainer = styled(Main)`
@@ -41,10 +41,11 @@ const IndexPage = ({ location, data, errors }) => {
   //   : [];
 
   const {
+    otherProjectsAspectRatio,
     featuredTitle,
     otherProjectsTitle,
     _rawFrontDescription,
-    frontImage
+    frontImage,
   } = data.projectsOverview.edges[0].node;
 
   if (!site) {
@@ -68,7 +69,11 @@ const IndexPage = ({ location, data, errors }) => {
           />
         )}
         {data.projects && (
-          <Projects projects={data.projects.edges} sectionTitle={otherProjectsTitle} />
+          <Projects
+            projects={data.projects.edges}
+            sectionTitle={otherProjectsTitle}
+            aspectRatio={otherProjectsAspectRatio}
+          />
         )}
         <Contact data={data.contact.edges} />
       </StyledMainContainer>
@@ -78,7 +83,7 @@ const IndexPage = ({ location, data, errors }) => {
 
 IndexPage.propTypes = {
   location: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };
 
 export default IndexPage;
@@ -143,13 +148,14 @@ export const query = graphql`
     projectsOverview: allSanityProjectOverview {
       edges {
         node {
+          otherProjectsAspectRatio
           featuredTitle
           otherProjectsTitle
           _rawFrontDescription
           frontImage {
             asset {
               _id
-              fluid(maxWidth: 400){
+              fluid(maxWidth: 400) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -207,6 +213,12 @@ export const query = graphql`
               _id
               fluid(maxWidth: 500) {
                 ...GatsbySanityImageFluid
+              }
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
               }
             }
             alt
