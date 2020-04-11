@@ -21,6 +21,15 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        ...clientConfig.sanity,
+        token,
+        watchMode: !isProd,
+        overlayDrafts: !isProd && token,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
@@ -40,15 +49,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    {
-      resolve: 'gatsby-source-sanity',
-      options: {
-        ...clientConfig.sanity,
-        token,
-        watchMode: !isProd,
-        overlayDrafts: !isProd && token,
-      },
-    },
     `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-analytics`,

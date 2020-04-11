@@ -23,12 +23,25 @@ export default {
       options: {
         isHighlighted: true
       }
+    },
+    {
+      name: 'order',
+      title: 'Order',
+      type: 'number'
     }
   ],
   preview: {
     select: {
       imageUrl: 'asset.url',
-      title: 'caption'
+      caption: 'caption',
+      order: 'order'
+    },
+    prepare({imageUrl, caption, order}) {
+      const title = order ? `(${order}) ${caption}` : caption;
+      return {
+        imageUrl,
+        title
+      }
     }
   }
 }

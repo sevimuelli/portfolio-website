@@ -97,6 +97,7 @@ export const query = graphql`
       _rawBody
       _rawIntroText
       imgGallery {
+        order
         asset {
           _id
           metadata {

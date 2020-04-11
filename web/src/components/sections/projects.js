@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import sr from '@utils/sr';
@@ -55,7 +56,7 @@ const StyledImageContainer = styled.div`
   transition: ${theme.transition};
 `;
 
-const StyledImage = styled.img`
+const StyledImage = styled(Img)`
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1) brightness(90%);
   transition: ${theme.transition};
@@ -193,18 +194,7 @@ const Projects = ({ projects, sectionTitle }) => {
         <TransitionGroup className="projects">
           {projectsToShow &&
             projectsToShow.map(({ node }, i) => {
-              const {
-                slug,
-                title,
-                mainImage,
-                _rawExcerpt,
-                external,
-                externalLink,
-                github,
-                githubLink,
-                tech,
-                tags
-              } = node;
+              const { slug, title, mainImage, _rawExcerpt, externalLink, githubLink, tags } = node;
               return (
                 <CSSTransition
                   key={i}
@@ -214,28 +204,17 @@ const Projects = ({ projects, sectionTitle }) => {
                 >
                   <StyledProject
                     key={i}
-                    ref={el => (revealProjects.current[i] = el)}
+                    ref={(el) => (revealProjects.current[i] = el)}
                     tabIndex="0"
                     style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`
+                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
                     }}
                   >
                     <StyledProjectInner to={`/project/${slug.current}`}>
                       <h1 hidden>{title}</h1>
                       <header>
-                        {/* <StyledProjectHeader>
-                          <StyledFolder>
-                            <IconFolder />
-                          </StyledFolder>
-                        </StyledProjectHeader> */}
                         <StyledImageContainer>
-                          <StyledImage
-                            src={imageUrlFor(buildImageObj(mainImage))
-                              .width(600)
-                              .height(Math.floor((9 / 16) * 600))
-                              .url()}
-                            alt={mainImage.alt}
-                          />
+                          <StyledImage fluid={mainImage.asset.fluid} alt={mainImage.alt} />
                         </StyledImageContainer>
 
                         <StyledProjectName>{title}</StyledProjectName>
@@ -294,7 +273,7 @@ const Projects = ({ projects, sectionTitle }) => {
 };
 
 Projects.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default Projects;

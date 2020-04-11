@@ -137,7 +137,7 @@ const StyledGridContainer = styled.div`
   `};
 `;
 
-const SkillBigPicture = styled.img`
+const SkillBigPicture = styled(Img)`
   ${'' /* display: block;
   height: 50px;
   box-sizing: border-box;
@@ -303,7 +303,7 @@ const About = ({ data }) => {
             return (
               <SkillBigContainer key={i} ref={(el) => (revealSkills.current[i] = el)}>
                 <SkillBigPictureContainter>
-                  <SkillBigPicture src={src} alt={skill.title} />
+                  <SkillBigPicture fluid={skill.icon.asset.fluid} alt={skill.title} />
                 </SkillBigPictureContainter>
                 <SkillBigDetail>
                   <SkillBigMeta>

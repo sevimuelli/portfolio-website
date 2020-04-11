@@ -129,7 +129,6 @@ function Project({ data }) {
     _rawBody,
     _rawIntroText,
     title,
-    mainImage,
     publishedAt,
     relatedProjects,
     imgGallery,
@@ -137,6 +136,9 @@ function Project({ data }) {
     githubLink,
     externalLink,
   } = data;
+
+  imgGallery.sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10));
+
   return (
     <div>
       <span className="breadcrumb">
@@ -196,37 +198,9 @@ function Project({ data }) {
         )}
       </StyledPostHeader>
       <StyledPostContent>
-        {/* <img
-          src={imageUrlFor(buildImageObj(imgGallery[0]))
-            .width(600)
-            .height(Math.floor((9 / 16) * 600))
-            .url()}
-          alt={imgGallery[0].alt}
-        /> */}
         {_rawIntroText && <BlockContent blocks={_rawIntroText || []} />}
         <StyledCaruselContainer>
           <Slider {...slickSettings} arrows>
-            {mainImage && (
-              <StyledCaruselImgContainter>
-                <img
-                  src={imageUrlFor(buildImageObj(mainImage))
-                    .width(800)
-                    .height(Math.floor(aspectRatioImgGal * 800))
-                    .url()}
-                  alt={mainImage.alt}
-                />
-                <StyledImgOverlay>
-                  <StyledImgCaption
-                    style={{
-                      backgroundColor: mainImage.asset.metadata.palette.vibrant.background,
-                      color: mainImage.asset.metadata.palette.vibrant.foreground,
-                    }}
-                  >
-                    {mainImage.caption}
-                  </StyledImgCaption>
-                </StyledImgOverlay>
-              </StyledCaruselImgContainter>
-            )}
             {imgGallery.length > 0 &&
               imgGallery.map((img, i) => (
                 <StyledCaruselImgContainter>
