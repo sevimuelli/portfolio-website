@@ -15,7 +15,6 @@ async function createProjectPages(graphql, actions, reporter) {
         edges {
           node {
             id
-            publishedAt
             slug {
               current
             }
@@ -37,6 +36,7 @@ async function createProjectPages(graphql, actions, reporter) {
 
   if (result.errors) throw result.errors;
 
+  // Extract projects form query
   const projectEdges = (result.data.projects || {}).edges || [];
 
   projectEdges.forEach((edge) => {
@@ -54,7 +54,7 @@ async function createProjectPages(graphql, actions, reporter) {
   });
 
   // Extract tag data from query
-  const tags = result.data.tags.edges;
+  const tags = (result.data.tags || {}).edges || {};
 
   // Make tag pages
   tags.forEach((tag) => {

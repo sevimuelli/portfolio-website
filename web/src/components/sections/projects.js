@@ -9,8 +9,6 @@ import { IconGitHub, IconExternal, IconFolder } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
 import { BlockContent } from '@components';
-import { buildImageObj } from '../../lib/helpers';
-import { imageUrlFor } from '../../lib/image-url';
 
 const { colors, fontSizes, fonts } = theme;
 

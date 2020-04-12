@@ -12,6 +12,7 @@ const StyledMainContainer = styled(Main)`
   ${mixins.flexCenter};
   flex-direction: column;
 `;
+
 const StyledTitle = styled.h3`
   color: ${colors.green};
   font-family: ${fonts.SFMono};
@@ -20,6 +21,7 @@ const StyledTitle = styled.h3`
   ${media.bigDesktop`font-size: 60px;`}
   ${media.phablet`font-size: 40px;`};
 `;
+
 const StyledSubtitle = styled.h2`
   font-size: 3vw;
   font-weight: 400;
@@ -27,6 +29,7 @@ const StyledSubtitle = styled.h2`
   ${media.thone`font-size: 20px;`};
   ${media.phablet`font-size: 20px;`};
 `;
+
 const StyledHomeButton = styled(Link)`
   ${mixins.bigButton};
   margin-top: 40px;
@@ -56,10 +59,6 @@ const Success = ({ location }) => {
       </TransitionGroup>
     </Layout>
   );
-};
-
-Success.propTypes = {
-  location: PropTypes.object.isRequired,
 };
 
 export default Success;

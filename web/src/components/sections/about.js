@@ -6,8 +6,8 @@ import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 import { BlockContent } from '@components';
-import { buildImageObj } from '../../lib/helpers';
-import { imageUrlFor } from '../../lib/image-url';
+import { buildImageObj } from '../../utils/helpers';
+import { imageUrlFor } from '../../utils/image-url';
 
 const { colors, fontSizes, fonts } = theme;
 

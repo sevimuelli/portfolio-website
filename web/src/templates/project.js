@@ -40,55 +40,14 @@ export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
     sampleProject: sanitySampleProject(id: { eq: $id }) {
       aspectRatioImgGal
-      id
-      tech
       publishedAt
       githubLink
       externalLink
-      categories {
-        _id
-        title
-      }
       relatedProjects {
         title
         slug {
           current
         }
-      }
-      mainImage {
-        crop {
-          _key
-          _type
-          top
-          bottom
-          left
-          right
-        }
-        hotspot {
-          _key
-          _type
-          x
-          y
-          height
-          width
-        }
-        asset {
-          _id
-          metadata {
-            palette {
-              vibrant {
-                foreground
-                background
-              }
-              dominant {
-                foreground
-                background
-              }
-            }
-          }
-        }
-        alt
-        caption
       }
       title
       slug {
@@ -107,10 +66,6 @@ export const query = graphql`
             }
             palette {
               vibrant {
-                foreground
-                background
-              }
-              dominant {
                 foreground
                 background
               }

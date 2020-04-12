@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import PropTypes from 'prop-types';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
@@ -13,14 +12,17 @@ const StyledTagsContainer = styled(Main)`
   h1 {
     margin-bottom: 50px;
   }
+
   ul {
     color: ${colors.lightSlate};
+
     li {
       font-size: ${fontSizes.xxl};
 
       a {
         ${mixins.inlineLink};
         color: ${colors.lightSlate};
+
         .count {
           color: ${colors.slate};
           font-family: ${fonts.SFMono};
@@ -69,8 +71,6 @@ function TagsPage({ data, location }) {
   );
 }
 
-TagsPage.propTypes = {};
-
 export default TagsPage;
 
 export const pageQuery = graphql`
@@ -88,7 +88,6 @@ export const pageQuery = graphql`
     projectCount: allSanitySampleProject(filter: { tags: { elemMatch: { title: { ne: "" } } } }) {
       edges {
         node {
-          title
           tags {
             title
           }

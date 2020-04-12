@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import PropTypes from 'prop-types';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
@@ -64,9 +63,6 @@ const TagTemplate = ({ pageContext, data, location }) => {
 
         <h1>
           <span>#{tag}</span>
-          {/* <span>
-            <Link to="/tags">View all tags</Link>
-          </span> */}
         </h1>
 
         <ul className="fancy-list">
@@ -104,8 +100,6 @@ const TagTemplate = ({ pageContext, data, location }) => {
 };
 
 export default TagTemplate;
-
-TagTemplate.propTypes = {};
 
 export const pageQuery = graphql`
   query($tag: String!) {

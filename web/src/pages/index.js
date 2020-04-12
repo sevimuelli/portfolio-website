@@ -1,17 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-// import Layout from '@components/layout';
 import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
-// import Layout from '../components/bc/layout'
 import styled from 'styled-components';
 import { Main } from '@styles';
-
-import {
-  mapEdgesToNodes,
-  filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture,
-} from '../lib/helpers';
 
 const StyledMainContainer = styled(Main)`
   counter-reset: section;
@@ -21,38 +13,22 @@ const IndexPage = ({ location, data, errors }) => {
   if (errors) {
     return (
       <Layout location={location}>
-        <GraphQLErrorList errors={errors} />
+        <div>
+          <h1>GraphQL Error</h1>
+          {errors.map((error) => (
+            <pre key={error.message}>{error.message}</pre>
+          ))}
+        </div>
       </Layout>
     );
   }
 
-  const { site } = data || {};
-
-  // const featuredNodes = (data || {}).featured
-  //   ? mapEdgesToNodes(data.featured)
-  //       .filter(filterOutDocsWithoutSlugs)
-  //       .filter(filterOutDocsPublishedInTheFuture)
-  //   : [];
-
-  // const projectNodes = (data || {}).projects
-  //   ? mapEdgesToNodes(data.projects)
-  //       .filter(filterOutDocsWithoutSlugs)
-  //       .filter(filterOutDocsPublishedInTheFuture)
-  //   : [];
-
   const {
-    otherProjectsAspectRatio,
     featuredTitle,
     otherProjectsTitle,
     _rawFrontDescription,
     frontImage,
   } = data.projectsOverview.edges[0].node;
-
-  if (!site) {
-    throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    );
-  }
 
   return (
     <Layout location={location}>
@@ -69,11 +45,7 @@ const IndexPage = ({ location, data, errors }) => {
           />
         )}
         {data.projects && (
-          <Projects
-            projects={data.projects.edges}
-            sectionTitle={otherProjectsTitle}
-            aspectRatio={otherProjectsAspectRatio}
-          />
+          <Projects projects={data.projects.edges} sectionTitle={otherProjectsTitle} />
         )}
         <Contact data={data.contact.edges} />
       </StyledMainContainer>
@@ -90,11 +62,6 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexPageQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      title
-      description
-      keywords
-    }
     intro: allSanityIntroPage {
       edges {
         node {
@@ -127,7 +94,6 @@ export const query = graphql`
           photo {
             alt
             asset {
-              _id
               fluid {
                 ...GatsbySanityImageFluid
               }
@@ -148,13 +114,11 @@ export const query = graphql`
     projectsOverview: allSanityProjectOverview {
       edges {
         node {
-          otherProjectsAspectRatio
           featuredTitle
           otherProjectsTitle
           _rawFrontDescription
           frontImage {
             asset {
-              _id
               fluid(maxWidth: 400) {
                 ...GatsbySanityImageFluid
               }
@@ -204,21 +168,12 @@ export const query = graphql`
         node {
           title
           tech
-          github
           githubLink
           externalLink
-          external
           mainImage {
             asset {
-              _id
               fluid(maxWidth: 500) {
                 ...GatsbySanityImageFluid
-              }
-              metadata {
-                lqip
-                dimensions {
-                  aspectRatio
-                }
               }
             }
             alt

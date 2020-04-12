@@ -2,21 +2,37 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { BlockContent } from '@components';
 import styled from 'styled-components';
-import { Main, theme, mixins, media } from '@styles';
+import { theme, mixins, media } from '@styles';
 import Slider from 'react-slick';
 import { IconGitHub, IconExternal } from '@components/icons';
-import { imageUrlFor } from '../lib/image-url';
-import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../utils/image-url';
+import { buildImageObj } from '../utils/helpers';
 
-const { colors, fontSizes, fonts } = theme;
+const { colors, fontSizes } = theme;
 
-const StyledPostContainer = styled(Main)`
-  max-width: 1000px;
-`;
 const StyledPostHeader = styled.header`
   margin-bottom: 50px;
+
   .tag {
     margin-right: 10px;
+  }
+`;
+
+const StyledLinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 10px;
+  margin-left: -10px;
+  color: ${colors.lightestSlate};
+
+  a {
+    padding: 10px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 `;
 
@@ -33,6 +49,7 @@ const StyledRelatedProjectLink = styled(Link)`
 
 const StyledPostContent = styled.div`
   margin-bottom: 100px;
+
   h1,
   h2,
   h3,
@@ -52,6 +69,7 @@ const StyledPostContent = styled.div`
 const StyledCaruselContainer = styled.div`
   margin-top: 50px;
   margin-bottom: 30px;
+
   .slick-dots li button::before {
     color: ${colors.green};
   }
@@ -66,9 +84,22 @@ const StyledCaruselContainer = styled.div`
   }
 `;
 
-const StyledCaruselImgContainter = styled.div`
-  ${'' /* padding-right: 20px;
-  padding-left: 20px; */}
+const StyledFigure = styled.figure`
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background: #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const StyledFigureImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 1s ease-in;
+  border-bottom: solid 1px ${colors.navy};
 `;
 
 const StyledImgOverlay = styled.div`
@@ -91,40 +122,6 @@ const StyledImgOverlay = styled.div`
 
 const StyledImgCaption = styled.div`
   padding: 2px;
-`;
-
-const StyledLinkWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-top: 10px;
-  margin-left: -10px;
-  color: ${colors.lightestSlate};
-  a {
-    padding: 10px;
-    svg {
-      width: 22px;
-      height: 22px;
-    }
-  }
-`;
-
-const StyledFigure = styled.figure`
-  position: relative;
-  margin: 0;
-  width: 100%;
-  background: #000;
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
-
-const StyledFigureImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: opacity 1s ease-in;
-  border-bottom: solid 1px ${colors.navy};
 `;
 
 const slickSettings = {
@@ -155,6 +152,7 @@ function Project({ data }) {
     externalLink,
   } = data;
 
+  // Sort image gallery  in corespondace to its order
   imgGallery.sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10));
 
   return (
@@ -221,7 +219,7 @@ function Project({ data }) {
           <Slider {...slickSettings} arrows>
             {imgGallery.length > 0 &&
               imgGallery.map((img, i) => (
-                <StyledCaruselImgContainter>
+                <div>
                   <StyledFigure
                     style={{
                       backgroundImage: `url(${img.asset.metadata.lqip})`,
@@ -247,7 +245,7 @@ function Project({ data }) {
                       {img.caption}
                     </StyledImgCaption>
                   </StyledImgOverlay>
-                </StyledCaruselImgContainter>
+                </div>
               ))}
           </Slider>
         </StyledCaruselContainer>

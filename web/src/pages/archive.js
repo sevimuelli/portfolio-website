@@ -10,7 +10,8 @@ import { theme, mixins, media, Main } from '@styles';
 
 const { colors, fonts, fontSizes } = theme;
 
-const StyledMainContainer = styled(Main)``;
+const StyledMainContainer = styled(Main);
+
 const StyledTableContainer = styled.div`
   margin: 100px -20px;
   ${media.tablet`
@@ -36,6 +37,7 @@ const StyledTable = styled.table`
       background-color: ${colors.lightNavy};
     }
   }
+
   th,
   td {
     cursor: default;
@@ -45,9 +47,11 @@ const StyledTable = styled.table`
       padding: 10px;
     `};
   }
+
   th {
     text-align: left;
   }
+
   td {
     &.year {
       width: 10%;
@@ -55,27 +59,33 @@ const StyledTable = styled.table`
         font-size: ${fontSizes.sm};
       `};
     }
+
     &.title {
       padding-top: 15px;
       color: ${colors.lightestSlate};
       font-size: ${fontSizes.xl};
       font-weight: 700;
     }
+
     &.company {
       width: 15%;
       padding-top: 15px;
       font-size: ${fontSizes.lg};
     }
+
     &.tech {
       font-size: ${fontSizes.xs};
       font-family: ${fonts.SFMono};
     }
+
     &.links {
       span {
         ${mixins.flexBetween};
+
         a + a {
           margin-left: 10px;
         }
+
         svg {
           width: 20px;
           height: 20px;
@@ -92,8 +102,6 @@ const StyledTechListLink = styled(Link)`
     bottom: 0.2em;
   }
 `;
-
-const StyledLink = styled(Link)``;
 
 const ArchivePage = ({ location, data }) => {
   const projects = data.projects.edges;
@@ -131,13 +139,13 @@ const ArchivePage = ({ location, data }) => {
             <tbody>
               {projects.length > 0 &&
                 projects.map(({ node }, i) => {
-                  const { slug, publishedAt, githubLink, externalLink, title, tech, tags } = node;
+                  const { slug, publishedAt, githubLink, externalLink, title, tags } = node;
                   return (
-                    <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                    <tr key={i} ref={(el) => (revealProjects.current[i] = el)}>
                       <td className="overline year">{`${new Date(publishedAt).getFullYear()}`}</td>
 
                       <td className="title">
-                        <StyledLink to={`/project/${slug.current}`}>{title}</StyledLink>
+                        <Link to={`/project/${slug.current}`}>{title}</Link>
                       </td>
 
                       <td className="tech hide-on-mobile">
@@ -192,10 +200,6 @@ const ArchivePage = ({ location, data }) => {
     </Layout>
   );
 };
-ArchivePage.propTypes = {
-  location: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired
-};
 
 export default ArchivePage;
 
@@ -208,11 +212,8 @@ export const pageQuery = graphql`
       edges {
         node {
           title
-          tech
-          github
           githubLink
           externalLink
-          external
           slug {
             current
           }
@@ -231,8 +232,6 @@ export const pageQuery = graphql`
         node {
           subtitle
           title
-          id
-          _id
         }
       }
     }

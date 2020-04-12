@@ -12,6 +12,7 @@ const StyledMainContainer = styled(Main)`
   ${mixins.flexCenter};
   flex-direction: column;
 `;
+
 const StyledTitle = styled.h1`
   color: ${colors.green};
   font-family: ${fonts.SFMono};
@@ -20,14 +21,16 @@ const StyledTitle = styled.h1`
   ${media.bigDesktop`font-size: 200px;`}
   ${media.phablet`font-size: 120px;`};
 `;
+
 const StyledSubtitle = styled.h2`
   font-size: 3vw;
   font-weight: 400;
   ${media.bigDesktop`font-size: 50px;`};
   ${media.phablet`font-size: 30px;`};
 `;
+
 const StyledHomeButton = styled(Link)`
-  ${mixins.bigButton};
+  ${mixins.bigButton}
   margin-top: 40px;
 `;
 
@@ -55,10 +58,6 @@ const NotFoundPage = ({ location }) => {
       </TransitionGroup>
     </Layout>
   );
-};
-
-NotFoundPage.propTypes = {
-  location: PropTypes.object.isRequired,
 };
 
 export default NotFoundPage;
