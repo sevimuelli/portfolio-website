@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Layout, SEO } from '@components';
@@ -9,8 +8,6 @@ import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 
 const { colors, fonts, fontSizes } = theme;
-
-const StyledMainContainer = styled(Main);
 
 const StyledTableContainer = styled.div`
   margin: 100px -20px;
@@ -120,7 +117,7 @@ const ArchivePage = ({ location, data }) => {
   return (
     <Layout location={location}>
       <SEO siteTitle={archiveTitle} sitePath="/archive" />
-      <StyledMainContainer>
+      <Main>
         <header ref={revealTitle}>
           <h1 className="big-title">{archiveTitle}</h1>
           <p className="subtitle">{archiveSubtitle}</p>
@@ -196,7 +193,7 @@ const ArchivePage = ({ location, data }) => {
             </tbody>
           </StyledTable>
         </StyledTableContainer>
-      </StyledMainContainer>
+      </Main>
     </Layout>
   );
 };
