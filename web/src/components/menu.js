@@ -22,6 +22,7 @@ const StyledContainer = styled.div`
   display: none;
   ${media.tablet`display: block;`};
 `;
+
 const Sidebar = styled.aside`
   ${mixins.flexCenter};
   flex-direction: column;
@@ -38,6 +39,7 @@ const Sidebar = styled.aside`
   ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
 `;
+
 const NavLinks = styled.nav`
   ${mixins.flexBetween};
   width: 100%;
@@ -45,12 +47,14 @@ const NavLinks = styled.nav`
   text-align: center;
   color: ${colors.lightestSlate};
 `;
+
 const NavList = styled.ol`
   padding: 0;
   margin: 0;
   list-style: none;
   width: 100%;
 `;
+
 const NavListItem = styled.li`
   margin: 0 auto 20px;
   position: relative;
@@ -61,7 +65,8 @@ const NavListItem = styled.li`
     font-size: ${fontSizes.md};
   `};
   ${media.tiny`font-size: ${fontSizes.smish};`};
-  &:before {
+
+  &::before {
     display: block;
     content: '0' counter(item) '.';
     color: ${colors.green};
@@ -69,11 +74,13 @@ const NavListItem = styled.li`
     margin-bottom: 5px;
   }
 `;
+
 const NavLink = styled(Link)`
   ${mixins.link};
   padding: 3px 20px 20px;
   width: 100%;
 `;
+
 const ResumeLink = styled.a`
   ${mixins.bigButton};
   padding: 18px 50px;

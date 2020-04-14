@@ -22,9 +22,11 @@ const SkipToContent = styled.a`
   height: 1px;
   overflow: hidden;
   z-index: -99;
+
   &:hover {
     background-color: ${colors.darkGrey};
   }
+
   &:focus,
   &:active {
     outline: 0;
@@ -46,6 +48,7 @@ const SkipToContent = styled.a`
     z-index: 99;
   }
 `;
+
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,14 +105,12 @@ const Layout = ({ children, location }) => {
 
           <SkipToContent href="#content">Skip to Content</SkipToContent>
 
-          {/* isLoading && isHome */}
           {isLoading && isHome && isProd && true ? (
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
               <Nav isHome={isHome} fileURL={resumeFile.edges[0].node.myFiles[0].asset.url} />
               <Social isHome={isHome} />
-              {/* <Email isHome={isHome} /> */}
 
               <div id="content">
                 {children}

@@ -20,11 +20,13 @@ const StyledContainer = styled.div`
   right: 0;
   z-index: 99;
 `;
+
 const StyledLogo = styled.div`
   width: max-content;
   max-width: 100px;
   transition: ${theme.transition};
   opacity: ${props => (props.isMounted ? 1 : 0)};
+
   svg {
     width: 100%;
     height: 100%;
@@ -32,6 +34,7 @@ const StyledLogo = styled.div`
     margin: 0 auto;
     fill: none;
     user-select: none;
+
     #B {
       opacity: 0;
     }

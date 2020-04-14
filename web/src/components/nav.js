@@ -34,6 +34,7 @@ const StyledContainer = styled.header`
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
 `;
+
 const StyledNav = styled.nav`
   ${mixins.flexBetween};
   position: relative;
@@ -43,26 +44,31 @@ const StyledNav = styled.nav`
   counter-reset: item 0;
   z-index: 12;
 `;
+
 const StyledLogo = styled.div`
   ${mixins.flexCenter};
+
   a {
     display: block;
     color: ${colors.green};
     width: 42px;
     height: 42px;
+
+    svg {
+      fill: none;
+      transition: ${theme.transition};
+      user-select: none;
+    }
+
     &:hover,
     &:focus {
       svg {
         fill: ${colors.transGreen};
       }
     }
-    svg {
-      fill: none;
-      transition: ${theme.transition};
-      user-select: none;
-    }
   }
 `;
+
 const StyledHamburger = styled.div`
   ${mixins.flexCenter};
   overflow: visible;
@@ -79,12 +85,14 @@ const StyledHamburger = styled.div`
   display: none;
   ${media.tablet`display: flex;`};
 `;
+
 const StyledHamburgerBox = styled.div`
   position: relative;
   display: inline-block;
   width: ${theme.hamburgerWidth}px;
   height: 24px;
 `;
+
 const StyledHamburgerInner = styled.div`
   background-color: ${colors.green};
   position: absolute;
@@ -132,32 +140,38 @@ const StyledHamburgerInner = styled.div`
     transition: ${(props) => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
   }
 `;
+
 const StyledLink = styled.div`
   display: flex;
   align-items: center;
   ${media.tablet`display: none;`};
 `;
+
 const StyledList = styled.ol`
   ${mixins.flexBetween};
   padding: 0;
   margin: 0;
   list-style: none;
 `;
+
 const StyledListItem = styled.li`
   margin: 0 10px;
   position: relative;
   font-size: ${fontSizes.smish};
   counter-increment: item 1;
-  &:before {
+
+  &::before {
     content: '0' counter(item) '.';
     text-align: right;
     color: ${colors.green};
     font-size: ${fontSizes.xs};
   }
 `;
+
 const StyledListLink = styled(Link)`
   padding: 12px 10px;
 `;
+
 const StyledResumeButton = styled.a`
   ${mixins.smallButton};
   margin-left: 10px;
