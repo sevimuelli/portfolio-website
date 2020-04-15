@@ -8,17 +8,18 @@ import { BlockContent } from '@components';
 
 const { colors, fontSizes, fonts } = theme;
 
-
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
   flex-direction: column;
   align-items: flex-start;
   min-height: 100vh;
   ${media.tablet`padding-top: 150px;`};
+
   div {
     width: 100%;
   }
 `;
+
 const StyledOverline = styled.h1`
   color: ${colors.green};
   margin: 0 0 20px 3px;
@@ -28,6 +29,7 @@ const StyledOverline = styled.h1`
   ${media.desktop`font-size: ${fontSizes.sm};`};
   ${media.tablet`font-size: ${fontSizes.smish};`};
 `;
+
 const StyledTitle = styled.h2`
   font-size: 80px;
   line-height: 1.1;
@@ -37,6 +39,7 @@ const StyledTitle = styled.h2`
   ${media.phablet`font-size: 50px;`};
   ${media.phone`font-size: 40px;`};
 `;
+
 const StyledSubtitle = styled.h3`
   font-size: 80px;
   line-height: 1.1;
@@ -46,14 +49,17 @@ const StyledSubtitle = styled.h3`
   ${media.phablet`font-size: 50px;`};
   ${media.phone`font-size: 40px;`};
 `;
+
 const StyledDescription = styled.div`
   margin-top: 25px;
   width: 50%;
   max-width: 500px;
+
   a {
     ${mixins.inlineLink};
   }
 `;
+
 const StyledContactLink = styled(Link)`
   ${mixins.bigButton};
   margin-top: 50px;
@@ -75,10 +81,7 @@ const Hero = ({ data }) => {
     <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
   );
   const four = () => (
-    <StyledDescription
-      style={{ transitionDelay: '400ms' }}
-      // dangerouslySetInnerHTML={{ __html: html }}
-    >
+    <StyledDescription style={{ transitionDelay: '400ms' }}>
       {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
     </StyledDescription>
   );
@@ -105,7 +108,7 @@ const Hero = ({ data }) => {
 };
 
 Hero.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default Hero;

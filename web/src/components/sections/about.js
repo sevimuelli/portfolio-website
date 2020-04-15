@@ -21,10 +21,12 @@ const StyledFlexContainer = styled.div`
     flex-direction: column;
   `};
 `;
+
 const StyledContent = styled.div`
   width: 60%;
   max-width: 480px;
   ${media.tablet`width: 100%;`};
+
   a {
     ${mixins.inlineLink};
   }
@@ -46,7 +48,8 @@ const Skill = styled.li`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
   color: ${colors.slate};
-  &:before {
+
+  &::before {
     content: '▹';
     position: absolute;
     left: 0;
@@ -63,12 +66,14 @@ const StyledPic = styled.div`
   margin-left: 60px;
   ${media.tablet`margin: 20px auto 50px; order: -1;`};
   ${media.phablet`width: 70%;`};
+
   a {
     &:focus {
       outline: 0;
     }
   }
 `;
+
 const StyledAvatar = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
@@ -76,6 +81,7 @@ const StyledAvatar = styled(Img)`
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
 `;
+
 const StyledAvatarLink = styled.a`
   ${mixins.boxShadow};
   width: 100%;
@@ -83,9 +89,11 @@ const StyledAvatarLink = styled.a`
   border-radius: ${theme.borderRadius};
   background-color: ${colors.green};
   margin-left: -20px;
+
   &:hover,
   &:focus {
     background: transparent;
+
     &:after {
       top: 15px;
       left: 15px;
@@ -95,8 +103,9 @@ const StyledAvatarLink = styled.a`
       mix-blend-mode: normal;
     }
   }
-  &:before,
-  &:after {
+
+  &::before,
+  &::after {
     content: '';
     display: block;
     position: absolute;
@@ -105,7 +114,8 @@ const StyledAvatarLink = styled.a`
     border-radius: ${theme.borderRadius};
     transition: ${theme.transition};
   }
-  &:before {
+
+  &::before {
     top: 0;
     left: 0;
     right: 0;
@@ -113,7 +123,8 @@ const StyledAvatarLink = styled.a`
     background-color: ${colors.navy};
     mix-blend-mode: screen;
   }
-  &:after {
+
+  &::after {
     border: 2px solid ${colors.green};
     top: 20px;
     left: 20px;
@@ -138,10 +149,6 @@ const StyledGridContainer = styled.div`
 `;
 
 const SkillBigPicture = styled(Img)`
-  ${'' /* display: block;
-  height: 50px;
-  box-sizing: border-box;
-  object-fit: contain; */}
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -156,29 +163,24 @@ const SkillBigContainer = styled.div`
   display: flex;
   align-items: center;
   animation-play-state: paused;
-  ${'' /* height: 200px; */}
-  ${'' /* justify-content: space-between; */}
+
   &:hover,
   &:focus {
     ${SkillBigPicture} {
       mix-blend-mode: normal;
       filter: none;
-      ${'' /* background-color: none; */}
     }
   }
 `;
 
 const SkillBigPictureContainter = styled.div`
-  ${'' /* align-self: center; */}
   width: 11%;
   justify-self: start;
   background-color: ${colors.green};
-  ${'' /* backdrop-filter: opacity(30%); */}
   z-index: -1;
 `;
 
 const SkillBigDetail = styled.div`
-  ${'' /* width: 80%; */}
   flex-grow: 1;
   justify-self: stretch;
   display: flex;
@@ -208,25 +210,6 @@ const SkillBigBar = styled.div`
   background: ${colors.navy};
   position: relative;
   border-radius: 10px;
-
-  ${'' /* &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    border-radius: 10px;
-    width: 80%;
-    background-image: linear-gradient(to right, ${colors.navy}, ${colors.green});
-    animation-duration: 1.5s;
-    animation-timing-function: ease;
-    animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-    animation-name: ratio90;
-  } */}
 `;
 
 const SkillBigBarIntern = styled.div`
@@ -236,19 +219,7 @@ const SkillBigBarIntern = styled.div`
   top: 0;
   height: 100%;
   border-radius: 10px;
-  ${'' /* width: 80%; */}
   background-image: linear-gradient(to right, ${colors.navy}, ${colors.green});
-  ${
-    '' /* animation-duration: 1.5s;
-  animation-timing-function: ease;
-  animation-delay: 0s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-play-state: running; */
-  }
-  ${'' /* animation-name: ratio; */}
-
   ${mixins.barAnimations}
 `;
 

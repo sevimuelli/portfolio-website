@@ -11,6 +11,7 @@ const StyledContainer = styled(Section)`
   position: relative;
   max-width: 700px;
 `;
+
 const StyledTabs = styled.div`
   display: flex;
   align-items: flex-start;
@@ -19,6 +20,7 @@ const StyledTabs = styled.div`
     display: block;
   `};
 `;
+
 const StyledTabList = styled.ul`
   display: block;
   position: relative;
@@ -49,6 +51,7 @@ const StyledTabList = styled.ul`
         margin-left: 25px;
       `};
     }
+
     &:last-of-type {
       ${media.thone`
         padding-right: 50px;
@@ -59,6 +62,7 @@ const StyledTabList = styled.ul`
     }
   }
 `;
+
 const StyledTabButton = styled.button`
   ${mixins.link};
   display: flex;
@@ -83,11 +87,13 @@ const StyledTabButton = styled.button`
     border-bottom: 2px solid ${colors.darkGrey};
     min-width: 120px;
   `};
+
   &:hover,
   &:focus {
     background-color: ${colors.lightNavy};
   }
 `;
+
 const StyledHighlight = styled.span`
   display: block;
   background: ${colors.green};
@@ -118,6 +124,7 @@ const StyledHighlight = styled.span`
     margin-left: 25px;
   `};
 `;
+
 const StyledTabContent = styled.div`
   position: relative;
   width: 100%;
@@ -130,19 +137,23 @@ const StyledTabContent = styled.div`
   ul {
     ${mixins.fancyList};
   }
+
   a {
     ${mixins.inlineLink};
   }
 `;
+
 const StyledJobTitle = styled.h4`
   color: ${colors.lightestSlate};
   font-size: ${fontSizes.xxl};
   font-weight: 500;
   margin-bottom: 5px;
 `;
+
 const StyledCompany = styled.span`
   color: ${colors.green};
 `;
+
 const StyledJobDetails = styled.h5`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
@@ -150,6 +161,7 @@ const StyledJobDetails = styled.h5`
   letter-spacing: 0.05em;
   color: ${colors.lightSlate};
   margin-bottom: 30px;
+
   svg {
     width: 15px;
   }

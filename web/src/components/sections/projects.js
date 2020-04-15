@@ -17,14 +17,17 @@ const StyledContainer = styled(Section)`
   flex-direction: column;
   align-items: flex-start;
 `;
+
 const StyledTitle = styled.h4`
   margin: 0 auto;
   font-size: ${fontSizes.h3};
   ${media.tablet`font-size: 24px;`};
+
   a {
     display: block;
   }
 `;
+
 const StyledArchiveLink = styled(Link)`
   ${mixins.inlineLink};
   text-align: center;
@@ -36,6 +39,7 @@ const StyledArchiveLink = styled(Link)`
     bottom: 0.1em;
   }
 `;
+
 const StyledGrid = styled.div`
   margin-top: 50px;
   width: 100%;
@@ -72,9 +76,11 @@ const StyledProjectInner = styled(Link)`
   transition: ${theme.transition};
   background-color: ${colors.lightNavy};
 `;
+
 const StyledProject = styled.div`
   transition: ${theme.transition};
   cursor: default;
+
   &:hover,
   &:focus {
     outline: 0;
@@ -88,12 +94,14 @@ const StyledProject = styled.div`
     }
   }
 `;
+
 const StyledProjectHeader = styled.div`
   ${mixins.flexBetween};
   margin-bottom: 30px;
 `;
 const StyledFolder = styled.div`
   color: ${colors.green};
+
   svg {
     width: 40px;
     height: 40px;
@@ -105,9 +113,11 @@ const StyledProjectName = styled.h5`
   font-size: ${fontSizes.xxl};
   color: ${colors.lightestSlate};
 `;
+
 const StyledProjectDescription = styled.div`
   font-size: 17px;
   color: ${colors.lightSlate};
+
   a {
     ${mixins.inlineLink};
   }
@@ -134,6 +144,7 @@ const StyledTechList = styled.ul`
     color: ${colors.slate};
     line-height: 1.75;
     margin-right: 15px;
+
     &:last-of-type {
       margin-right: 0;
     }
@@ -145,14 +156,14 @@ const StyledTechListLink = styled(Link)`
 `;
 
 const StyledProjectLinks = styled.div`
-  ${'' /* margin-right: -10px; */}
   color: ${colors.lightSlate};
   align-self: flex-end;
 `;
+
 const StyledIconLink = styled.a`
   position: relative;
-  ${'' /* top: 10px; */}
   padding: 5px 10px;
+
   svg {
     width: 20px;
     height: 20px;

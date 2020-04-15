@@ -12,10 +12,12 @@ const StyledContainer = styled(Section)`
   text-align: center;
   max-width: 600px;
   margin: 0 auto 100px;
+
   a {
     ${mixins.inlineLink};
   }
 `;
+
 const StyledHeading = styled(Heading)`
   display: block;
   color: ${colors.green};
@@ -25,24 +27,23 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 20px;
   justify-content: center;
   ${media.desktop`font-size: ${fontSizes.sm};`};
-  &:before {
+
+  &::before {
     bottom: 0;
     font-size: ${fontSizes.sm};
     ${media.desktop`font-size: ${fontSizes.smish};`};
   }
-  &:after {
+
+  &::after {
     display: none;
   }
 `;
+
 const StyledTitle = styled.h4`
   margin: 0 0 20px;
   font-size: 60px;
   ${media.desktop`font-size: 50px;`};
   ${media.tablet`font-size: 40px;`};
-`;
-const StyledEmailLink = styled.a`
-  ${mixins.bigButton};
-  margin-top: 50px;
 `;
 
 const StyledForm = styled.form`
@@ -60,6 +61,7 @@ const StyledInput = styled.input`
   background-color: ${colors.lightNavy};
   border-color: ${colors.green};
 `;
+
 const StyledTextArea = styled.textarea`
   display: block;
   resize: none;
@@ -68,7 +70,6 @@ const StyledTextArea = styled.textarea`
   margin: 8px auto;
   background-color: ${colors.lightNavy};
   border-color: ${colors.green};
-
   ${media.tablet`width: 80%;`};
 `;
 
@@ -145,10 +146,6 @@ const Contact = ({ data }) => {
           </StyledMoreButton>
         </p>
       </StyledForm>
-
-      {/* <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
-        Say Hello
-      </StyledEmailLink> */}
     </StyledContainer>
   );
 };
