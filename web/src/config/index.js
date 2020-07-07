@@ -1,5 +1,5 @@
 module.exports = {
-  siteTitle: 'Severin Müller | Software Engineer | Nerd',
+  siteTitle: 'Severin Müller | Software Engineer | Geek',
   siteDescription:
     'Severin Müller is a software engineer based in Zurich, CH who likes do develop all kind of awesome things.',
   siteKeywords:
