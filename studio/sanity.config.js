@@ -50,7 +50,7 @@ export default defineConfig({
               title: 'Sanity Studio',
               apiId: '5b4db275-9ce1-46a9-9aa7-e218428ae77d',
               buildHookId: '5e30d6a3e3ba019f373b1eba',
-              name: 'gatsby-sanity-portfolio-studio-xnfhk7xz',
+              name: 'portfolio-website-sanity-studio',
             },
             {
               title: 'Portfolio Website',
