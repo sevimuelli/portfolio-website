@@ -1,24 +1,24 @@
 // Document types
-import aboutMe from './documents/aboutMe'
-import archive from './documents/archive'
-import category from './documents/category'
-import contact from './documents/contact'
-import introPage from './documents/introPage'
-import person from './documents/person'
-import projectOverview from './documents/projectOverview'
-import sampleProject from './documents/sampleProject'
-import siteSettings from './documents/siteSettings'
-import tag from './documents/tag'
+import aboutMe from './documents/aboutMe';
+import archive from './documents/archive';
+import category from './documents/category';
+import contact from './documents/contact';
+import introPage from './documents/introPage';
+import person from './documents/person';
+import projectOverview from './documents/projectOverview';
+import sampleProject from './documents/sampleProject';
+import siteSettings from './documents/siteSettings';
+import tag from './documents/tag';
 
 // Object types
-import bioPortableText from './objects/bioPortableText'
-import figure from './objects/figure'
-import fileUpload from './objects/fileUpload'
-import projectMember from './objects/projectMember'
-import projectPortableText from './objects/projectPortableText'
-import simplePortableText from './objects/simplePortableText'
-import skill from './objects/skill'
-import work from './objects/work'
+import bioPortableText from './objects/bioPortableText';
+import figure from './objects/figure';
+import fileUpload from './objects/fileUpload';
+import projectMember from './objects/projectMember';
+import projectPortableText from './objects/projectPortableText';
+import simplePortableText from './objects/simplePortableText';
+import skill from './objects/skill';
+import work from './objects/work';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -44,4 +44,4 @@ export default [
     sampleProject,
     siteSettings,
     tag,
-]
+];
