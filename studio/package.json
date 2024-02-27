@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "portfolio-website-studio",
-	"version": "1.1.0",
+	"version": "1.0.0",
 	"main": "package.json",
 	"license": "MIT",
 	"author": "Sevi <dev@sevimuelli.io>",

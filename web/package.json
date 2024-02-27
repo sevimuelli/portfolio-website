@@ -2,7 +2,7 @@
   "private": true,
   "name": "portfolio-website-web",
   "description": "Personal Portfolio Website",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "author": "Severin Müller",
   "repository": {
     "type": "git",
