@@ -1,7 +1,7 @@
 {
 	"private": true,
-	"name": "sanity-gatsby-portfolio-studio",
-	"version": "1.0.1",
+	"name": "portfolio-website-studio",
+	"version": "1.1.0",
 	"main": "package.json",
 	"license": "MIT",
 	"author": "Sevi <dev@sevimuelli.io>",

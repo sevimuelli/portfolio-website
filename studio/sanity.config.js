@@ -33,7 +33,7 @@ export default defineConfig({
           data: [
             {
               title: 'GitHub repo',
-              value: 'https://github.com/sevimuelli/gatsby-sanity-portfolio',
+              value: 'https://github.com/sevimuelli/portfolio-website',
               category: 'Code'
             },
             {
