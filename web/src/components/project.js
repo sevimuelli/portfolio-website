@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 import Slider from 'react-slick';
@@ -214,7 +214,7 @@ function Project({ data }) {
         )}
       </StyledPostHeader>
       <StyledPostContent>
-        {_rawIntroText && <BlockContent blocks={_rawIntroText || []} />}
+        {_rawIntroText && <PortableTextBlock value={_rawIntroText || []} />}
         <StyledCaruselContainer>
           <Slider {...slickSettings} arrows>
             {imgGallery.length > 0 &&
@@ -249,7 +249,7 @@ function Project({ data }) {
               ))}
           </Slider>
         </StyledCaruselContainer>
-        {_rawBody && <BlockContent blocks={_rawBody || []} />}
+        {_rawBody && <PortableTextBlock value={_rawBody || []} />}
       </StyledPostContent>
     </div>
   );

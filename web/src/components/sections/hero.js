@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
 import { Link } from 'gatsby';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -82,7 +82,7 @@ const Hero = ({ data }) => {
   );
   const four = () => (
     <StyledDescription style={{ transitionDelay: '400ms' }}>
-      {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
+      {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
     </StyledDescription>
   );
   const five = () => (

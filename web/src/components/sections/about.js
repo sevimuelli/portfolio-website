@@ -5,7 +5,7 @@ import sr from '@utils/sr';
 import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
 import { buildImageObj } from '../../utils/helpers';
 import { imageUrlFor } from '../../utils/image-url';
 
@@ -251,7 +251,7 @@ const About = ({ data }) => {
       <Heading ref={revealTitle}>{title}</Heading>
       <StyledFlexContainer ref={revealFlexContainer}>
         <StyledContent>
-          {_rawDescription && <BlockContent blocks={_rawDescription || []} />}
+          {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
           <SkillsContainer>
             {otherSkills && otherSkills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
           </SkillsContainer>

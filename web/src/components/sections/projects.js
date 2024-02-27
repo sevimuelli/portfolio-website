@@ -8,7 +8,7 @@ import { srConfig } from '@config';
 import { IconGitHub, IconExternal, IconFolder } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -228,7 +228,7 @@ const Projects = ({ projects, sectionTitle }) => {
 
                         <StyledProjectName>{title}</StyledProjectName>
                         <StyledProjectDescription>
-                          {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
+                          {_rawExcerpt && <PortableTextBlock value={_rawExcerpt || []} />}
                         </StyledProjectDescription>
                       </header>
                       <StyledFooter>

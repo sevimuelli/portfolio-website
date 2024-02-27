@@ -4,7 +4,8 @@ import sr from '@utils/sr';
 import { srConfig, email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading, Button } from '@styles';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
+import PortableTextBlock from '../portable-text-block';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -109,7 +110,7 @@ const Contact = ({ data }) => {
 
       <StyledTitle ref={revealTitle}>{title}</StyledTitle>
 
-      {_rawDescription && <BlockContent ref={revealDescription} blocks={_rawDescription || []} />}
+      {_rawDescription && <PortableTextBlock ref={revealDescription} value={_rawDescription || []} />}
 
       <StyledForm
         name="contact"

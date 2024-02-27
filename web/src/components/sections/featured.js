@@ -7,7 +7,7 @@ import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
-import { BlockContent } from '@components';
+import { PortableTextBlock } from '@components';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -345,7 +345,7 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
       <Heading ref={revealTitle}>{SectionTitle}</Heading>
       <StyledFlexContainer ref={revealFlexContainer}>
         <StyledIntroContent>
-          {_rawFrontDescription && <BlockContent blocks={_rawFrontDescription || []} />}
+          {_rawFrontDescription && <PortableTextBlock value={_rawFrontDescription || []} />}
         </StyledIntroContent>
         <StyledPic>
           <StyledAvatarLink>
@@ -387,7 +387,7 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
                     )}
                   </StyledProjectName>
                   <StyledDescription>
-                    {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
+                    {_rawExcerpt && <PortableTextBlock value={_rawExcerpt || []} />}
                   </StyledDescription>
                   {tags && (
                     <StyledTechList>

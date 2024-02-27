@@ -1,5 +1,5 @@
 // Components
-import BlockContent from './block-content';
+import PortableTextBlock from './portable-text-block';
 import Email from './email';
 import Figure from './figure';
 import Footer from './footer';
@@ -22,7 +22,7 @@ import Jobs from './sections/jobs';
 import Projects from './sections/projects';
 
 export {
-  BlockContent,
+  PortableTextBlock,
   Email,
   Figure,
   Footer,

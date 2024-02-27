@@ -1,5 +1,4 @@
-import S from '@sanity/desk-tool/structure-builder';
-import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md/';
+import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md';
 import { FaHome, FaArchive, FaHashtag } from 'react-icons/fa';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 
@@ -17,7 +16,7 @@ const hiddenDocTypes = listItem =>
     'tag'
   ].includes(listItem.getId());
 
-export default () =>
+export default (S) =>
   S.list()
     .title('Content')
     .items([

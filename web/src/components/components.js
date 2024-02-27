@@ -1,9 +1,9 @@
 import Figure from './figure';
 
-const serializers = {
+const components = {
   types: {
     figure: Figure,
   }
 };
 
-export default serializers;
+export default components;

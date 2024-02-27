@@ -1,4 +1,4 @@
-import {FaHashtag} from 'react-icons/fa/'
+import {FaHashtag} from 'react-icons/fa'
 
 export default {
   name: 'tag',

@@ -14,6 +14,8 @@ const token = process.env.SANITY_READ_TOKEN;
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const adapter = require("gatsby-adapter-netlify")
+
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
@@ -30,6 +32,10 @@ module.exports = {
         overlayDrafts: !isProd && token,
       },
     },
+    adapter: adapter({
+      excludeDatastoreFromEngineFunction: false,
+      imageCDN: false,
+    }),
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
