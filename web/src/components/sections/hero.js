@@ -9,106 +9,106 @@ import { PortableTextBlock } from '@components';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 100vh;
-  ${media.tablet`padding-top: 150px;`};
+    ${mixins.flexCenter};
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    ${media.tablet`padding-top: 150px;`};
 
-  div {
-    width: 100%;
-  }
+    div {
+        width: 100%;
+    }
 `;
 
 const StyledOverline = styled.h1`
-  color: ${colors.green};
-  margin: 0 0 20px 3px;
-  font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
-  ${media.desktop`font-size: ${fontSizes.sm};`};
-  ${media.tablet`font-size: ${fontSizes.smish};`};
+    color: ${colors.green};
+    margin: 0 0 20px 3px;
+    font-size: ${fontSizes.md};
+    font-family: ${fonts.SFMono};
+    font-weight: normal;
+    ${media.desktop`font-size: ${fontSizes.sm};`};
+    ${media.tablet`font-size: ${fontSizes.smish};`};
 `;
 
 const StyledTitle = styled.h2`
-  font-size: 80px;
-  line-height: 1.1;
-  margin: 0;
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+    font-size: 80px;
+    line-height: 1.1;
+    margin: 0;
+    ${media.desktop`font-size: 70px;`};
+    ${media.tablet`font-size: 60px;`};
+    ${media.phablet`font-size: 50px;`};
+    ${media.phone`font-size: 40px;`};
 `;
 
 const StyledSubtitle = styled.h3`
-  font-size: 80px;
-  line-height: 1.1;
-  color: ${colors.slate};
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+    font-size: 80px;
+    line-height: 1.1;
+    color: ${colors.slate};
+    ${media.desktop`font-size: 70px;`};
+    ${media.tablet`font-size: 60px;`};
+    ${media.phablet`font-size: 50px;`};
+    ${media.phone`font-size: 40px;`};
 `;
 
 const StyledDescription = styled.div`
-  margin-top: 25px;
-  width: 50%;
-  max-width: 500px;
+    margin-top: 25px;
+    width: 50%;
+    max-width: 500px;
 
-  a {
-    ${mixins.inlineLink};
-  }
+    a {
+        ${mixins.inlineLink};
+    }
 `;
 
 const StyledContactLink = styled(Link)`
-  ${mixins.bigButton};
-  margin-top: 50px;
+    ${mixins.bigButton};
+    margin-top: 50px;
 `;
 
 const Hero = ({ data }) => {
-  const [isMounted, setIsMounted] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 1000);
-    return () => clearTimeout(timeout);
-  }, []);
+    useEffect(() => {
+        const timeout = setTimeout(() => setIsMounted(true), 1000);
+        return () => clearTimeout(timeout);
+    }, []);
 
-  const { name, subtitle, title, _rawDescription } = data[0].node;
+    const { name, subtitle, title, _rawDescription } = data[0].node;
 
-  const one = () => <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>;
-  const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>;
-  const three = () => (
-    <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
-  );
-  const four = () => (
-    <StyledDescription style={{ transitionDelay: '400ms' }}>
-      {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
-    </StyledDescription>
-  );
-  const five = () => (
-    <div style={{ transitionDelay: '500ms' }}>
-      <StyledContactLink to="/#contact">Get In Touch</StyledContactLink>
-    </div>
-  );
+    const one = () => <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>;
+    const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>;
+    const three = () => (
+        <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
+    );
+    const four = () => (
+        <StyledDescription style={{ transitionDelay: '400ms' }}>
+            {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
+        </StyledDescription>
+    );
+    const five = () => (
+        <div style={{ transitionDelay: '500ms' }}>
+            <StyledContactLink to="/#contact">Get In Touch</StyledContactLink>
+        </div>
+    );
 
-  const items = [one, two, three, four, five];
+    const items = [one, two, three, four, five];
 
-  return (
-    <StyledContainer>
-      <TransitionGroup component={null}>
-        {isMounted &&
-          items.map((item, i) => (
-            <CSSTransition key={i} classNames="fadeup" timeout={3000}>
-              {item}
-            </CSSTransition>
-          ))}
-      </TransitionGroup>
-    </StyledContainer>
-  );
+    return (
+        <StyledContainer>
+            <TransitionGroup component={null}>
+                {isMounted &&
+                    items.map((item, i) => (
+                        <CSSTransition key={i} classNames="fadeup" timeout={3000}>
+                            {item}
+                        </CSSTransition>
+                    ))}
+            </TransitionGroup>
+        </StyledContainer>
+    );
 };
 
 Hero.propTypes = {
-  data: PropTypes.array.isRequired,
+    data: PropTypes.array.isRequired,
 };
 
 export default Hero;

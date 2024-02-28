@@ -10,7 +10,6 @@ import Menu from './menu';
 import Nav from './nav';
 import Project from './project';
 import SEO from './seo';
-import Serializer from './serializers';
 import Side from './side';
 import Social from './social';
 // Sections
@@ -22,24 +21,23 @@ import Jobs from './sections/jobs';
 import Projects from './sections/projects';
 
 export {
-  PortableTextBlock,
-  Email,
-  Figure,
-  Footer,
-  Head,
-  Layout,
-  Loader,
-  Menu,
-  Nav,
-  Project,
-  SEO,
-  Serializer,
-  Side,
-  Social,
-  About,
-  Contact,
-  Featured,
-  Hero,
-  Jobs,
-  Projects,
+    PortableTextBlock,
+    Email,
+    Figure,
+    Footer,
+    Head,
+    Layout,
+    Loader,
+    Menu,
+    Nav,
+    Project,
+    SEO,
+    Side,
+    Social,
+    About,
+    Contact,
+    Featured,
+    Hero,
+    Jobs,
+    Projects,
 };
