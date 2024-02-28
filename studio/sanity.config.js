@@ -57,7 +57,7 @@ export default defineConfig({
                         {
                             title: 'Portfolio Website',
                             apiId: '897668a5-6c1b-4571-84cb-fbb367f8baaf',
-                            // buildHookId: 'yyyyxxxxxyyyxxdxxx',
+                            buildHookId: '65def9e1cb3576c97717e855',
                             name: 'gatsby-sanity-portfolio-gatsbycloud',
                             url: 'https://severinmueller.io',
                         },
