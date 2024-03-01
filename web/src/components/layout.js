@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
 import styled from 'styled-components';
@@ -55,7 +55,7 @@ const StyledContent = styled.div`
     min-height: 100vh;
 `;
 
-const Layout = ({ children, location }) => {
+export default function Layout({ children, location }) {
     const isHome = location.pathname === '/';
     const [isLoading, setIsLoading] = useState(isHome);
     useEffect(() => {
@@ -73,63 +73,58 @@ const Layout = ({ children, location }) => {
         }
     }, [isLoading]);
 
-    return (
-        <StaticQuery
-            query={graphql`
-                query LayoutQuery {
-                    site {
-                        siteMetadata {
-                            title
-                            siteUrl
-                            description
-                        }
-                    }
-                    resumeFile: allSanityAboutMe {
-                        edges {
-                            node {
-                                myFiles {
-                                    asset {
-                                        url
-                                    }
-                                }
+    const data = useStaticQuery(graphql`
+        query LayoutQuery {
+            site {
+                siteMetadata {
+                    title
+                    siteUrl
+                    description
+                }
+            }
+            resumeFile: allSanityAboutMe {
+                edges {
+                    node {
+                        myFiles {
+                            asset {
+                                url
                             }
                         }
                     }
                 }
-            `}
-            render={({ site, resumeFile }) => (
-                <div id="root">
-                    <Head metadata={site.siteMetadata} />
+            }
+        }
+    `);
 
-                    <GlobalStyle />
+    return (
+        <div id="root">
+            <Head metadata={data.site.siteMetadata} />
 
-                    <SkipToContent href="#content">Skip to Content</SkipToContent>
+            <GlobalStyle />
 
-                    {isLoading && isHome && isProd && true ? (
-                        <Loader finishLoading={() => setIsLoading(false)} />
-                    ) : (
-                        <StyledContent>
-                            <Nav
-                                isHome={isHome}
-                                fileURL={resumeFile.edges[0].node.myFiles[0].asset.url}
-                            />
-                            <Social isHome={isHome} />
+            <SkipToContent href="#content">Skip to Content</SkipToContent>
 
-                            <div id="content">
-                                {children}
-                                <Footer />
-                            </div>
-                        </StyledContent>
-                    )}
-                </div>
+            {isLoading && isHome && isProd && true ? (
+                <Loader finishLoading={() => setIsLoading(false)} />
+            ) : (
+                <StyledContent>
+                    <Nav
+                        isHome={isHome}
+                        fileURL={data.resumeFile.edges[0].node.myFiles[0].asset.url}
+                    />
+                    <Social isHome={isHome} />
+
+                    <div id="content">
+                        {children}
+                        <Footer />
+                    </div>
+                </StyledContent>
             )}
-        />
+        </div>
     );
-};
+}
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
     location: PropTypes.object.isRequired,
 };
-
-export default Layout;

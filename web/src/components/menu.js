@@ -17,8 +17,8 @@ const StyledContainer = styled.div`
     z-index: 10;
     outline: 0;
     transition: ${theme.transition};
-    transform: translateX(${(props) => (props.menuOpen ? 0 : 100)}vw);
-    visibility: ${(props) => (props.menuOpen ? 'visible' : 'hidden')};
+    transform: translateX(${(props) => (props.$menuOpen ? 0 : 100)}vw);
+    visibility: ${(props) => (props.$menuOpen ? 'visible' : 'hidden')};
     display: none;
     ${media.tablet`display: block;`};
 `;
@@ -101,7 +101,7 @@ const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
 
     return (
         <StyledContainer
-            menuOpen={menuOpen}
+            $menuOpen={menuOpen}
             onClick={handleMenuClick}
             aria-hidden={!menuOpen}
             tabIndex={menuOpen ? 1 : -1}

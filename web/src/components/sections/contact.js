@@ -46,6 +46,8 @@ const StyledTitle = styled.h4`
     ${media.tablet`font-size: 40px;`};
 `;
 
+const StyledDescriptionWrapper = styled.div``;
+
 const StyledForm = styled.form`
     margin: 60px auto;
 `;
@@ -109,9 +111,9 @@ const Contact = ({ data }) => {
 
             <StyledTitle ref={revealTitle}>{title}</StyledTitle>
 
-            {_rawDescription && (
-                <PortableTextBlock ref={revealDescription} value={_rawDescription || []} />
-            )}
+            <StyledDescriptionWrapper ref={revealDescription}>
+                {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
+            </StyledDescriptionWrapper>
 
             <StyledForm
                 name="contact"

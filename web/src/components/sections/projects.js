@@ -64,7 +64,7 @@ const StyledImage = styled(GatsbyImage)`
     transition: ${theme.transition};
 `;
 
-const StyledProjectInner = styled(Link)`
+const StyledProjectInner = styled.div`
     ${mixins.boxShadow};
     ${mixins.flexBetween};
     flex-direction: column;
@@ -187,7 +187,6 @@ const Projects = ({ projects, sectionTitle }) => {
     }, []);
 
     const GRID_LIMIT = 6;
-    // const projects = data.filter(({ node }) => node);
     const firstSix = projects.slice(0, GRID_LIMIT);
     const projectsToShow = showMore ? projects : firstSix;
     const moreProjects = projects.length > GRID_LIMIT;
@@ -227,25 +226,27 @@ const Projects = ({ projects, sectionTitle }) => {
                                             transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
                                         }}
                                     >
-                                        <StyledProjectInner to={`/project/${slug.current}`}>
+                                        <StyledProjectInner>
                                             <h1 hidden>{title}</h1>
-                                            <header>
-                                                <StyledImageContainer>
-                                                    <StyledImage
-                                                        image={mainImage.asset.gatsbyImageData}
-                                                        alt={mainImage.alt}
-                                                    />
-                                                </StyledImageContainer>
-
-                                                <StyledProjectName>{title}</StyledProjectName>
-                                                <StyledProjectDescription>
-                                                    {_rawExcerpt && (
-                                                        <PortableTextBlock
-                                                            value={_rawExcerpt || []}
+                                            <Link to={`/project/${slug.current}`}>
+                                                <header>
+                                                    <StyledImageContainer>
+                                                        <StyledImage
+                                                            image={mainImage.asset.gatsbyImageData}
+                                                            alt={mainImage.alt}
                                                         />
-                                                    )}
-                                                </StyledProjectDescription>
-                                            </header>
+                                                    </StyledImageContainer>
+
+                                                    <StyledProjectName>{title}</StyledProjectName>
+                                                    <StyledProjectDescription>
+                                                        {_rawExcerpt && (
+                                                            <PortableTextBlock
+                                                                value={_rawExcerpt || []}
+                                                            />
+                                                        )}
+                                                    </StyledProjectDescription>
+                                                </header>
+                                            </Link>
                                             <StyledFooter>
                                                 <StyledTechList>
                                                     {tags.map((tag, i) => (
@@ -297,10 +298,6 @@ const Projects = ({ projects, sectionTitle }) => {
             )}
         </StyledContainer>
     );
-};
-
-Projects.propTypes = {
-    data: PropTypes.array.isRequired,
 };
 
 export default Projects;

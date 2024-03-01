@@ -10,17 +10,17 @@ const IconLogo = () => (
                 fill="#64FFDA"
                 /> */}
                 <text
-                    font-style="normal"
-                    font-weight="bold"
+                    fontStyle="normal"
+                    fontWeight="bold"
                     stroke="#ea0909"
                     transform="matrix(2.0903431748829178,0,0,2.0207334421260335,-42.74299859882775,-64.7430944087728) "
-                    text-anchor="start"
-                    font-family="Helvetica, Arial, sans-serif"
-                    font-size="24"
+                    textAnchor="start"
+                    fontFamily="Helvetica, Arial, sans-serif"
+                    fontSize="24"
                     id="svg_3"
                     y="62.957405"
                     x="30.927555"
-                    stroke-width="0"
+                    strokeWidth="0"
                     fill="#64ffda"
                 >
                     S

@@ -329,8 +329,6 @@ const StyledProject = styled.div`
 `;
 
 const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontImage }) => {
-    // const featuredProjects = data.filter(({ node }) => node);
-
     const revealTitle = useRef(null);
     const revealFlexContainer = useRef(null);
     const revealProjects = useRef([]);
@@ -445,10 +443,6 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
             </div>
         </StyledContainer>
     );
-};
-
-Featured.propTypes = {
-    data: PropTypes.array.isRequired,
 };
 
 export default Featured;

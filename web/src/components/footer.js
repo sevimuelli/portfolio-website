@@ -92,7 +92,7 @@ const Footer = () => {
                         ))}
                 </StyledSocialList>
             </StyledSocial>
-            <StyledMetadata tabindex="-1">
+            <StyledMetadata tabIndex="-1">
                 <StyledGitHubLink
                     href="https://github.com/sevimuelli/gatsby-sanity-portfolio"
                     target="_blank"

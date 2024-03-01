@@ -25,11 +25,11 @@ const StyledContainer = styled.header`
     user-select: auto !important;
     width: 100%;
     height: ${(props) =>
-        props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight};
+        props.$scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight};
     box-shadow: ${(props) =>
-        props.scrollDirection === 'up' ? `0 10px 30px -10px ${colors.shadowNavy}` : 'none'};
+        props.$scrollDirection === 'up' ? `0 10px 30px -10px ${colors.shadowNavy}` : 'none'};
     transform: translateY(
-        ${(props) => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
+        ${(props) => (props.$scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
     );
     ${media.desktop`padding: 0 40px;`};
     ${media.tablet`padding: 0 25px;`};
@@ -104,8 +104,8 @@ const StyledHamburgerInner = styled.div`
     right: 0;
     transition-duration: 0.22s;
     transition-property: transform;
-    transition-delay: ${(props) => (props.menuOpen ? `0.12s` : `0s`)};
-    transform: rotate(${(props) => (props.menuOpen ? `225deg` : `0deg`)});
+    transition-delay: ${(props) => (props.$menuOpen ? `0.12s` : `0s`)};
+    transform: rotate(${(props) => (props.$menuOpen ? `225deg` : `0deg`)});
     transition-timing-function: cubic-bezier(
         ${(props) => (props.menuOpen ? `0.215, 0.61, 0.355, 1` : `0.55, 0.055, 0.675, 0.19`)}
     );
@@ -127,17 +127,17 @@ const StyledHamburgerInner = styled.div`
     }
 
     &::before {
-        width: ${(props) => (props.menuOpen ? `100%` : `120%`)};
-        top: ${(props) => (props.menuOpen ? `0` : `-10px`)};
-        opacity: ${(props) => (props.menuOpen ? 0 : 1)};
-        transition: ${(props) => (props.menuOpen ? theme.hamBeforeActive : theme.hamBefore)};
+        width: ${(props) => (props.$menuOpen ? `100%` : `120%`)};
+        top: ${(props) => (props.$menuOpen ? `0` : `-10px`)};
+        opacity: ${(props) => (props.$menuOpen ? 0 : 1)};
+        transition: ${(props) => (props.$menuOpen ? theme.hamBeforeActive : theme.hamBefore)};
     }
 
     &::after {
-        width: ${(props) => (props.menuOpen ? `100%` : `80%`)};
-        bottom: ${(props) => (props.menuOpen ? `0` : `-10px`)};
-        transform: rotate(${(props) => (props.menuOpen ? `-90deg` : `0`)});
-        transition: ${(props) => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
+        width: ${(props) => (props.$menuOpen ? `100%` : `80%`)};
+        bottom: ${(props) => (props.$menuOpen ? `0` : `-10px`)};
+        transform: rotate(${(props) => (props.$menuOpen ? `-90deg` : `0`)});
+        transition: ${(props) => (props.$menuOpen ? theme.hamAfterActive : theme.hamAfter)};
     }
 `;
 
@@ -256,7 +256,7 @@ class Nav extends Component {
         const fadeDownClass = isHome ? 'fadedown' : '';
 
         return (
-            <StyledContainer scrollDirection={scrollDirection}>
+            <StyledContainer $scrollDirection={scrollDirection}>
                 <Helmet>
                     <body className={menuOpen ? 'blur' : ''} />
                 </Helmet>
@@ -264,7 +264,7 @@ class Nav extends Component {
                     <TransitionGroup component={null}>
                         {isMounted && (
                             <CSSTransition classNames={fadeClass} timeout={timeout}>
-                                <StyledLogo tabindex="-1">
+                                <StyledLogo tabIndex="-1">
                                     {isHome ? (
                                         <a href="/" aria-label="home">
                                             <IconLogo />
@@ -284,7 +284,7 @@ class Nav extends Component {
                             <CSSTransition classNames={fadeClass} timeout={timeout}>
                                 <StyledHamburger onClick={this.toggleMenu}>
                                     <StyledHamburgerBox>
-                                        <StyledHamburgerInner menuOpen={menuOpen} />
+                                        <StyledHamburgerInner $menuOpen={menuOpen} />
                                     </StyledHamburgerBox>
                                 </StyledHamburger>
                             </CSSTransition>
