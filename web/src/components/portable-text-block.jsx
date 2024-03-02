@@ -1,5 +1,4 @@
 import { PortableText } from '@portabletext/react';
-import React from 'react';
 import clientConfig from '../../client-config';
 
 import Figure from './figure';

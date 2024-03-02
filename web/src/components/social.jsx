@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { socialMedia } from '@config';
 import { Side } from '@components';

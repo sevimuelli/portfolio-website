@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
