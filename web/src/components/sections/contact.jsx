@@ -131,12 +131,23 @@ const Contact = ({ data }) => {
                 <p>
                     <StyledLabel ref={revealNameLabel}>
                         Your Name:
-                        <StyledInput ref={revealNameInput} type="text" name="name" />
+                        <StyledInput
+                            ref={revealNameInput}
+                            type="text"
+                            name="name"
+                            autoComplete="name"
+                        />
                     </StyledLabel>
                 </p>
                 <p>
                     <StyledLabel ref={revealMailLabel}>
-                        Your Email: <StyledInput ref={revealMailInput} type="email" name="email" />
+                        Your Email:{' '}
+                        <StyledInput
+                            ref={revealMailInput}
+                            type="email"
+                            name="email"
+                            autoComplete="email"
+                        />
                     </StyledLabel>
                 </p>
                 <p>

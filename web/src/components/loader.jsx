@@ -25,7 +25,7 @@ const StyledLogo = styled.div`
     width: max-content;
     max-width: 100px;
     transition: ${theme.transition};
-    opacity: ${(props) => (props.isMounted ? 1 : 0)};
+    opacity: ${(props) => (props.$isMounted ? 1 : 0)};
 
     svg {
         width: 100%;
@@ -41,7 +41,7 @@ const StyledLogo = styled.div`
     }
 `;
 
-const Loader = ({ finishLoading }) => {
+function Loader({ finishLoading }) {
     const animate = () => {
         const loader = anime.timeline({
             complete: () => finishLoading(),
@@ -90,12 +90,12 @@ const Loader = ({ finishLoading }) => {
         <StyledContainer className="loader">
             <Helmet bodyAttributes={{ class: `hidden` }} />
 
-            <StyledLogo isMounted={isMounted}>
+            <StyledLogo $isMounted={isMounted}>
                 <IconLoader />
             </StyledLogo>
         </StyledContainer>
     );
-};
+}
 
 Loader.propTypes = {
     finishLoading: PropTypes.func.isRequired,

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { Head, Loader, Nav, Social, Footer } from '@components';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
 
 const { colors, fontSizes, fonts } = theme;
-const isProd = process.env.NODE_ENV === 'production';
+// const isProd = process.env.NODE_ENV === 'production';
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
@@ -57,7 +57,8 @@ const StyledContent = styled.div`
 
 export default function Layout({ children, location }) {
     const isHome = location.pathname === '/';
-    const [isLoading, setIsLoading] = useState(isHome);
+    const shouldLoad = !sessionStorage.getItem('beenHere') && isHome;
+    const [isLoading, setIsLoading] = useState(shouldLoad);
     useEffect(() => {
         if (isLoading || isHome) {
             return;
@@ -71,7 +72,7 @@ export default function Layout({ children, location }) {
                 }
             }, 0);
         }
-    }, [isLoading]);
+    }, [isHome, isLoading, location.hash]);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {
@@ -104,8 +105,13 @@ export default function Layout({ children, location }) {
 
             <SkipToContent href="#content">Skip to Content</SkipToContent>
 
-            {isLoading && isHome && isProd && true ? (
-                <Loader finishLoading={() => setIsLoading(false)} />
+            {isLoading && isHome ? (
+                <Loader
+                    finishLoading={() => {
+                        setIsLoading(false);
+                        sessionStorage.setItem('beenHere', true);
+                    }}
+                />
             ) : (
                 <StyledContent>
                     <Nav

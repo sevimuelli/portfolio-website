@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-    IconGitHub,
-    IconLinkedin,
-    IconCodepen,
-    IconInstagram,
-    IconTwitter,
-} from '@components/icons';
+import { IconGitHub, IconLinkedin } from '@components/icons';
 import { socialMedia } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
@@ -60,7 +53,7 @@ const StyledGitHubLink = styled.a`
     padding: 10px;
 `;
 
-const Footer = () => {
+function Footer() {
     return (
         <StyledContainer>
             <StyledSocial>
@@ -78,12 +71,6 @@ const Footer = () => {
                                         <IconGitHub />
                                     ) : name === 'Linkedin' ? (
                                         <IconLinkedin />
-                                    ) : name === 'Codepen' ? (
-                                        <IconCodepen />
-                                    ) : name === 'Instagram' ? (
-                                        <IconInstagram />
-                                    ) : name === 'Twitter' ? (
-                                        <IconTwitter />
                                     ) : (
                                         <IconGitHub />
                                     )}
@@ -110,7 +97,7 @@ const Footer = () => {
             </StyledMetadata>
         </StyledContainer>
     );
-};
+}
 
 Footer.propTypes = {
     githubInfo: PropTypes.object,

@@ -1,7 +1,7 @@
 module.exports = {
-    extends: ['airbnb', 'airbnb/hooks', 'plugin:prettier/recommended', 'prettier/react'],
+    extends: ['airbnb', 'airbnb/hooks', 'plugin:prettier/recommended'],
     plugins: ['react', 'prettier'],
-    parser: 'babel-eslint',
+    // parser: '@babel/eslint-parser',
     rules: {
         'react/prop-types': 0,
     },

@@ -222,7 +222,7 @@ function Project({ data }) {
                     <Slider {...slickSettings} arrows>
                         {imgGallery.length > 0 &&
                             imgGallery.map((img, i) => (
-                                <div>
+                                <div key={i}>
                                     <StyledFigure
                                         style={{
                                             backgroundImage: `url(${img.asset.metadata.lqip})`,

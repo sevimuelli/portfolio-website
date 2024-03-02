@@ -4,7 +4,7 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
 
-const path = require('path');
+const adapter = require('gatsby-adapter-netlify').default;
 
 const config = require('./src/config');
 
@@ -13,8 +13,6 @@ const clientConfig = require('./client-config');
 const token = process.env.SANITY_READ_TOKEN;
 
 const isProd = process.env.NODE_ENV === 'production';
-
-const adapter = require('gatsby-adapter-netlify').default;
 
 module.exports = {
     siteMetadata: {
