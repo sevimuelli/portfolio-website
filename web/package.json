@@ -17,7 +17,7 @@
         "clean-cache": "gatsby clean",
         "dev": "npm run clean-cache && gatsby develop",
         "lint": "eslint .",
-        "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
+        "format": "prettier-eslint --write \"**/*.js\" \"**/*.jsx\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
         "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
     },
     "dependencies": {

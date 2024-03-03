@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { navLinks } from '@config';
@@ -87,7 +88,7 @@ const ResumeLink = styled.a`
     width: max-content;
 `;
 
-const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
+function Menu({ menuOpen, toggleMenu, fileURL }) {
     const handleMenuClick = (e) => {
         const { target } = e;
         const isLink = target.hasAttribute('href');
@@ -126,11 +127,12 @@ const Menu = ({ menuOpen, toggleMenu, fileURL }) => {
             </Sidebar>
         </StyledContainer>
     );
-};
+}
 
 Menu.propTypes = {
     menuOpen: PropTypes.bool.isRequired,
     toggleMenu: PropTypes.func.isRequired,
+    fileURL: PropTypes.string.isRequired,
 };
 
 export default Menu;

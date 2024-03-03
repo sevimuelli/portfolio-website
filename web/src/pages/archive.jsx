@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -6,14 +6,15 @@ import { Layout, SEO } from '@components';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
+import PropTypes from 'prop-types';
 
 const { colors, fonts, fontSizes } = theme;
 
 const StyledTableContainer = styled.div`
     margin: 100px -20px;
     ${media.tablet`
-    margin: 100px -10px;
-  `};
+        margin: 100px -10px;
+    `};
 `;
 
 const StyledTable = styled.table`
@@ -22,8 +23,8 @@ const StyledTable = styled.table`
 
     .hide-on-mobile {
         ${media.tablet`
-      display: none;
-    `};
+            display: none;
+        `};
     }
 
     tbody tr {
@@ -41,8 +42,8 @@ const StyledTable = styled.table`
         line-height: 1.5;
         padding: 10px 20px;
         ${media.tablet`
-      padding: 10px;
-    `};
+            padding: 10px;
+        `};
     }
 
     th {
@@ -53,8 +54,8 @@ const StyledTable = styled.table`
         &.year {
             width: 10%;
             ${media.tablet`
-        font-size: ${fontSizes.sm};
-      `};
+                font-size: ${fontSizes.sm};
+            `};
         }
 
         &.title {
@@ -100,7 +101,7 @@ const StyledTechListLink = styled(Link)`
     }
 `;
 
-const ArchivePage = ({ location, data }) => {
+function ArchivePage({ location, data }) {
     const projects = data.projects.edges;
     const archiveTitle = data.titles.edges[0].node.title;
     const archiveSubtitle = data.titles.edges[0].node.subtitle;
@@ -145,7 +146,11 @@ const ArchivePage = ({ location, data }) => {
                                         tags,
                                     } = node;
                                     return (
-                                        <tr key={i} ref={(el) => (revealProjects.current[i] = el)}>
+                                        <tr
+                                            key={slug.current}
+                                            // eslint-disable-next-line no-return-assign
+                                            ref={(el) => (revealProjects.current[i] = el)}
+                                        >
                                             <td className="overline year">{`${new Date(publishedAt).getFullYear()}`}</td>
 
                                             <td className="title">
@@ -156,11 +161,10 @@ const ArchivePage = ({ location, data }) => {
 
                                             <td className="tech hide-on-mobile">
                                                 {tags.length > 0 &&
-                                                    tags.map((tag, i) => (
-                                                        <span key={i}>
-                                                            <span key={i}>
+                                                    tags.map((tag) => (
+                                                        <span key={tag.slug.current}>
+                                                            <span>
                                                                 <StyledTechListLink
-                                                                    key={i}
                                                                     to={`/tags/${tag.slug.current}`}
                                                                 >
                                                                     #{tag.title}
@@ -210,6 +214,11 @@ const ArchivePage = ({ location, data }) => {
             </Main>
         </Layout>
     );
+}
+
+ArchivePage.propTypes = {
+    data: PropTypes.object,
+    location: PropTypes.object,
 };
 
 export default ArchivePage;

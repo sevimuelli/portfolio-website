@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
@@ -8,7 +10,7 @@ const StyledContainer = styled(Main)`
     max-width: 1000px;
 `;
 
-const ProjectTemplate = ({ data, location }) => {
+function ProjectTemplate({ data, location }) {
     const project = data && data.sampleProject;
     return (
         <Layout location={location}>
@@ -19,7 +21,6 @@ const ProjectTemplate = ({ data, location }) => {
                 <link
                     rel="stylesheet"
                     type="text/css"
-                    charset="UTF-8"
                     href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
                 />
                 <link
@@ -31,6 +32,11 @@ const ProjectTemplate = ({ data, location }) => {
             <StyledContainer>{project && <Project data={project} />}</StyledContainer>
         </Layout>
     );
+}
+
+ProjectTemplate.propTypes = {
+    data: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 export default ProjectTemplate;

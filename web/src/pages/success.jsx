@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
@@ -35,7 +35,7 @@ const StyledHomeButton = styled(Link)`
     margin-top: 40px;
 `;
 
-const Success = ({ location }) => {
+function Success({ location }) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -59,6 +59,10 @@ const Success = ({ location }) => {
             </TransitionGroup>
         </Layout>
     );
-};
+}
 
 export default Success;
+
+Success.propTypes = {
+    location: PropTypes.object.isRequired,
+};

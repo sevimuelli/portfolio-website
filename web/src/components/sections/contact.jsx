@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
-import { srConfig, email } from '@config';
+import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading, Button } from '@styles';
 import { PortableTextBlock } from '@components';
@@ -79,7 +79,7 @@ const StyledMoreButton = styled(Button)`
     margin: 50px auto 0;
 `;
 
-const Contact = ({ data }) => {
+function Contact({ data }) {
     const { title, _rawDescription } = data[0].node;
 
     const revealHeading = useRef(null);
@@ -163,7 +163,7 @@ const Contact = ({ data }) => {
             </StyledForm>
         </StyledContainer>
     );
-};
+}
 
 Contact.propTypes = {
     data: PropTypes.array.isRequired,

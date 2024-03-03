@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import sr from '@utils/sr';
@@ -6,20 +6,21 @@ import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 import { PortableTextBlock } from '@components';
-import { buildImageObj } from '../../utils/helpers';
-import { imageUrlFor } from '../../utils/image-url';
+// import { buildImageObj } from '../../utils/helpers';
+// import { imageUrlFor } from '../../utils/image-url';
 
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
     position: relative;
 `;
+
 const StyledFlexContainer = styled.div`
     ${mixins.flexBetween};
     align-items: flex-start;
     ${media.tablet`
-    flex-direction: column;
-  `};
+        flex-direction: column;
+    `};
 `;
 
 const StyledContent = styled.div`
@@ -138,14 +139,14 @@ const StyledGridContainer = styled.div`
     grid-gap: 3rem;
     margin: 7rem 5%;
     ${media.desktop`
-    grid-gap: 3rem 1.5rem;
-    margin: 80px 10px;
-  `};
+        grid-gap: 3rem 1.5rem;
+        margin: 80px 10px;
+    `};
     ${media.tablet`
-    grid-template: 1fr / 1fr;
-    grid-gap: 3.5rem;
-    margin: 80px 30px;
-  `};
+        grid-template: 1fr / 1fr;
+        grid-gap: 3.5rem;
+        margin: 80px 30px;
+    `};
 `;
 
 const SkillBigPicture = styled(GatsbyImage)`
@@ -228,7 +229,7 @@ const startAnimation = ({ id }) => {
     el.style.animationPlayState = 'running';
 };
 
-const About = ({ data }) => {
+function About({ data }) {
     const { skills, otherSkills, title, _rawDescription, photo } = data[0].node;
     const revealTitle = useRef(null);
     const revealFlexContainer = useRef(null);
@@ -254,7 +255,7 @@ const About = ({ data }) => {
                     {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
                     <SkillsContainer>
                         {otherSkills &&
-                            otherSkills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+                            otherSkills.map((skill) => <Skill key={skill}>{skill}</Skill>)}
                     </SkillsContainer>
                 </StyledContent>
                 <StyledPic>
@@ -270,10 +271,15 @@ const About = ({ data }) => {
                             animation: `ratio${skill.level}0 3s 0.3s forwards`,
                             animationPlayState: 'paused',
                         };
-                        const src = imageUrlFor(buildImageObj(skill.icon)).height(70).url();
+
+                        /* const src = imageUrlFor(buildImageObj(skill.icon)).height(70).url(); */
 
                         return (
-                            <SkillBigContainer key={i} ref={(el) => (revealSkills.current[i] = el)}>
+                            <SkillBigContainer
+                                key={skill.title}
+                                // eslint-disable-next-line no-return-assign
+                                ref={(el) => (revealSkills.current[i] = el)}
+                            >
                                 <SkillBigPictureContainter>
                                     <SkillBigPicture
                                         image={skill.icon.asset.gatsbyImageData}
@@ -295,7 +301,7 @@ const About = ({ data }) => {
             </StyledGridContainer>
         </StyledContainer>
     );
-};
+}
 
 About.propTypes = {
     data: PropTypes.array.isRequired,

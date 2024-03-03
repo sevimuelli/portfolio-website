@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
@@ -47,7 +49,7 @@ const StyledTagsContainer = styled(Main)`
     }
 `;
 
-const TagTemplate = ({ pageContext, data, location }) => {
+function TagTemplate({ pageContext, data, location }) {
     const { tag, slug } = pageContext;
     const { edges } = data.allSanitySampleProject;
 
@@ -66,11 +68,12 @@ const TagTemplate = ({ pageContext, data, location }) => {
 
                 <ul className="fancy-list">
                     {edges.map(({ node }) => {
-                        const { title, slug, publishedAt, tags } = node;
+                        const { title, publishedAt, tags } = node;
+                        const localSlug = node.slug;
                         return (
-                            <li key={slug.current}>
+                            <li key={localSlug.current}>
                                 <h2>
-                                    <Link to={`/project/${slug.current}/`}>{title}</Link>
+                                    <Link to={`/project/${localSlug.current}/`}>{title}</Link>
                                 </h2>
                                 <p className="subtitle">
                                     <time>
@@ -83,13 +86,13 @@ const TagTemplate = ({ pageContext, data, location }) => {
                                     <span>&nbsp;&mdash;&nbsp;</span>
                                     {tags &&
                                         tags.length > 0 &&
-                                        tags.map((tag, i) => (
+                                        tags.map((singleTag, i) => (
                                             <Link
                                                 key={i}
-                                                to={`/tags/${tag.slug.current}/`}
+                                                to={`/tags/${singleTag.slug.current}/`}
                                                 className="tag"
                                             >
-                                                #{tag.title}
+                                                #{singleTag.title}
                                             </Link>
                                         ))}
                                 </p>
@@ -100,6 +103,12 @@ const TagTemplate = ({ pageContext, data, location }) => {
             </StyledTagsContainer>
         </Layout>
     );
+}
+
+TagTemplate.propTypes = {
+    pageContext: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 export default TagTemplate;

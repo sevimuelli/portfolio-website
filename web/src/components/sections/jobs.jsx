@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -17,8 +17,8 @@ const StyledTabs = styled.div`
     align-items: flex-start;
     position: relative;
     ${media.thone`
-    display: block;
-  `};
+        display: block;
+    `};
 `;
 
 const StyledTabList = styled.ul`
@@ -31,34 +31,34 @@ const StyledTabList = styled.ul`
     list-style: none;
 
     ${media.thone`
-    display: flex;
-    overflow-x: scroll;
-    margin-bottom: 30px;
-    width: calc(100% + 100px);
-    margin-left: -50px;
-  `};
+        display: flex;
+        overflow-x: scroll;
+        margin-bottom: 30px;
+        width: calc(100% + 100px);
+        margin-left: -50px;
+    `};
     ${media.phablet`
-    width: calc(100% + 50px);
-    margin-left: -25px;
-  `};
+        width: calc(100% + 50px);
+        margin-left: -25px;
+    `};
 
     li {
         &:first-of-type {
             ${media.thone`
-        margin-left: 50px;
-      `};
+                margin-left: 50px;
+            `};
             ${media.phablet`
-        margin-left: 25px;
-      `};
+                margin-left: 25px;
+            `};
         }
 
         &:last-of-type {
             ${media.thone`
-        padding-right: 50px;
-      `};
+                padding-right: 50px;
+            `};
             ${media.phablet`
-        padding-right: 25px;
-      `};
+                padding-right: 25px;
+            `};
         }
     }
 `;
@@ -82,12 +82,12 @@ const StyledTabButton = styled.button`
     ${media.tablet`padding: 0 15px 2px;`};
     ${media.thone`
     ${mixins.flexCenter};
-    padding: 0 15px;
-    text-align: center;
-    border-left: 0;
-    border-bottom: 2px solid ${colors.darkGrey};
-    min-width: 120px;
-  `};
+        padding: 0 15px;
+        text-align: center;
+        border-left: 0;
+        border-bottom: 2px solid ${colors.darkGrey};
+        min-width: 120px;
+    `};
 
     &:hover,
     &:focus {
@@ -111,19 +111,19 @@ const StyledHighlight = styled.span`
         ${(props) => (props.$activeTabId > 0 ? props.$activeTabId * theme.tabHeight : 0)}px
     );
     ${media.thone`
-    width: 100%;
-    max-width: ${theme.tabWidth}px;
-    height: 2px;
-    top: auto;
-    bottom: 0;
-    transform: translateX(
-      ${(props) => (props.$activeTabId > 0 ? props.$activeTabId * theme.tabWidth : 0)}px
-    );
-    margin-left: 50px;
-  `};
+        width: 100%;
+        max-width: ${theme.tabWidth}px;
+        height: 2px;
+        top: auto;
+        bottom: 0;
+        transform: translateX(
+        ${(props) => (props.$activeTabId > 0 ? props.$activeTabId * theme.tabWidth : 0)}px
+        );
+        margin-left: 50px;
+    `};
     ${media.phablet`
-    margin-left: 25px;
-  `};
+        margin-left: 25px;
+    `};
 `;
 
 const StyledTabContent = styled.div`
@@ -168,7 +168,7 @@ const StyledJobDetails = styled.h5`
     }
 `;
 
-const Jobs = ({ data }) => {
+function Jobs({ data }) {
     const { workplaces, workTitle } = data[0].node;
     const [activeTabId, setActiveTabId] = useState(0);
     const [tabFocus, setTabFocus] = useState(null);
@@ -195,6 +195,7 @@ const Jobs = ({ data }) => {
     };
 
     // Only re-run the effect if tabFocus changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => focusTab(), [tabFocus]);
 
     const onKeyPressed = (e) => {
@@ -227,6 +228,7 @@ const Jobs = ({ data }) => {
                                     <StyledTabButton
                                         $isActive={activeTabId === i}
                                         onClick={() => setActiveTabId(i)}
+                                        // eslint-disable-next-line no-return-assign
                                         ref={(el) => (tabs.current[i] = el)}
                                         id={`tab-${i}`}
                                         role="tab"
@@ -273,8 +275,8 @@ const Jobs = ({ data }) => {
                                 </StyledJobDetails>
                                 <div>
                                     <ul>
-                                        {tasks.map((task, i) => {
-                                            return <li key={i}>{task}</li>;
+                                        {tasks.map((task, j) => {
+                                            return <li key={j}>{task}</li>;
                                         })}
                                     </ul>
                                 </div>
@@ -284,7 +286,7 @@ const Jobs = ({ data }) => {
             </StyledTabs>
         </StyledContainer>
     );
-};
+}
 
 Jobs.propTypes = {
     data: PropTypes.array.isRequired,

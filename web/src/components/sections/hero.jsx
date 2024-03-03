@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
@@ -65,7 +65,7 @@ const StyledContactLink = styled(Link)`
     margin-top: 50px;
 `;
 
-const Hero = ({ data }) => {
+function Hero({ data }) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -98,6 +98,7 @@ const Hero = ({ data }) => {
             <TransitionGroup component={null}>
                 {isMounted &&
                     items.map((item, i) => (
+                        // eslint-disable-next-line react/no-array-index-key
                         <CSSTransition key={i} classNames="fadeup" timeout={3000}>
                             {item}
                         </CSSTransition>
@@ -105,7 +106,7 @@ const Hero = ({ data }) => {
             </TransitionGroup>
         </StyledContainer>
     );
-};
+}
 
 Hero.propTypes = {
     data: PropTypes.array.isRequired,

@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { PortableText } from '@portabletext/react';
 import clientConfig from '../../client-config';
 
@@ -9,8 +11,19 @@ const components = {
     },
 };
 
-const PortableTextBlock = ({ value }) => (
-    <PortableText value={value} components={components} {...clientConfig.sanity} />
-);
+function PortableTextBlock({ value }) {
+    return (
+        <PortableText
+            value={value}
+            components={components}
+            projectId={clientConfig.sanity.projectId}
+            dataset={clientConfig.sanity.dataset}
+        />
+    );
+}
+
+PortableTextBlock.propTypes = {
+    value: PropTypes.object.isRequired,
+};
 
 export default PortableTextBlock;

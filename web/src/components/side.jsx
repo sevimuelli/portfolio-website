@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
@@ -18,7 +18,7 @@ const StyledContainer = styled.div`
     ${media.tablet`display: none;`};
 `;
 
-const Side = ({ children, isHome, orientation }) => {
+function Side({ children, isHome, orientation }) {
     const [isMounted, setIsMounted] = useState(!isHome);
 
     useEffect(() => {
@@ -26,8 +26,9 @@ const Side = ({ children, isHome, orientation }) => {
             return;
         }
         const timeout = setTimeout(() => setIsMounted(true), 2000);
+        // eslint-disable-next-line consistent-return
         return () => clearTimeout(timeout);
-    }, []);
+    });
 
     return (
         <StyledContainer orientation={orientation}>
@@ -40,7 +41,7 @@ const Side = ({ children, isHome, orientation }) => {
             </TransitionGroup>
         </StyledContainer>
     );
-};
+}
 
 Side.propTypes = {
     children: PropTypes.node.isRequired,

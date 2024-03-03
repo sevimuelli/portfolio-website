@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import { IconGitHub, IconLinkedin } from '@components/icons';
 import { socialMedia } from '@config';
 import styled from 'styled-components';
@@ -53,6 +53,15 @@ const StyledGitHubLink = styled.a`
     padding: 10px;
 `;
 
+function renderSwitch(param) {
+    switch (param) {
+        case 'GitHub':
+            return <IconGitHub />;
+        default:
+            return <IconLinkedin />;
+    }
+}
+
 function Footer() {
     return (
         <StyledContainer>
@@ -67,13 +76,7 @@ function Footer() {
                                     rel="nofollow noopener noreferrer"
                                     aria-label={name}
                                 >
-                                    {name === 'GitHub' ? (
-                                        <IconGitHub />
-                                    ) : name === 'Linkedin' ? (
-                                        <IconLinkedin />
-                                    ) : (
-                                        <IconGitHub />
-                                    )}
+                                    {renderSwitch(name)}
                                 </StyledSocialLink>
                             </li>
                         ))}
@@ -98,9 +101,5 @@ function Footer() {
         </StyledContainer>
     );
 }
-
-Footer.propTypes = {
-    githubInfo: PropTypes.object,
-};
 
 export default Footer;

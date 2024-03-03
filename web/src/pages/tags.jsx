@@ -1,7 +1,9 @@
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { Layout, SEO } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
+import PropTypes from 'prop-types';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -36,9 +38,11 @@ function TagsPage({ data, location }) {
     const tagEdges = data.tags.edges;
     const projectEdges = data.projectCount.edges;
 
-    var tagsHolder = [];
+    // eslint-disable-next-line prefer-const
+    let tagsHolder = [];
     projectEdges.map(({ node }) => node.tags.map(({ title }) => tagsHolder.push(title)));
-    var counts = {};
+    // eslint-disable-next-line prefer-const
+    let counts = {};
     for (let i = 0; i < tagsHolder.length; i += 1) {
         counts[tagsHolder[i]] = 1 + (counts[tagsHolder[i]] || 0);
     }
@@ -97,3 +101,8 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+TagsPage.propTypes = {
+    data: PropTypes.object,
+    location: PropTypes.object,
+};

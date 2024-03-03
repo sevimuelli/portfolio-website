@@ -1,4 +1,6 @@
-import { Component } from 'react';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react/destructuring-assignment */
+import React, { Component } from 'react';
 import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
@@ -181,12 +183,15 @@ const StyledResumeButton = styled.a`
 const DELTA = 5;
 
 class Nav extends Component {
-    state = {
-        isMounted: !this.props.isHome,
-        menuOpen: false,
-        scrollDirection: 'none',
-        lastScrollTop: 0,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            isMounted: !this.props.isHome,
+            menuOpen: false,
+            scrollDirection: 'none',
+            lastScrollTop: 0,
+        };
+    }
 
     componentDidMount() {
         setTimeout(
@@ -206,7 +211,7 @@ class Nav extends Component {
         window.removeEventListener('keydown', (e) => this.handleKeydown(e));
     }
 
-    toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
+    toggleMenu = () => this.setState((prevState) => ({ menuOpen: !prevState.menuOpen }));
 
     handleScroll = () => {
         const { isMounted, menuOpen, scrollDirection, lastScrollTop } = this.state;
@@ -345,6 +350,7 @@ class Nav extends Component {
 
 Nav.propTypes = {
     isHome: PropTypes.bool,
+    fileURL: PropTypes.string,
 };
 
 export default Nav;

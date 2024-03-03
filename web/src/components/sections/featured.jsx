@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -23,8 +23,8 @@ const StyledFlexContainer = styled.div`
     width: 100%;
     margin-bottom: 100px;
     ${media.tablet`
-    flex-direction: column;
-  `};
+        flex-direction: column;
+    `};
 `;
 
 const StyledIntroContent = styled.div`
@@ -115,10 +115,10 @@ const StyledContent = styled.div`
     grid-column: 1 / 7;
     grid-row: 1 / -1;
     ${media.thone`
-    grid-column: 1 / -1;
-    padding: 40px 40px 30px;
-    z-index: 5;
-  `};
+        grid-column: 1 / -1;
+        padding: 40px 40px 30px;
+        z-index: 5;
+    `};
     ${media.phablet`padding: 30px 25px 20px;`};
 `;
 
@@ -191,9 +191,9 @@ const StyledTechList = styled.ul`
             margin-right: 0;
         }
         ${media.thone`
-      color: ${colors.lightestSlate};
-      margin-right: 10px;
-    `};
+            color: ${colors.lightestSlate};
+            margin-right: 10px;
+        `};
     }
 `;
 
@@ -232,11 +232,11 @@ const StyledFeaturedImg = styled(GatsbyImage)`
     mix-blend-mode: multiply;
     filter: grayscale(100%) contrast(1) brightness(90%);
     ${media.tablet`
-    object-fit: cover;
-    width: auto;
-    height: 100%;
-    filter: grayscale(100%) contrast(1) brightness(80%);
-  `};
+        object-fit: cover;
+        width: auto;
+        height: 100%;
+        filter: grayscale(100%) contrast(1) brightness(80%);
+    `};
 `;
 
 const StyledImgContainer = styled(Link)`
@@ -250,9 +250,9 @@ const StyledImgContainer = styled(Link)`
     transition: ${theme.transition};
     ${media.tablet`height: 100%;`};
     ${media.thone`
-    grid-column: 1 / -1;
-    opacity: 0.25;
-  `};
+        grid-column: 1 / -1;
+        opacity: 0.25;
+    `};
 
     &:hover,
     &:focus {
@@ -287,8 +287,8 @@ const StyledProject = styled.div`
     align-items: center;
     margin-bottom: 100px;
     ${media.thone`
-    margin-bottom: 70px;
-  `};
+        margin-bottom: 70px;
+    `};
 
     &:last-of-type {
         margin-bottom: 0;
@@ -299,9 +299,9 @@ const StyledProject = styled.div`
             grid-column: 7 / -1;
             text-align: right;
             ${media.thone`
-        grid-column: 1 / -1;
-        padding: 40px 40px 30px;
-      `};
+                grid-column: 1 / -1;
+                padding: 40px 40px 30px;
+            `};
             ${media.phablet`padding: 30px 25px 20px;`};
         }
         ${StyledTechList} {
@@ -321,14 +321,14 @@ const StyledProject = styled.div`
             grid-column: 1 / 8;
             ${media.tablet`height: 100%;`};
             ${media.thone`
-        grid-column: 1 / -1;
-        opacity: 0.25;
-      `};
+                grid-column: 1 / -1;
+                opacity: 0.25;
+            `};
         }
     }
 `;
 
-const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontImage }) => {
+function Featured({ featuredProjects, SectionTitle, _rawFrontDescription, frontImage }) {
     const revealTitle = useRef(null);
     const revealFlexContainer = useRef(null);
     const revealProjects = useRef([]);
@@ -372,7 +372,11 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
                         } = node;
 
                         return (
-                            <StyledProject key={i} ref={(el) => (revealProjects.current[i] = el)}>
+                            <StyledProject
+                                key={slug.current}
+                                // eslint-disable-next-line no-return-assign
+                                ref={(el) => (revealProjects.current[i] = el)}
+                            >
                                 <StyledContent>
                                     <StyledLabel>Featured Project</StyledLabel>
                                     <StyledProjectName>
@@ -396,10 +400,9 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
                                     </StyledDescription>
                                     {tags && (
                                         <StyledTechList>
-                                            {tags.map((tag, i) => (
-                                                <li key={i}>
+                                            {tags.map((tag) => (
+                                                <li key={tag.slug.current}>
                                                     <StyledTechListLink
-                                                        key={i}
                                                         to={`/tags/${tag.slug.current}`}
                                                     >
                                                         #{tag.title}
@@ -443,6 +446,12 @@ const Featured = ({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
             </div>
         </StyledContainer>
     );
-};
+}
 
+Featured.propTypes = {
+    featuredProjects: PropTypes.object.isRequired,
+    SectionTitle: PropTypes.string.isRequired,
+    _rawFrontDescription: PropTypes.object.isRequired,
+    frontImage: PropTypes.object.isRequired,
+};
 export default Featured;

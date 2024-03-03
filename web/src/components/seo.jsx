@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -37,5 +38,7 @@ export default function SEO({ siteTitle, sitePath, children }) {
 }
 
 SEO.propTypes = {
-    metadata: PropTypes.object.isRequired,
+    siteTitle: PropTypes.string.isRequired,
+    sitePath: PropTypes.string.isRequired,
+    children: PropTypes.object,
 };

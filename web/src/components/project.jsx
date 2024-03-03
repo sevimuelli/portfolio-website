@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { PortableTextBlock } from '@components';
 import styled from 'styled-components';
@@ -115,27 +117,13 @@ const StyledImgOverlay = styled.div`
     justify-content: flex-start;
 
     ${media.tablet`
-    font-size: ${fontSizes.xs}
-  `}
+        font-size: ${fontSizes.xs}
+    `}
 `;
 
 const StyledImgCaption = styled.div`
     padding: 2px;
 `;
-
-const slickSettings = {
-    dots: true,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    fade: true,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    cssEase: 'linear',
-    pauseOnHover: true,
-};
 
 function Project({ data }) {
     const {
@@ -218,7 +206,20 @@ function Project({ data }) {
             <StyledPostContent>
                 {_rawIntroText && <PortableTextBlock value={_rawIntroText || []} />}
                 <StyledCaruselContainer>
-                    <Slider {...slickSettings} arrows>
+                    <Slider
+                        dots
+                        infinite
+                        speed={1000}
+                        slidesToShow={1}
+                        slidesToScroll={1}
+                        initialSlide={0}
+                        fade
+                        autoplay
+                        autoplaySpeed={3500}
+                        cssEase="linear"
+                        pauseOnHover
+                        arrows
+                    >
                         {imgGallery.length > 0 &&
                             imgGallery.map((img, i) => (
                                 <div key={i}>
@@ -258,5 +259,9 @@ function Project({ data }) {
         </div>
     );
 }
+
+Project.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default Project;

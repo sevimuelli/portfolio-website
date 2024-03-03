@@ -1,5 +1,5 @@
 import { MdSettings, MdPerson, MdContactMail } from 'react-icons/md';
-import { FaHome, FaArchive, FaHashtag } from 'react-icons/fa';
+import { FaHome, FaArchive } from 'react-icons/fa';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 
 const hiddenDocTypes = (listItem) =>

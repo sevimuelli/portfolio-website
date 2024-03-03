@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import anime from 'animejs';
@@ -84,7 +84,7 @@ function Loader({ finishLoading }) {
         const timeout = setTimeout(() => setIsMounted(true), 10);
         animate();
         return () => clearTimeout(timeout);
-    }, []);
+    });
 
     return (
         <StyledContainer className="loader">

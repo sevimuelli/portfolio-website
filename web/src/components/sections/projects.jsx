@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -8,6 +8,7 @@ import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
 import { PortableTextBlock } from '@components';
+import PropTypes from 'prop-types';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -94,19 +95,6 @@ const StyledProject = styled.div`
     }
 `;
 
-const StyledProjectHeader = styled.div`
-    ${mixins.flexBetween};
-    margin-bottom: 30px;
-`;
-const StyledFolder = styled.div`
-    color: ${colors.green};
-
-    svg {
-        width: 40px;
-        height: 40px;
-    }
-`;
-
 const StyledProjectName = styled.h5`
     margin: 30px 0 10px;
     font-size: ${fontSizes.xxl};
@@ -173,7 +161,7 @@ const StyledMoreButton = styled(Button)`
     margin: 100px auto 0;
 `;
 
-const Projects = ({ projects, sectionTitle }) => {
+function Projects({ projects, sectionTitle }) {
     const [showMore, setShowMore] = useState(false);
     const revealTitle = useRef(null);
     const revealArchiveLink = useRef(null);
@@ -219,6 +207,7 @@ const Projects = ({ projects, sectionTitle }) => {
                                 >
                                     <StyledProject
                                         key={i}
+                                        // eslint-disable-next-line no-return-assign
                                         ref={(el) => (revealProjects.current[i] = el)}
                                         tabIndex="0"
                                         style={{
@@ -248,10 +237,10 @@ const Projects = ({ projects, sectionTitle }) => {
                                             </Link>
                                             <StyledFooter>
                                                 <StyledTechList>
-                                                    {tags.map((tag, i) => (
-                                                        <li key={i}>
+                                                    {tags.map((tag) => (
+                                                        <li key={tag.slug.current}>
                                                             <StyledTechListLink
-                                                                key={i}
+                                                                key={tag.slug.current}
                                                                 to={`/tags/${tag.slug.current}`}
                                                             >
                                                                 #{tag.title}
@@ -297,6 +286,11 @@ const Projects = ({ projects, sectionTitle }) => {
             )}
         </StyledContainer>
     );
+}
+
+Projects.propTypes = {
+    projects: PropTypes.array.isRequired,
+    sectionTitle: PropTypes.string.isRequired,
 };
 
 export default Projects;

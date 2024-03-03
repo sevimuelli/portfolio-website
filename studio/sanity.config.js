@@ -15,7 +15,14 @@ import { visionTool } from '@sanity/vision';
 import schema from './schemas/schema';
 import deskStructure from './deskStructure';
 
-let disableMod = ['siteSettings', 'aboutMe', 'introPage', 'contact', 'projectOverview', 'archive'];
+const disableMod = [
+    'siteSettings',
+    'aboutMe',
+    'introPage',
+    'contact',
+    'projectOverview',
+    'archive',
+];
 
 export default defineConfig({
     name: 'default',

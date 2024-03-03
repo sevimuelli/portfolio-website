@@ -1,6 +1,5 @@
 // Components
 import PortableTextBlock from './portable-text-block';
-import Email from './email';
 import Figure from './figure';
 import Footer from './footer';
 import Head from './head';
@@ -22,7 +21,6 @@ import Projects from './sections/projects';
 
 export {
     PortableTextBlock,
-    Email,
     Figure,
     Footer,
     Head,

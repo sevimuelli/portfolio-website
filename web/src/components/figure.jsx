@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { getGatsbyImageData } from 'gatsby-source-sanity';
 import styled from 'styled-components';
@@ -25,11 +27,12 @@ const StyledImageContainter = styled.figure`
     }
 `;
 
-export default ({ value }) => {
+export default function Figure({ value }) {
     if (!value.asset) {
         return null;
     }
 
+    // eslint-disable-next-line no-underscore-dangle
     const imageData = getGatsbyImageData(value.asset._ref, { maxWidth: 800 }, clientConfig.sanity);
 
     return (
@@ -38,4 +41,8 @@ export default ({ value }) => {
             {value.caption && <figcaption>{value.caption}</figcaption>}
         </StyledImageContainter>
     );
+}
+
+Figure.propTypes = {
+    value: PropTypes.object,
 };

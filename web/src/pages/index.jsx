@@ -1,3 +1,4 @@
+import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
@@ -8,7 +9,7 @@ const StyledMainContainer = styled(Main)`
     counter-reset: section;
 `;
 
-const IndexPage = ({ location, data, errors }) => {
+function IndexPage({ location, data, errors }) {
     if (errors) {
         return (
             <Layout location={location}>
@@ -46,11 +47,12 @@ const IndexPage = ({ location, data, errors }) => {
             </StyledMainContainer>
         </Layout>
     );
-};
+}
 
 IndexPage.propTypes = {
     location: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
+    errors: PropTypes.object,
 };
 
 export default IndexPage;

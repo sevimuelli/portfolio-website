@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { IconGitHub, IconLinkedin } from '@components/icons';
 
-const FormattedIcon = ({ name }) => {
+function FormattedIcon({ name }) {
     switch (name) {
         case 'GitHub':
             return <IconGitHub />;
@@ -9,9 +10,8 @@ const FormattedIcon = ({ name }) => {
             return <IconLinkedin />;
         default:
             return <IconGitHub />;
-            retu;
     }
-};
+}
 
 FormattedIcon.propTypes = {
     name: PropTypes.string.isRequired,

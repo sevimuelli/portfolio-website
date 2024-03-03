@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable no-shadow */
 const path = require('path');
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -48,7 +50,7 @@ async function createProjectPages(graphql, actions, reporter) {
 
         createPage({
             path,
-            component: require.resolve('./src/templates/project.js'),
+            component: require.resolve('./src/templates/project.jsx'),
             context: { id },
         });
     });
@@ -65,7 +67,7 @@ async function createProjectPages(graphql, actions, reporter) {
 
         createPage({
             path,
-            component: require.resolve('./src/templates/tag.js'),
+            component: require.resolve('./src/templates/tag.jsx'),
             context: {
                 tag: title,
                 slug: slug.current,

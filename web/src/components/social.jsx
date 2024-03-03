@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { socialMedia } from '@config';
 import { Side } from '@components';
@@ -42,25 +43,27 @@ const StyledLink = styled.a`
     }
 `;
 
-const Social = ({ isHome }) => (
-    <Side isHome={isHome} orientation="left">
-        <StyledList>
-            {socialMedia &&
-                socialMedia.map(({ url, name }, i) => (
-                    <li key={i}>
-                        <StyledLink
-                            href={url}
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            aria-label={name}
-                        >
-                            <FormattedIcon name={name} />
-                        </StyledLink>
-                    </li>
-                ))}
-        </StyledList>
-    </Side>
-);
+function Social({ isHome }) {
+    return (
+        <Side isHome={isHome} orientation="left">
+            <StyledList>
+                {socialMedia &&
+                    socialMedia.map(({ url, name }, i) => (
+                        <li key={i}>
+                            <StyledLink
+                                href={url}
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                aria-label={name}
+                            >
+                                <FormattedIcon name={name} />
+                            </StyledLink>
+                        </li>
+                    ))}
+            </StyledList>
+        </Side>
+    );
+}
 
 Social.propTypes = {
     isHome: PropTypes.bool,

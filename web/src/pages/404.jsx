@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
@@ -34,7 +34,7 @@ const StyledHomeButton = styled(Link)`
     margin-top: 40px;
 `;
 
-const NotFoundPage = ({ location }) => {
+function NotFoundPage({ location }) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -58,6 +58,10 @@ const NotFoundPage = ({ location }) => {
             </TransitionGroup>
         </Layout>
     );
-};
+}
 
 export default NotFoundPage;
+
+NotFoundPage.propTypes = {
+    location: PropTypes.object,
+};
