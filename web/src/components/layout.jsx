@@ -57,8 +57,11 @@ const StyledContent = styled.div`
 
 export default function Layout({ children, location }) {
     const isHome = location.pathname === '/';
-    const shouldLoad = !sessionStorage.getItem('beenHere') && isHome;
-    const [isLoading, setIsLoading] = useState(shouldLoad);
+    let shouldLoad = true;
+    if (typeof window !== 'undefined') {
+        shouldLoad = !window.sessionStorage.getItem('beenHere');
+    }
+    const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
     useEffect(() => {
         if (isLoading || isHome) {
             return;
