@@ -258,7 +258,9 @@ class Nav extends Component {
         const timeout = isHome ? 3000 : 0;
         const fadeClass = isHome ? 'fade' : '';
         const fadeDownClass = isHome ? 'fadedown' : '';
-        document.body.classList.toggle('blur', menuOpen);
+        if (typeof document !== 'undefined') {
+            document.body.classList.toggle('blur', menuOpen);
+        }
 
         return (
             <StyledContainer $scrollDirection={scrollDirection}>
