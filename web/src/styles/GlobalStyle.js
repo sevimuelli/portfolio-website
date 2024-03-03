@@ -5,6 +5,7 @@ import mixins from './mixins';
 import FontFaces from './fonts';
 import TransitionStyles from './TransitionStyles';
 import PrismStyles from './PrismStyles';
+
 const { colors, fontSizes, fonts } = theme;
 
 const GlobalStyle = createGlobalStyle`
@@ -40,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
     }
     &.blur {
       overflow: hidden;
-      #root > #content > * {
+      #root > #layout > #content > * {
         filter: blur(5px) brightness(0.7);
         transition: ${theme.transition};
         pointer-events: none;

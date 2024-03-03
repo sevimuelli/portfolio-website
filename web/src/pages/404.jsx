@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { Layout, SEO } from '@components';
+import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 
@@ -44,7 +44,6 @@ function NotFoundPage({ location }) {
 
     return (
         <Layout location={location}>
-            <SEO siteTitle="404" sitePath="/404" />
             <TransitionGroup component={null}>
                 {isMounted && (
                     <CSSTransition timeout={500} classNames="fade">
@@ -62,6 +61,20 @@ function NotFoundPage({ location }) {
 
 export default NotFoundPage;
 
+export { Head } from '@components';
+
 NotFoundPage.propTypes = {
     location: PropTypes.object,
 };
+
+export const query = graphql`
+    query IndexPageQuery {
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
+            }
+        }
+    }
+`;

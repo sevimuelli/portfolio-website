@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import sr from '@utils/sr';
+import { sr } from '@utils';
 import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';

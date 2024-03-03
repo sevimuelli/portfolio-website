@@ -2,10 +2,9 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { throttle } from '@utils';
+import { throttle } from '@utils/helpers';
 import { navLinks, navHeight } from '@config';
 import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
@@ -259,12 +258,10 @@ class Nav extends Component {
         const timeout = isHome ? 3000 : 0;
         const fadeClass = isHome ? 'fade' : '';
         const fadeDownClass = isHome ? 'fadedown' : '';
+        document.body.classList.toggle('blur', menuOpen);
 
         return (
             <StyledContainer $scrollDirection={scrollDirection}>
-                <Helmet>
-                    <body className={menuOpen ? 'blur' : ''} />
-                </Helmet>
                 <StyledNav>
                     <TransitionGroup component={null}>
                         {isMounted && (

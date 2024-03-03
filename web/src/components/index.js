@@ -8,7 +8,6 @@ import Loader from './loader';
 import Menu from './menu';
 import Nav from './nav';
 import Project from './project';
-import SEO from './seo';
 import Side from './side';
 import Social from './social';
 // Sections
@@ -29,7 +28,6 @@ export {
     Menu,
     Nav,
     Project,
-    SEO,
     Side,
     Social,
     About,

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import sr from '@utils/sr';
+import {sr} from '@utils';
 import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
@@ -449,9 +449,9 @@ function Featured({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
 }
 
 Featured.propTypes = {
-    featuredProjects: PropTypes.object.isRequired,
+    featuredProjects: PropTypes.array.isRequired,
     SectionTitle: PropTypes.string.isRequired,
-    _rawFrontDescription: PropTypes.object.isRequired,
+    _rawFrontDescription: PropTypes.array.isRequired,
     frontImage: PropTypes.object.isRequired,
 };
 export default Featured;

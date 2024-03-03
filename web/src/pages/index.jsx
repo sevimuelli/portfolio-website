@@ -57,6 +57,8 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
+export { Head } from '@components';
+
 export const query = graphql`
     query IndexPageQuery {
         intro: allSanityIntroPage {
@@ -192,6 +194,13 @@ export const query = graphql`
                     _rawDescription
                     title
                 }
+            }
+        }
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
             }
         }
     }

@@ -23,7 +23,7 @@ function PortableTextBlock({ value }) {
 }
 
 PortableTextBlock.propTypes = {
-    value: PropTypes.object.isRequired,
+    value: PropTypes.array.isRequired,
 };
 
 export default PortableTextBlock;

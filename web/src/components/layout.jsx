@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Head, Loader, Nav, Social, Footer } from '@components';
+import { Loader, Nav, Social, Footer } from '@components';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
 
@@ -102,8 +102,6 @@ export default function Layout({ children, location }) {
 
     return (
         <div id="root">
-            <Head metadata={data.site.siteMetadata} />
-
             <GlobalStyle />
 
             <SkipToContent href="#content">Skip to Content</SkipToContent>
@@ -116,7 +114,7 @@ export default function Layout({ children, location }) {
                     }}
                 />
             ) : (
-                <StyledContent>
+                <StyledContent id="layout">
                     <Nav
                         isHome={isHome}
                         fileURL={data.resumeFile.edges[0].node.myFiles[0].asset.url}

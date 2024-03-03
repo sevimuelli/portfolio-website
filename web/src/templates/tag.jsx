@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
-import { Layout, SEO } from '@components';
+import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 
@@ -50,12 +50,11 @@ const StyledTagsContainer = styled(Main)`
 `;
 
 function TagTemplate({ pageContext, data, location }) {
-    const { tag, slug } = pageContext;
+    const { tag } = pageContext;
     const { edges } = data.allSanitySampleProject;
 
     return (
         <Layout location={location}>
-            <SEO siteTitle={`#${tag}`} sitePath={`/tags/${slug}`} />
             <StyledTagsContainer>
                 <span className="breadcrumb">
                     <span className="arrow">&larr;</span>
@@ -113,6 +112,8 @@ TagTemplate.propTypes = {
 
 export default TagTemplate;
 
+export { Head } from '@components';
+
 export const pageQuery = graphql`
     query ($tag: String!) {
         allSanitySampleProject(
@@ -134,6 +135,13 @@ export const pageQuery = graphql`
                         current
                     }
                 }
+            }
+        }
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
             }
         }
     }

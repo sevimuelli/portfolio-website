@@ -16,6 +16,7 @@ async function createProjectPages(graphql, actions, reporter) {
             ) {
                 edges {
                     node {
+                        title
                         id
                         slug {
                             current
@@ -42,7 +43,7 @@ async function createProjectPages(graphql, actions, reporter) {
     const projectEdges = (result.data.projects || {}).edges || [];
 
     projectEdges.forEach((edge) => {
-        const { id } = edge.node;
+        const { id, title } = edge.node;
         const slug = edge.node.slug.current;
         const path = `/project/${slug}/`;
 
@@ -51,7 +52,7 @@ async function createProjectPages(graphql, actions, reporter) {
         createPage({
             path,
             component: require.resolve('./src/templates/project.jsx'),
-            context: { id },
+            context: { id, title },
         });
     });
 
@@ -69,6 +70,7 @@ async function createProjectPages(graphql, actions, reporter) {
             path,
             component: require.resolve('./src/templates/tag.jsx'),
             context: {
+                title,
                 tag: title,
                 slug: slug.current,
             },

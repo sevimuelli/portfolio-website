@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import config from '@config';
 import favicon from '@images/favicons/favicon.ico';
 import ogImage from '@images/og.png';
@@ -19,37 +18,63 @@ import favicon96x96 from '@images/favicons/favicon-96x96.png';
 import favicon16x16 from '@images/favicons/favicon-16x16.png';
 import msIcon144x144 from '@images/favicons/ms-icon-144x144.png';
 
-function Head({ metadata }) {
+export default function Head({ location, data, pageContext }) {
+    const sitePath = location.pathname;
+    let siteTitle;
+    switch (sitePath) {
+        case '/404/':
+            siteTitle = '404';
+            break;
+        case '/archive/':
+            siteTitle = 'Archive';
+            break;
+        case '/success/':
+            siteTitle = 'Success page';
+            break;
+        case '/tags/':
+            siteTitle = 'Tags';
+            break;
+        case '/':
+            siteTitle = 'Home';
+            break;
+        default:
+            siteTitle = pageContext.title;
+    }
+
+    const metadata = data.metadata.siteMetadata;
+    const title = siteTitle ? `${siteTitle} | ${metadata.title}` : metadata.title;
+    const siteURL = sitePath ? `${metadata.siteUrl}${sitePath}` : metadata.siteUrl;
+
     return (
-        <Helmet>
+        <>
             {/* <html lang="en" prefix="og: http://ogp.me/ns#" /> */}
             <html lang="en" />
             <title itemProp="name" lang="en">
-                {metadata.title}
+                {title}
             </title>
             <link rel="shortcut icon" href={favicon} />
-            <link rel="canonical" href="https://severinmueller.io" />
+            <link rel="canonical" href={siteURL} />
 
             <meta name="description" content={metadata.description} />
             <meta name="keywords" content={config.siteKeywords} />
-            <meta property="og:title" content={metadata.title} />
+            <meta property="og:title" content={siteTitle} />
             <meta property="og:description" content={metadata.description} />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={metadata.siteUrl} />
+            <meta property="og:url" content={siteURL} />
             <meta property="og:site_name" content={metadata.title} />
             <meta property="og:image" content={`${config.siteUrl}${ogImage}`} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:type" content="image/png" />
             <meta property="og:locale" content={config.siteLanguage} />
-            <meta itemProp="name" content={metadata.title} />
+            <meta itemProp="name" content={title} />
             <meta itemProp="description" content={metadata.description} />
             <meta itemProp="image" content={`${config.siteUrl}${ogImage}`} />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:url" content={metadata.siteUrl} />
+            <meta name="twitter:url" content={siteURL} />
             <meta name="twitter:site" content={config.twitterHandle} />
             <meta name="twitter:creator" content={config.twitterHandle} />
-            <meta name="twitter:title" content={metadata.title} />
+            <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={metadata.description} />
             <meta name="twitter:image" content={`${config.siteUrl}${ogImage}`} />
             <meta name="twitter:image:alt" content={metadata.title} />
@@ -70,12 +95,12 @@ function Head({ metadata }) {
             <meta name="msapplication-TileColor" content={config.navyColor} />
             <meta name="msapplication-TileImage" content={msIcon144x144} />
             <meta name="theme-color" content={config.navyColor} />
-        </Helmet>
+        </>
     );
 }
 
-export default Head;
-
 Head.propTypes = {
-    metadata: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    pageContext: PropTypes.object.isRequired,
 };

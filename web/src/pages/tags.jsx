@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import { Layout, SEO } from '@components';
+import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 import PropTypes from 'prop-types';
@@ -51,8 +51,6 @@ function TagsPage({ data, location }) {
 
     return (
         <Layout location={location}>
-            <SEO siteTitle="Tags" sitePath="/tags" />
-
             <StyledTagsContainer>
                 <span className="breadcrumb">
                     <span className="arrow">&larr;</span>
@@ -76,6 +74,8 @@ function TagsPage({ data, location }) {
 
 export default TagsPage;
 
+export { Head } from '@components';
+
 export const pageQuery = graphql`
     query {
         tags: allSanityTag(sort: { title: ASC }) {
@@ -97,6 +97,13 @@ export const pageQuery = graphql`
                         title
                     }
                 }
+            }
+        }
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
             }
         }
     }

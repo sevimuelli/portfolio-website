@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 import Slider from 'react-slick';
 import { IconGitHub, IconExternal } from '@components/icons';
-import { imageUrlFor } from '../utils/image-url';
+import { imageUrlFor } from '@utils';
 import { buildImageObj } from '../utils/helpers';
 
 const { colors, fontSizes } = theme;

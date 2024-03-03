@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { Layout, SEO } from '@components';
+import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 
@@ -45,7 +45,6 @@ function Success({ location }) {
 
     return (
         <Layout location={location}>
-            <SEO siteTitle="Success page" sitePath="/success" />
             <TransitionGroup component={null}>
                 {isMounted && (
                     <CSSTransition timeout={500} classNames="fade">
@@ -66,3 +65,17 @@ export default Success;
 Success.propTypes = {
     location: PropTypes.object.isRequired,
 };
+
+export { Head } from '@components';
+
+export const query = graphql`
+    query IndexPageQuery {
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
+            }
+        }
+    }
+`;

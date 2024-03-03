@@ -11,15 +11,15 @@ import Button from './Button';
 import InlineLink from './InlineLink';
 
 export {
-  theme,
-  GlobalStyle,
-  mixins,
-  media,
-  Header,
-  Main,
-  Section,
-  Footer,
-  Heading,
-  Button,
-  InlineLink,
+    theme,
+    GlobalStyle,
+    mixins,
+    media,
+    Header,
+    Main,
+    Section,
+    Footer,
+    Heading,
+    Button,
+    InlineLink,
 };

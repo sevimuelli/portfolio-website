@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import sr from '@utils/sr';
+import { sr } from '@utils';
 import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 import { PortableTextBlock } from '@components';
 // import { buildImageObj } from '../../utils/helpers';
-// import { imageUrlFor } from '../../utils/image-url';
+// import imageUrlFor from '@utils';
 
 const { colors, fontSizes, fonts } = theme;
 

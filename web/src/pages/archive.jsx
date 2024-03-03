@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
-import sr from '@utils/sr';
+import { sr } from '@utils';
 import { srConfig } from '@config';
-import { Layout, SEO } from '@components';
+import { Layout } from '@components';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
@@ -117,7 +117,6 @@ function ArchivePage({ location, data }) {
 
     return (
         <Layout location={location}>
-            <SEO siteTitle={archiveTitle} sitePath="/archive" />
             <Main>
                 <header ref={revealTitle}>
                     <h1 className="big-title">{archiveTitle}</h1>
@@ -223,6 +222,8 @@ ArchivePage.propTypes = {
 
 export default ArchivePage;
 
+export { Head } from '@components';
+
 export const pageQuery = graphql`
     {
         projects: allSanitySampleProject(
@@ -253,6 +254,13 @@ export const pageQuery = graphql`
                     subtitle
                     title
                 }
+            }
+        }
+        metadata: site {
+            siteMetadata {
+                title
+                siteUrl
+                description
             }
         }
     }
