@@ -145,7 +145,7 @@ const StyledTechList = styled.ul`
 
 const StyledTechListLink = styled(Link)`
     ${mixins.inlineLink};
-    padding: 5px;
+    padding: 10px;
 `;
 
 const StyledProjectLinks = styled.div`

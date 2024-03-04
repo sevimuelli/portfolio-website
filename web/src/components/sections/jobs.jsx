@@ -224,16 +224,18 @@ function Jobs({ data }) {
                         workplaces.map((work, i) => {
                             const { company } = work;
                             return (
-                                <li key={i}>
+                                <li
+                                    key={i}
+                                    role="tab"
+                                    aria-selected={activeTabId === i}
+                                    aria-controls={`panel-${i}`}
+                                >
                                     <StyledTabButton
                                         $isActive={activeTabId === i}
                                         onClick={() => setActiveTabId(i)}
                                         // eslint-disable-next-line no-return-assign
                                         ref={(el) => (tabs.current[i] = el)}
                                         id={`tab-${i}`}
-                                        role="tab"
-                                        aria-selected={activeTabId === i}
-                                        aria-controls={`panel-${i}`}
                                         tabIndex={activeTabId === i ? '0' : '-1'}
                                     >
                                         <span>{company}</span>
