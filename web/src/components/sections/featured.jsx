@@ -89,7 +89,7 @@ const StyledAvatarLink = styled.div`
 
     &:hover,
     &:focus {
-        background-color: rgba(100, 255, 218, 0);
+        background-color: ${colors.greenFadeOff};
 
         &::after {
             top: 15px;
@@ -248,10 +248,10 @@ const StyledImgContainer = styled(Link)`
 
     &:hover,
     &:focus {
-        background: rgba(100, 255, 218, 0);
+        background: ${colors.greenFadeOff};
         &:before,
         ${StyledFeaturedImg} {
-            background: rgba(100, 255, 218, 0);
+            background: ${colors.greenFadeOff};
             filter: none;
         }
     }

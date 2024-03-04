@@ -65,7 +65,7 @@ export const query = graphql`
                             }
                         }
                     }
-                    gatsbyImageData(layout: FULL_WIDTH)
+                    gatsbyImageData(layout: FULL_WIDTH, aspectRatio: 1.3333)
                 }
                 caption
                 alt

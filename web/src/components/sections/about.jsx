@@ -94,7 +94,7 @@ const StyledAvatarLink = styled.a`
 
     &:hover,
     &:focus {
-        background-color: rgba(100, 255, 218, 0);
+        background-color: ${colors.greenFadeOff};
 
         &:after {
             top: 15px;
@@ -172,7 +172,7 @@ const SkillBigContainer = styled.div`
             filter: none;
         }
         ${SkillBigPictureContainter} {
-            background-color: rgba(100, 255, 218, 0);
+            background-color: ${colors.greenFadeOff};
         }
     }
 `;

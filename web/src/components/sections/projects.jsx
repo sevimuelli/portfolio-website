@@ -95,7 +95,7 @@ const StyledProject = styled.div`
             filter: none;
         }
         ${StyledImageContainer} {
-            background: rgba(100, 255, 218, 0);
+            background: ${colors.greenFadeOff};
         }
     }
 `;
