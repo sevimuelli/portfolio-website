@@ -95,14 +95,14 @@ const StyledFigure = styled.figure`
     background-repeat: no-repeat;
 `;
 
-const StyledFigureImage = styled(GatsbyImage)`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: opacity 1s ease-in;
-    border-bottom: solid 1px ${colors.navy};
-`;
+// const StyledFigureImage = styled(GatsbyImage)`
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     transition: opacity 1s ease-in;
+//     border-bottom: solid 1px ${colors.navy};
+// `;
 
 const StyledImgOverlay = styled.div`
     position: absolute;

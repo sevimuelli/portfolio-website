@@ -26,12 +26,9 @@ module.exports = {
         imageCDN: false,
     }),
     plugins: [
-        `gatsby-plugin-offline`,
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
-        `gatsby-plugin-sitemap`,
-        `gatsby-plugin-robots-txt`,
         `gatsby-plugin-image`,
         {
             resolve: 'gatsby-source-sanity',
@@ -45,13 +42,19 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: 'SeverinMüller',
+                name: config.siteTitle,
                 short_name: 'SeverinMüller',
+                description: config.siteDescription,
+                lang: 'en',
                 start_url: '/',
                 background_color: config.darkNavyColor,
                 theme_color: config.navyColor,
                 display: 'standalone',
                 icon: 'src/images/logo.png',
+                icon_options: {
+                    // To produce maskable icons for android
+                    purpose: 'any maskable',
+                },
             },
         },
         {
@@ -60,5 +63,8 @@ module.exports = {
                 trackingId: config.googleAnalyticsID,
             },
         },
+        `gatsby-plugin-offline`,
+        `gatsby-plugin-sitemap`,
+        `gatsby-plugin-robots-txt`,
     ],
 };
