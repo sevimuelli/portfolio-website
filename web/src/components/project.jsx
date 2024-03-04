@@ -230,7 +230,7 @@ function Project({ data }) {
                                             paddingTop: `calc(100% * ${aspectRatioImgGal})`,
                                         }}
                                     >
-                                        <StyledFigureImage
+                                        <GatsbyImage
                                             key={i}
                                             // src={imageUrlFor(buildImageObj(img))
                                             //     .width(800)
@@ -238,6 +238,14 @@ function Project({ data }) {
                                             //     .url()}
                                             image={img.asset.gatsbyImageData}
                                             alt={img.alt}
+                                            style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                width: '100%',
+                                                transition: 'opacity 1s ease-in',
+                                                borderBottom: 'solid 1px colors.navy',
+                                            }}
                                         />
                                     </StyledFigure>
                                     <StyledImgOverlay>
