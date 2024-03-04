@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { PortableTextBlock } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 import Slider from 'react-slick';
 import { IconGitHub, IconExternal } from '@components/icons';
-import { imageUrlFor } from '@utils';
-import { buildImageObj } from '../utils/helpers';
+// import { imageUrlFor } from '@utils';
+// import { buildImageObj } from '../utils/helpers';
 
 const { colors, fontSizes } = theme;
 
@@ -94,7 +95,7 @@ const StyledFigure = styled.figure`
     background-repeat: no-repeat;
 `;
 
-const StyledFigureImage = styled.img`
+const StyledFigureImage = styled(GatsbyImage)`
     position: absolute;
     top: 0;
     left: 0;
@@ -231,10 +232,11 @@ function Project({ data }) {
                                     >
                                         <StyledFigureImage
                                             key={i}
-                                            src={imageUrlFor(buildImageObj(img))
-                                                .width(800)
-                                                .height(Math.floor(aspectRatioImgGal * 800))
-                                                .url()}
+                                            // src={imageUrlFor(buildImageObj(img))
+                                            //     .width(800)
+                                            //     .height(Math.floor(aspectRatioImgGal * 800))
+                                            //     .url()}
+                                            image={img.asset.gatsbyImageData}
                                             alt={img.alt}
                                         />
                                     </StyledFigure>

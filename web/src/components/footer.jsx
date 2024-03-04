@@ -50,7 +50,7 @@ const StyledMetadata = styled.div`
 
 const StyledGitHubLink = styled.a`
     color: ${colors.slate};
-    padding: 10px;
+    padding: 15px;
 `;
 
 function renderSwitch(param) {

@@ -66,7 +66,7 @@ export default function Layout({ children, location }) {
         <div id="root">
             <GlobalStyle />
 
-            {isLoading && isHome ? (
+            {isLoading && isHome && false ? (
                 <Loader
                     finishLoading={() => {
                         setIsLoading(false);

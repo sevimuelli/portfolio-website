@@ -50,7 +50,7 @@ module.exports = {
                 start_url: '/',
                 background_color: config.darkNavyColor,
                 theme_color: config.navyColor,
-                display: 'minimal-ui',
+                display: 'standalone',
                 icon: 'src/images/logo.png',
             },
         },
