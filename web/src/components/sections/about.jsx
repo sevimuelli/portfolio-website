@@ -88,12 +88,13 @@ const StyledAvatarLink = styled.a`
     width: 100%;
     position: relative;
     border-radius: ${theme.borderRadius};
-    background-color: ${colors.green};
+    background-color: rgba(100, 255, 218, 1);
     margin-left: -20px;
+    transition: ${theme.transition};
 
     &:hover,
     &:focus {
-        background: transparent;
+        background-color: rgba(100, 255, 218, 0);
 
         &:after {
             top: 15px;
@@ -101,11 +102,9 @@ const StyledAvatarLink = styled.a`
         }
         ${StyledAvatar} {
             filter: none;
-            mix-blend-mode: normal;
         }
     }
 
-    &::before,
     &::after {
         content: '';
         display: block;
@@ -116,17 +115,9 @@ const StyledAvatarLink = styled.a`
         transition: ${theme.transition};
     }
 
-    &::before {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: ${colors.navy};
-        mix-blend-mode: screen;
-    }
-
     &::after {
-        border: 2px solid ${colors.green};
+        border-right: 2px solid ${colors.green};
+        border-bottom: 2px solid ${colors.green};
         top: 20px;
         left: 20px;
         z-index: -1;
@@ -155,9 +146,19 @@ const SkillBigPicture = styled(GatsbyImage)`
     vertical-align: middle;
     width: 100%;
     filter: grayscale(100%) contrast(1);
-    background-color: #0b2040;
+    background-color: ${colors.navy};
     transition: ${theme.transition};
     mix-blend-mode: multiply;
+    border-radius: 7px;
+`;
+
+const SkillBigPictureContainter = styled.div`
+    width: 11%;
+    justify-self: start;
+    transition: ${theme.transition};
+    background-color: rgba(100, 255, 218, 1);
+    z-index: -1;
+    border-radius: 7px;
 `;
 
 const SkillBigContainer = styled.div`
@@ -168,17 +169,12 @@ const SkillBigContainer = styled.div`
     &:hover,
     &:focus {
         ${SkillBigPicture} {
-            mix-blend-mode: normal;
             filter: none;
         }
+        ${SkillBigPictureContainter} {
+            background-color: rgba(100, 255, 218, 0);
+        }
     }
-`;
-
-const SkillBigPictureContainter = styled.div`
-    width: 11%;
-    justify-self: start;
-    background-color: ${colors.green};
-    z-index: -1;
 `;
 
 const SkillBigDetail = styled.div`

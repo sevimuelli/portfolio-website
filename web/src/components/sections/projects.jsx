@@ -54,12 +54,15 @@ const StyledGrid = styled.div`
 `;
 
 const StyledImageContainer = styled.div`
-    background-color: ${colors.green};
     transition: ${theme.transition};
+    background: rgba(100, 255, 218, 1);
+    position: relative;
+    z-index: 1;
 `;
 
 const StyledImage = styled(GatsbyImage)`
     mix-blend-mode: multiply;
+
     filter: grayscale(100%) contrast(1) brightness(90%);
     transition: ${theme.transition};
 `;
@@ -89,8 +92,10 @@ const StyledProject = styled.div`
         }
 
         ${StyledImage} {
-            mix-blend-mode: unset;
             filter: none;
+        }
+        ${StyledImageContainer} {
+            background: rgba(100, 255, 218, 0);
         }
     }
 `;

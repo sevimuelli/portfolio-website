@@ -1,6 +1,10 @@
-export function mapEdgesToNodes(data) {
-    if (!data.edges) return [];
-    return data.edges.map((edge) => edge.node);
+import imageUrlBuilder from '@sanity/image-url';
+import clientConfig from '../../client-config';
+
+const builder = imageUrlBuilder(clientConfig.sanity);
+
+export function imageUrlFor(source) {
+    return builder.image(source);
 }
 
 export function buildImageObj(source) {
@@ -13,6 +17,11 @@ export function buildImageObj(source) {
     if (source.hotspot) imageObj.hotspot = source.hotspot;
 
     return imageObj;
+}
+
+export function mapEdgesToNodes(data) {
+    if (!data.edges) return [];
+    return data.edges.map((edge) => edge.node);
 }
 
 export function throttle(func, wait = 100) {

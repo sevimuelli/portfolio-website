@@ -1,6 +1,4 @@
-import { mapEdgesToNodes, buildImageObj, throttle } from './helpers';
-
-import imageUrlFor from './image-url';
+import { mapEdgesToNodes, buildImageObj, throttle, imageUrlFor } from './helpers';
 
 import sr from './scrollReveal';
 

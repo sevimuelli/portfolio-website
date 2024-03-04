@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import {sr} from '@utils';
+import { sr } from '@utils';
 import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
@@ -67,8 +67,8 @@ const StyledAvatarLink = styled.div`
     border-radius: ${theme.borderRadius};
     background-color: ${colors.green};
     margin-left: -20px;
+    transition: ${theme.transition};
 
-    &::before,
     &::after {
         content: '';
         display: block;
@@ -79,17 +79,9 @@ const StyledAvatarLink = styled.div`
         transition: ${theme.transition};
     }
 
-    &::before {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: ${colors.navy};
-        mix-blend-mode: screen;
-    }
-
     &::after {
-        border: 2px solid ${colors.green};
+        border-right: 2px solid ${colors.green};
+        border-bottom: 2px solid ${colors.green};
         top: 20px;
         left: 20px;
         z-index: -1;
@@ -97,7 +89,7 @@ const StyledAvatarLink = styled.div`
 
     &:hover,
     &:focus {
-        background: transparent;
+        background-color: rgba(100, 255, 218, 0);
 
         &::after {
             top: 15px;
@@ -105,7 +97,6 @@ const StyledAvatarLink = styled.div`
         }
         ${StyledAvatar} {
             filter: none;
-            mix-blend-mode: normal;
         }
     }
 `;
@@ -231,6 +222,7 @@ const StyledFeaturedImg = styled(GatsbyImage)`
     position: relative;
     mix-blend-mode: multiply;
     filter: grayscale(100%) contrast(1) brightness(90%);
+    transition: ${theme.transition};
     ${media.tablet`
         object-fit: cover;
         width: auto;
@@ -256,10 +248,10 @@ const StyledImgContainer = styled(Link)`
 
     &:hover,
     &:focus {
-        background: transparent;
+        background: rgba(100, 255, 218, 0);
         &:before,
         ${StyledFeaturedImg} {
-            background: transparent;
+            background: rgba(100, 255, 218, 0);
             filter: none;
         }
     }
