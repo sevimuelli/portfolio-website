@@ -27,9 +27,6 @@ module.exports = {
     }),
     plugins: [
         `gatsby-plugin-styled-components`,
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-image`,
         {
             resolve: 'gatsby-source-sanity',
             options: {
@@ -63,6 +60,9 @@ module.exports = {
                 trackingId: config.googleAnalyticsID,
             },
         },
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-image`,
         `gatsby-plugin-offline`,
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-robots-txt`,

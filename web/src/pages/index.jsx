@@ -114,7 +114,7 @@ export const query = graphql`
                     _rawFrontDescription
                     frontImage {
                         asset {
-                            gatsbyImageData(layout: CONSTRAINED, height: 500)
+                            gatsbyImageData(layout: CONSTRAINED, width: 500)
                         }
                         alt
                     }
