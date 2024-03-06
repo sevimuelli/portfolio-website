@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="512" height="512" viewBox="0 0 512 512" version="1.1" id="svg1" xml:space="preserve"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg">
+    <defs id="defs1" />
+    <g id="layer1" style="display:none;opacity:0.669;mix-blend-mode:normal">
+        <image width="512" height="223.17159" preserveAspectRatio="none"
+            xlink:href="../Screenshot%202024-03-06%20at%2000.50.48%20copy.png" id="image1" x="0" y="144.2" />
+    </g>
+    <g id="layer3" style="display:inline">
+        <path style="fill:#c71243;fill-opacity:1;fill-rule:evenodd"
+            d="M 289.39999,144.2 400.64453,256 289.39999,367.3734 Z" id="path12" />
+        <path style="fill:#008295;fill-opacity:1;fill-rule:evenodd"
+            d="M 512.00079,367.3734 H 289.39999 L 400.64453,256 Z" id="path13" />
+        <path style="fill:#eb6700;fill-opacity:1;fill-rule:evenodd" d="M 512,144.2 400.64453,256 512.00079,367.3734 Z"
+            id="path14" />
+        <path id="path16"
+            style="display:inline;fill:#4195d2;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.06032"
+            transform="rotate(-90)"
+            d="m -367.37158,77.568406 h 147.14111 l 0.006,134.720654 c 0,45.55523 -31.39347,76.99941 -73.49553,77.11093 -41.94668,0.11111 -73.65191,-34.32768 -73.65191,-77.12009 z" />
+        <path id="path17"
+            style="display:inline;fill:#CEB371;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.06221"
+            d="m 212.28906,144.20033 v 147.09424 l -135.011431,0.006 C 31.624077,291.30057 0.11202937,259.9171 2.6867899e-4,217.82845 -0.11108113,175.89513 34.40204,144.2 77.286809,144.2 Z" />
+        <rect style="opacity:1;fill:#00234b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:12.537"
+            id="rect20" width="134.72066" height="71.070114" x="77.568405" y="220.22447" />
+    </g>
+</svg>

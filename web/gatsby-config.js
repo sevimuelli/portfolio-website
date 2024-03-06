@@ -47,7 +47,7 @@ module.exports = {
                 background_color: config.darkNavyColor,
                 theme_color: config.navyColor,
                 display: 'standalone',
-                icon: 'src/images/logo.png',
+                icon: 'src/images/logo.svg',
                 icon_options: {
                     // To produce maskable icons for android
                     purpose: 'any maskable',
@@ -61,8 +61,8 @@ module.exports = {
             },
         },
         `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
         `gatsby-plugin-image`,
+        `gatsby-transformer-sharp`,
         `gatsby-plugin-offline`,
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-robots-txt`,

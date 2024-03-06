@@ -52,8 +52,8 @@ const StyledLogo = styled.div`
     a {
         display: block;
         color: ${colors.green};
-        width: 42px;
-        height: 42px;
+        width: 90px;
+        height: 90px;
 
         svg {
             fill: none;
