@@ -11,16 +11,6 @@ function IconLogo() {
             viewBox="0 0 512 512"
             xmlSpace="preserve"
         >
-            <g style={{ mixBlendMode: 'normal' }} display="none" opacity="0.669">
-                <image
-                    width="512"
-                    height="223.172"
-                    x="0"
-                    y="144.2"
-                    preserveAspectRatio="none"
-                    xlinkHref="../Screenshot%202024-03-06%20at%2000.50.48%20copy.png"
-                />
-            </g>
             <g fillOpacity="1" fillRule="evenodd" display="inline">
                 <path fill="#c71243" d="M289.4 144.2L400.645 256 289.4 367.373z" />
                 <path fill="#008295" d="M512 367.373H289.4L400.645 256z" />

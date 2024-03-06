@@ -5,10 +5,6 @@
     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
     xmlns:svg="http://www.w3.org/2000/svg">
     <defs id="defs1" />
-    <g id="layer1" style="display:none;opacity:0.669;mix-blend-mode:normal">
-        <image width="512" height="223.17159" preserveAspectRatio="none"
-            xlink:href="../Screenshot%202024-03-06%20at%2000.50.48%20copy.png" id="image1" x="0" y="144.2" />
-    </g>
     <g id="layer3" style="display:inline">
         <path style="fill:#c71243;fill-opacity:1;fill-rule:evenodd"
             d="M 289.39999,144.2 400.64453,256 289.39999,367.3734 Z" id="path12" />
