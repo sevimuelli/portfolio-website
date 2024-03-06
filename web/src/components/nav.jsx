@@ -51,22 +51,44 @@ const StyledLogo = styled.div`
 
     a {
         display: block;
-        color: ${colors.green};
         width: 90px;
         height: 90px;
 
         svg {
-            fill: none;
             transition: ${theme.transition};
             user-select: none;
+            /* box-shadow: 10px 5px 5px red; */
+        }
+    }
+
+    &:hover,
+    &:focus {
+        a {
+            width: 100px;
+            height: 100px;
         }
 
-        &:hover,
-        &:focus {
-            svg {
-                fill: ${colors.transGreen};
-            }
+        &:after {
+            top: 23px;
+            height: 48.5px;
+            left: 9.5px;
+            width: 90.5px;
+            box-shadow: 6px 6px 5px ${colors.shadowNavy};
         }
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 23.5px;
+        height: 41px;
+        left: 11.5px;
+        width: 78.5px;
+        transition: ${theme.transition};
+        /* border-right: 2px solid ${colors.green};
+        border-bottom: 2px solid ${colors.green}; */
+        z-index: -1;
     }
 `;
 
