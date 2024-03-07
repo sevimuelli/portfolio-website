@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { sr } from '@utils';
@@ -230,7 +230,7 @@ function About({ data }) {
     const revealTitle = useRef(null);
     const revealFlexContainer = useRef(null);
     const revealSkills = useRef([]);
-    useEffect(() => {
+    useLayoutEffect(() => {
         sr.reveal(revealTitle.current, srConfig());
         sr.reveal(revealFlexContainer.current, srConfig());
         revealSkills.current.forEach((ref, i) =>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -324,7 +324,7 @@ function Featured({ featuredProjects, SectionTitle, _rawFrontDescription, frontI
     const revealTitle = useRef(null);
     const revealFlexContainer = useRef(null);
     const revealProjects = useRef([]);
-    useEffect(() => {
+    useLayoutEffect(() => {
         sr.reveal(revealTitle.current, srConfig());
         sr.reveal(revealFlexContainer.current, srConfig());
         revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));

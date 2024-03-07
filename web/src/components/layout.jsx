@@ -22,22 +22,18 @@ export default function Layout({ children, location }) {
     let shouldLoad = true;
     if (typeof window !== 'undefined') {
         shouldLoad = !window.sessionStorage.getItem('beenHere');
+        window.onbeforeunload = () => {
+            sessionStorage.setItem('origin', window.location.href);
+        };
     }
-    const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
     useEffect(() => {
-        if (isLoading || isHome) {
-            return;
+        if (typeof window !== 'undefined') {
+            if (window.location.href === sessionStorage.getItem('origin')) {
+                sessionStorage.removeItem('beenHere');
+            }
         }
-        if (location.hash) {
-            const id = location.hash.substring(1); // location.hash without the '#'
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.scrollIntoView();
-                }
-            }, 0);
-        }
-    }, [isHome, isLoading, location.hash]);
+    }, []);
+    const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {

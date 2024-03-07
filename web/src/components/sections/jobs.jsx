@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { sr } from '@utils';
 import { srConfig } from '@config';
@@ -177,7 +177,7 @@ function Jobs({ data }) {
     workplaces.sort((a, b) => parseInt(a.startedAt, 10) - parseInt(b.startedAt, 10));
 
     const revealContainer = useRef(null);
-    useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+    useLayoutEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
     const focusTab = () => {
         if (tabs.current[tabFocus]) {
@@ -196,7 +196,7 @@ function Jobs({ data }) {
 
     // Only re-run the effect if tabFocus changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => focusTab(), [tabFocus]);
+    useLayoutEffect(() => focusTab(), [tabFocus]);
 
     const onKeyPressed = (e) => {
         if (e.keyCode === 38 || e.keyCode === 40) {

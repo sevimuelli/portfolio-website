@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { sr } from '@utils';
 import { srConfig } from '@config';
@@ -92,7 +92,7 @@ function Contact({ data }) {
     const revealMessageLabel = useRef(null);
     const revealMessageInput = useRef(null);
     const revealButton = useRef(null);
-    useEffect(() => {
+    useLayoutEffect(() => {
         sr.reveal(revealHeading.current, srConfig());
         sr.reveal(revealTitle.current, srConfig());
         sr.reveal(revealDescription.current, srConfig());

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -173,7 +173,7 @@ function Projects({ projects, sectionTitle }) {
     const revealArchiveLink = useRef(null);
     const revealProjects = useRef([]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         sr.reveal(revealTitle.current, srConfig());
         sr.reveal(revealArchiveLink.current, srConfig());
         revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
