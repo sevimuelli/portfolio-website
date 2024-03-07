@@ -106,26 +106,35 @@ function ArchivePage({ location, data }) {
     const archiveTitle = data.titles.edges[0].node.title;
     const archiveSubtitle = data.titles.edges[0].node.subtitle;
 
-    const revealTitle = useRef(null);
+    const revealBigTitle = useRef(null);
+    const revealSubTitle = useRef(null);
     const revealTable = useRef(null);
-    const revealProjects = useRef([]);
+    const revealItems = useRef(null);
+    // const revealProjects = useRef([]);
     useEffect(() => {
-        sr.reveal(revealTitle.current, srConfig());
-        sr.reveal(revealTable.current, srConfig());
-        revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
+        // sr.clean(revealBigTitle.current);
+        sr.reveal(revealBigTitle.current, srConfig(1000));
+        sr.reveal(revealSubTitle.current, srConfig(1500));
+        sr.reveal(revealTable.current, srConfig(2000));
+        sr.reveal(revealItems.current, srConfig(2500));
+        // revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 500 + 3000)));
     }, []);
 
     return (
         <Layout location={location}>
             <Main>
-                <header ref={revealTitle}>
-                    <h1 className="big-title">{archiveTitle}</h1>
-                    <p className="subtitle">{archiveSubtitle}</p>
+                <header>
+                    <h1 className="big-title" ref={revealBigTitle}>
+                        {archiveTitle}
+                    </h1>
+                    <p className="subtitle" ref={revealSubTitle}>
+                        {archiveSubtitle}
+                    </p>
                 </header>
 
-                <StyledTableContainer ref={revealTable}>
+                <StyledTableContainer>
                     <StyledTable>
-                        <thead>
+                        <thead ref={revealTable}>
                             <tr>
                                 <th>Year</th>
                                 <th>Title</th>
@@ -133,7 +142,7 @@ function ArchivePage({ location, data }) {
                                 <th>Link</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody ref={revealItems}>
                             {projects.length > 0 &&
                                 projects.map(({ node }, i) => {
                                     const {
@@ -148,7 +157,7 @@ function ArchivePage({ location, data }) {
                                         <tr
                                             key={slug.current}
                                             // eslint-disable-next-line no-return-assign
-                                            ref={(el) => (revealProjects.current[i] = el)}
+                                            // ref={(el) => (revealProjects.current[i] = el)}
                                         >
                                             <td className="overline year">{`${new Date(publishedAt).getFullYear()}`}</td>
 

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 import PropTypes from 'prop-types';
+import { sr } from '@utils';
+import { srConfig } from '@config';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -49,18 +51,28 @@ function TagsPage({ data, location }) {
 
     const filteredTags = tagEdges.filter(({ node }) => counts[node.title] > 0);
 
+    const revealLink = useRef(null);
+    const revealTitle = useRef(null);
+    const revealTags = useRef([]);
+    useEffect(() => {
+        sr.reveal(revealLink.current, srConfig(1000));
+        sr.reveal(revealTitle.current, srConfig(1500));
+        revealTags.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100 + 2000)));
+    }, []);
+
     return (
         <Layout location={location}>
             <StyledTagsContainer>
-                <span className="breadcrumb">
+                <span className="breadcrumb" ref={revealLink}>
                     <span className="arrow">&larr;</span>
                     <Link to="/archive/">Back to archive</Link>
                 </span>
 
-                <h1>Tags</h1>
+                <h1 ref={revealTitle}>Tags</h1>
                 <ul className="fancy-list">
-                    {filteredTags.map(({ node }) => (
-                        <li key={node.title}>
+                    {filteredTags.map(({ node }, i) => (
+                        // eslint-disable-next-line no-return-assign
+                        <li key={node.title} ref={(el) => (revealTags.current[i] = el)}>
                             <Link to={`/tags/${node.slug.current}/`}>
                                 {node.title} <span className="count">({counts[node.title]})</span>
                             </Link>
