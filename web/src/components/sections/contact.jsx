@@ -114,11 +114,14 @@ function Contact({ data }) {
             <StyledDescriptionWrapper ref={revealDescription}>
                 {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
             </StyledDescriptionWrapper>
+            
+            <script src="https://unpkg.com/@botpoison/browser" async></script>
 
             <StyledForm
                 name="contact"
                 action="https://submit-form.com/TxKOmyYThxTKFA1XKXtkD"
                 target="_self"
+                data-botpoison-public-key="pk_a327ab01-fc7b-4bb8-8550-6fd0c62f80a2"
             >
                 <input
                     type="checkbox"
