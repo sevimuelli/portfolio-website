@@ -5,7 +5,7 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
 
-const adapter = require('gatsby-adapter-netlify').default;
+// const adapter = require('gatsby-adapter-netlify').default;
 
 const config = require('./src/config');
 
@@ -21,10 +21,10 @@ module.exports = {
         siteUrl: config.siteUrl,
         description: config.siteDescription,
     },
-    adapter: adapter({
-        excludeDatastoreFromEngineFunction: false,
-        imageCDN: false,
-    }),
+    // adapter: adapter({
+    //     excludeDatastoreFromEngineFunction: false,
+    //     imageCDN: false,
+    // }),
     plugins: [
         `gatsby-plugin-styled-components`,
         {
@@ -52,12 +52,6 @@ module.exports = {
                     // To produce maskable icons for android
                     purpose: 'any maskable',
                 },
-            },
-        },
-        {
-            resolve: `gatsby-plugin-google-analytics`,
-            options: {
-                trackingId: config.googleAnalyticsID,
             },
         },
         `gatsby-plugin-sharp`,

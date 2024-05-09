@@ -20,6 +20,11 @@ const StyledContent = styled.div`
 export default function Layout({ children, location }) {
     const isHome = location.pathname === '/';
     let shouldLoad = true;
+    // if (navigator.userAgent.indexOf('Chrome-Lighthouse') > -1) {
+    //     console.log('Lighthouse!');
+    // } else {
+    //     console.log('No lighthouse :(');
+    // }
     if (typeof window !== 'undefined') {
         shouldLoad = !window.sessionStorage.getItem('beenHere');
         window.onbeforeunload = () => {

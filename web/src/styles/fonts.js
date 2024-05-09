@@ -30,7 +30,6 @@ const FontFaces = css`
         font-weight: 300;
         font-style: italic;
         font-display: swap;
-        font-display: swap;
     }
     @font-face {
         font-family: 'Calibre';
