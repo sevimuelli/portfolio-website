@@ -27,9 +27,13 @@
         "react-dom": "^18.2.0",
         "react-icons": "^5.0.1",
         "sanity": "^3.30.0",
+        "sanity-plugin-dashboard-dad-jokes": "^1.0.0",
         "sanity-plugin-dashboard-widget-document-list": "1.0.1",
-        "sanity-plugin-dashboard-widget-netlify": "^2.0.1",
-        "sanity-plugin-media": "^2.2.5"
+        "sanity-plugin-graph-view": "^2.0.1",
+        "sanity-plugin-media": "^2.2.5",
+        "sanity-plugin-webhooks": "^1.1.0",
+        "sanity-plugin-webhooks-trigger": "^0.2.4",
+        "styled-components": "^6.1.11"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.23.10",

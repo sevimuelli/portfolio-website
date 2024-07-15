@@ -9,9 +9,11 @@ import {
 } from '@sanity/dashboard';
 
 // import {documentListWidget} from "sanity-plugin-dashboard-widget-document-list";
-import { netlifyWidget } from 'sanity-plugin-dashboard-widget-netlify';
 import { media } from 'sanity-plugin-media';
 import { visionTool } from '@sanity/vision';
+import { webhooks } from 'sanity-plugin-webhooks';
+import { jokesWidget } from 'sanity-plugin-dashboard-dad-jokes';
+import { webhooksTrigger } from 'sanity-plugin-webhooks-trigger';
 import schema from './schemas/schema';
 import deskStructure from './deskStructure';
 
@@ -52,28 +54,17 @@ export default defineConfig({
                         },
                     ],
                 }),
-                netlifyWidget({
-                    title: 'My Netlify deploys',
-                    sites: [
-                        {
-                            title: 'Sanity Studio',
-                            apiId: '5b4db275-9ce1-46a9-9aa7-e218428ae77d',
-                            buildHookId: '5e30d6a3e3ba019f373b1eba',
-                            name: 'portfolio-website-sanity-studio',
-                        },
-                        {
-                            title: 'Portfolio Website',
-                            apiId: '897668a5-6c1b-4571-84cb-fbb367f8baaf',
-                            buildHookId: '65def9e1cb3576c97717e855',
-                            name: 'gatsby-sanity-portfolio-gatsbycloud',
-                            url: 'https://severinmueller.io',
-                        },
-                    ],
-                }),
+                jokesWidget(),
             ],
         }),
         media(),
         visionTool(),
+        webhooks(),
+        webhooksTrigger({
+            // title: 'Deploy',
+            // text: 'Custom text',
+            // encryptionSalt: 'replace-me-with-a-strong-string'
+        }),
     ],
     schema: {
         types: schema,
