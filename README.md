@@ -2,7 +2,9 @@
 
 A portfolio using structured content from [Sanity.io](https://www.sanity.io), [Gatsby.js](https://gatsbyjs.org) as a static site builder and hosted on [Netlify](https://netlify.com)
 
-Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4571-84cb-fbb367f8baaf/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-gatsbycloud/deploys)Studio:[![Netlify Status](https://api.netlify.com/api/v1/badges/5b4db275-9ce1-46a9-9aa7-e218428ae77d/deploy-status)](https://app.netlify.com/sites/gatsby-sanity-portfolio-studio-xnfhk7xz/deploys)
+Website: [![Cloudflare Status](https://img.shields.io/endpoint?url=https://cloudflare-pages-badges.sevimuelli.workers.dev/?projectName=portfolio-sanity-studio)](https://dash.cloudflare.com/2708a979cf023e53d8ea05ee254fc093/pages/view/portfolio-website) Studio: [![Cloudflare Status](https://img.shields.io/endpoint?url=https://cloudflare-pages-badges.sevimuelli.workers.dev/?projectName=portfolio-sanity-studio)](https://dash.cloudflare.com/2708a979cf023e53d8ea05ee254fc093/pages/view/portfolio-sanity-studio)
+
+This badges are made with shields.io: [cloudflare-pages-badges](https://github.com/aidenwallis/cloudflare-pages-badges)
 
 ![demo](https://raw.githubusercontent.com/sevimuelli/gatsby-sanity-portfolio/master/web/src/images/og.png)
 
@@ -11,8 +13,8 @@ Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4
 1. Clone this repository from your GitHub account
 2. `npm install` in the project root folder on local
 3. `npm run dev` to start the Studio and frontend locally
-   - Your Studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
+    - Your Studio should be running on [http://localhost:3333](http://localhost:3333)
+    - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
 4. `npm run build` to build to production locally
 
 ## Enable real-time content preview in development
@@ -23,7 +25,7 @@ Website:[![Netlify Status](https://api.netlify.com/api/v1/badges/897668a5-6c1b-4
 
 If you want to disable the preview you can set `watchMode: false` in gatsby-config.js. If you just want to preview published changes you can set `overlayDrafts: false` in gatsby-config.js.
 
-##  Color Reference
+## Color Reference
 
 | Color          | Hex                                                                |
 | -------------- | ------------------------------------------------------------------ |
