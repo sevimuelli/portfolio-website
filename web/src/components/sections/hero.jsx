@@ -41,7 +41,7 @@ const StyledTitle = styled.h2`
 `;
 
 const StyledSubtitle = styled.h3`
-    font-size: 80px;
+    font-size: 70px;
     line-height: 1.1;
     color: ${colors.slate};
     ${media.desktop`font-size: 70px;`};
@@ -76,7 +76,7 @@ function Hero({ data }) {
     const { name, subtitle, title, _rawDescription } = data[0].node;
 
     const one = () => <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>;
-    const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}.</StyledTitle>;
+    const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}</StyledTitle>;
     const three = () => (
         <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
     );
