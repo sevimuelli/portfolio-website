@@ -11,7 +11,8 @@ const { colors, fontSizes, fonts } = theme;
 const StyledContainer = styled(Section)`
     text-align: center;
     max-width: 600px;
-    margin: 0 auto 100px;
+    margin: 0 auto;
+    padding-bottom: 20px;
 
     a {
         ${mixins.inlineLink};
@@ -114,7 +115,7 @@ function Contact({ data }) {
             <StyledDescriptionWrapper ref={revealDescription}>
                 {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
             </StyledDescriptionWrapper>
-            
+
             <script src="https://unpkg.com/@botpoison/browser" async></script>
 
             <StyledForm
