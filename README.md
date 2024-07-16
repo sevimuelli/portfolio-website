@@ -1,6 +1,6 @@
 # gatsby-sanity-portfolio
 
-A portfolio using structured content from [Sanity.io](https://www.sanity.io), [Gatsby.js](https://gatsbyjs.org) as a static site builder and hosted on [Clooudflare](https://cloudflare.com)
+A portfolio using structured content from [Sanity.io](https://www.sanity.io), [Gatsby.js](https://gatsbyjs.org) as a static site builder and hosted on [Cloudflare](https://cloudflare.com)
 
 Website: [![Cloudflare Status](https://img.shields.io/endpoint?url=https://cloudflare-pages-badges.sevimuelli.workers.dev/?projectName=portfolio-sanity-studio)](https://dash.cloudflare.com/2708a979cf023e53d8ea05ee254fc093/pages/view/portfolio-website) Studio: [![Cloudflare Status](https://img.shields.io/endpoint?url=https://cloudflare-pages-badges.sevimuelli.workers.dev/?projectName=portfolio-sanity-studio)](https://dash.cloudflare.com/2708a979cf023e53d8ea05ee254fc093/pages/view/portfolio-sanity-studio)
 
