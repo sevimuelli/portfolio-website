@@ -21,7 +21,7 @@ const StyledFlexContainer = styled.div`
     ${mixins.flexBetween};
     align-items: flex-start;
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     ${media.tablet`
         flex-direction: column;
     `};
@@ -82,8 +82,8 @@ const StyledAvatarLink = styled.div`
     &::after {
         border-right: 2px solid ${colors.green};
         border-bottom: 2px solid ${colors.green};
-        top: 20px;
-        left: 20px;
+        top: 12px;
+        left: 12px;
         z-index: -1;
     }
 
@@ -92,8 +92,8 @@ const StyledAvatarLink = styled.div`
         background-color: ${colors.greenFadeOff};
 
         &::after {
-            top: 15px;
-            left: 15px;
+            top: 17px;
+            left: 17px;
         }
         ${StyledAvatar} {
             filter: none;
@@ -215,6 +215,7 @@ const StyledLinkWrapper = styled.div`
 `;
 
 const StyledFeaturedImg = styled(GatsbyImage)`
+    aspect-ratio: 4/3;
     width: 100%;
     max-width: 100%;
     vertical-align: middle;

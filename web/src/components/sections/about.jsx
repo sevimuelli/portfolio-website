@@ -97,8 +97,8 @@ const StyledAvatarLink = styled.a`
         background-color: ${colors.greenFadeOff};
 
         &:after {
-            top: 15px;
-            left: 15px;
+            top: 17px;
+            left: 17px;
         }
         ${StyledAvatar} {
             filter: none;
@@ -118,8 +118,8 @@ const StyledAvatarLink = styled.a`
     &::after {
         border-right: 2px solid ${colors.green};
         border-bottom: 2px solid ${colors.green};
-        top: 20px;
-        left: 20px;
+        top: 12px;
+        left: 12px;
         z-index: -1;
     }
 `;

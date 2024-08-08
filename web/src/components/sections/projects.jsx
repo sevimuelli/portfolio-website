@@ -65,6 +65,7 @@ const StyledImage = styled(GatsbyImage)`
 
     filter: grayscale(100%) contrast(1) brightness(90%);
     transition: ${theme.transition};
+    aspect-ratio: 4/3;
 `;
 
 const StyledProjectInner = styled.div`
