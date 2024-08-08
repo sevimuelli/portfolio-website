@@ -102,15 +102,16 @@ const StyledAvatarLink = styled.div`
 `;
 
 const StyledContent = styled.div`
+    height: 100%;
     position: relative;
     grid-column: 1 / 7;
     grid-row: 1 / -1;
     ${media.thone`
         grid-column: 1 / -1;
-        padding: 40px 40px 30px;
+        padding: 20px 40px 30px;
         z-index: 5;
     `};
-    ${media.phablet`padding: 30px 25px 20px;`};
+    ${media.phablet`padding: 20px 25px 20px;`};
 `;
 
 const StyledLabel = styled.h4`
@@ -120,6 +121,7 @@ const StyledLabel = styled.h4`
     font-family: ${fonts.SFMono};
     margin-top: 10px;
     padding-top: 0;
+    ${media.thone`margin-top: 0px;`};
 `;
 
 const StyledProjectName = styled.h5`
@@ -127,7 +129,10 @@ const StyledProjectName = styled.h5`
     margin: 0 0 20px;
     color: ${colors.lightestSlate};
     ${media.tablet`font-size: 24px;`};
-    ${media.thone`color: ${colors.white};`};
+    ${media.thone`
+        color: ${colors.white};
+        margin-bottom: 0px;
+    `};
 
     a {
         ${media.tablet`display: block;`};
@@ -142,10 +147,12 @@ const StyledDescription = styled.div`
     background-color: ${colors.lightNavy};
     color: ${colors.lightSlate};
     font-size: ${fontSizes.lg};
+    ${media.thone`font-size: 17px;`};
+    ${media.phablet`font-size: 16px;`};
     border-radius: ${theme.borderRadius};
     ${media.thone`
     background-color: transparent;
-    padding: 20px 0;
+    padding: 10px 0;
     box-shadow: none;
     &:hover {
         box-shadow: none;
@@ -167,7 +174,7 @@ const StyledTechList = styled.ul`
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    margin: 25px 0 10px;
+    margin: 25px 0 0px;
     list-style: none;
 
     li {
@@ -186,6 +193,10 @@ const StyledTechList = styled.ul`
             margin-right: 10px;
         `};
     }
+    ${media.thone`
+            position: absolute;
+            bottom: 45px;
+        `};
 `;
 
 const StyledTechListLink = styled(Link)`
@@ -200,7 +211,7 @@ const StyledLinkWrapper = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: -10px;
     color: ${colors.lightestSlate};
 
@@ -212,6 +223,10 @@ const StyledLinkWrapper = styled.div`
             height: 22px;
         }
     }
+    ${media.thone`
+            position: absolute;
+            bottom: 8px;
+        `};
 `;
 
 const StyledFeaturedImg = styled(GatsbyImage)`
@@ -225,11 +240,13 @@ const StyledFeaturedImg = styled(GatsbyImage)`
     filter: grayscale(100%) contrast(1) brightness(90%);
     transition: ${theme.transition};
     ${media.tablet`
+        aspect-ratio: 1;
         object-fit: cover;
         width: auto;
         height: 100%;
         filter: grayscale(100%) contrast(1) brightness(80%);
     `};
+    ${media.thone`aspect-ratio: 4/3;`};
 `;
 
 const StyledImgContainer = styled(Link)`
@@ -241,7 +258,7 @@ const StyledImgContainer = styled(Link)`
     background-color: ${colors.green};
     border-radius: ${theme.radius + 1}px;
     transition: ${theme.transition};
-    ${media.tablet`height: 100%;`};
+    ${media.tablet`height: auto;`};
     ${media.thone`
         grid-column: 1 / -1;
         opacity: 0.25;
@@ -293,9 +310,9 @@ const StyledProject = styled.div`
             text-align: right;
             ${media.thone`
                 grid-column: 1 / -1;
-                padding: 40px 40px 30px;
+                padding:20px 40px 30px;
             `};
-            ${media.phablet`padding: 30px 25px 20px;`};
+            ${media.phablet`padding: 20px 25px 20px;`};
         }
         ${StyledTechList} {
             justify-content: flex-end;
@@ -312,7 +329,7 @@ const StyledProject = styled.div`
         }
         ${StyledImgContainer} {
             grid-column: 1 / 8;
-            ${media.tablet`height: 100%;`};
+            /* ${media.tablet`height: auto;`}; */
             ${media.thone`
                 grid-column: 1 / -1;
                 opacity: 0.25;
