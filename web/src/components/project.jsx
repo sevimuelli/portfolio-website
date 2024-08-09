@@ -210,7 +210,7 @@ function Project({ data }) {
                     <Slider
                         dots
                         infinite
-                        speed={1000}
+                        speed={3000}
                         slidesToShow={1}
                         slidesToScroll={1}
                         initialSlide={0}
