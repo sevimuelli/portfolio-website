@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Loader, Nav, Social, Footer } from '@components';
+import { LoadingScreen, Nav, Social, Footer } from '@components';
 import styled from 'styled-components';
 import { GlobalStyle } from '@styles';
 
@@ -67,8 +67,8 @@ export default function Layout({ children, location }) {
         <div id="root">
             <GlobalStyle />
 
-            {isLoading && isHome && false ? (
-                <Loader
+            {isLoading && isHome ? (
+                <LoadingScreen
                     finishLoading={() => {
                         setIsLoading(false);
                         sessionStorage.setItem('beenHere', true);

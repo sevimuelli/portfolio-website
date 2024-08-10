@@ -4,10 +4,11 @@ import Figure from './figure';
 import Footer from './footer';
 import Head from './head';
 import Layout from './layout';
-import Loader from './loader';
+import LoadingScreen from './loadingScreen';
 import Menu from './menu';
 import Nav from './nav';
 import Project from './project';
+import RiveWrapper from './riveWrapper';
 import Side from './side';
 import Social from './social';
 // Sections
@@ -24,10 +25,11 @@ export {
     Footer,
     Head,
     Layout,
-    Loader,
+    LoadingScreen,
     Menu,
     Nav,
     Project,
+    RiveWrapper,
     Side,
     Social,
     About,
