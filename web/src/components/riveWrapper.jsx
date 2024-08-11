@@ -5,7 +5,7 @@ import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
 // Wrapper component to isolate useRive logic that
 // renders the <RiveComponent />
 function RiveWrapper({ finishLoading, riveURL }) {
-    const { rive, RiveComponent } = useRive({
+    const { RiveComponent } = useRive({
         src: riveURL,
         // src: 'vehicles.riv',
         stateMachines: 'bumpy',
