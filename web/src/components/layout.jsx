@@ -39,6 +39,7 @@ export default function Layout({ children, location }) {
         }
     }, []);
     const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
+    const [showContent, setShowContent] = useState(!shouldLoad);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {
@@ -60,6 +61,17 @@ export default function Layout({ children, location }) {
                     }
                 }
             }
+            rive: allSanitySiteSettings {
+                edges {
+                    node {
+                        loadingScreen {
+                            asset {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
         }
     `);
 
@@ -67,14 +79,17 @@ export default function Layout({ children, location }) {
         <div id="root">
             <GlobalStyle />
 
-            {isLoading && isHome ? (
+            {isLoading && isHome && (
                 <LoadingScreen
+                    riveURL={data.rive.edges[0].node.loadingScreen.asset.url}
                     finishLoading={() => {
-                        setIsLoading(false);
+                        setShowContent(true);
+                        setTimeout(() => setIsLoading(false), 2000);
                         sessionStorage.setItem('beenHere', true);
                     }}
                 />
-            ) : (
+            )}
+            {showContent && (
                 <StyledContent id="layout">
                     <Nav
                         isHome={isHome}

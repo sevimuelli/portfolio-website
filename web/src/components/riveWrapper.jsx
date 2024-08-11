@@ -4,9 +4,10 @@ import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
 
 // Wrapper component to isolate useRive logic that
 // renders the <RiveComponent />
-function RiveWrapper({ finishLoading }) {
+function RiveWrapper({ finishLoading, riveURL }) {
     const { rive, RiveComponent } = useRive({
-        src: 'https://cdn.rive.app/animations/vehicles.riv',
+        src: riveURL,
+        // src: 'vehicles.riv',
         stateMachines: 'bumpy',
         autoplay: true,
         layout: new Layout({
@@ -16,7 +17,7 @@ function RiveWrapper({ finishLoading }) {
     });
 
     useEffect(() => {
-        setTimeout(() => finishLoading(), 500000);
+        setTimeout(() => finishLoading(), 5000);
     });
 
     return <RiveComponent />;
@@ -24,6 +25,7 @@ function RiveWrapper({ finishLoading }) {
 
 RiveWrapper.propTypes = {
     finishLoading: PropTypes.func.isRequired,
+    riveURL: PropTypes.func.isRequired,
 };
 
 export default RiveWrapper;
