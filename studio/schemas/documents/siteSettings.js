@@ -31,5 +31,10 @@ export default {
             title: 'Author',
             to: [{ type: 'person' }],
         },
+        {
+            title: 'Rive loading screen',
+            name: 'loadingScreen',
+            type: 'file',
+        },
     ],
 };
