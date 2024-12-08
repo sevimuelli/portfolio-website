@@ -8,7 +8,7 @@ const { colors } = theme;
 
 const StyledContainer = styled.div`
     ${mixins.flexCenter};
-    background-color: ${colors.darkNavy};
+    background-color: ${colors.lightNavy};
     position: fixed;
     width: 100%;
     height: 100%;

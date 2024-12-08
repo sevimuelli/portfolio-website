@@ -25,8 +25,9 @@ const StyledContainer = styled.header`
     pointer-events: auto !important;
     user-select: auto !important;
     width: 100%;
-    height: ${(props) =>
-        props.$scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight};
+    height: 80px;
+    /* height: ${(props) =>
+        props.$scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight}; */
     box-shadow: ${(props) =>
         props.$scrollDirection === 'up' ? `0 10px 30px -10px ${colors.shadowNavy}` : 'none'};
     transform: translateY(

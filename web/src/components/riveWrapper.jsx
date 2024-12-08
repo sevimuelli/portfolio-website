@@ -17,7 +17,7 @@ function RiveWrapper({ finishLoading, riveURL }) {
     });
 
     useEffect(() => {
-        setTimeout(() => finishLoading(), 5000);
+        setTimeout(() => finishLoading(), 7000);
     });
 
     return <RiveComponent />;
