@@ -18,12 +18,15 @@ const StyledLogo = styled.div`
     top: -5px;
     position: absolute;
     z-index: 100;
-    margin-left: 50px;
-    ${media.desktop`margin-left: 40px;`};
-    ${media.tablet`margin-left: 25px;`};
 
     transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
-    left: ${(props) => (props.$slideLogo ? 0 : props.$slideWidth)};
+
+    // to compenstate for margin-left of logo and start position
+    left: ${(props) => (props.$slideLogo ? `50px` : `40%`)};
+    ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`};
+    ${media.tablet`left: ${(props) => (props.$slideLogo ? `25px` : `40%`)};`};
+    ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`};
+
     display: ${(props) => (props.$showLogo ? 'block' : 'none')};
 
     svg {
@@ -117,7 +120,7 @@ export default function Layout({ children, location }) {
                             sessionStorage.setItem('beenHere', true);
                         }}
                     />
-                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo} $slideWidth="300px">
+                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo}>
                         <IconLogo />
                     </StyledLogo>
                 </div>

@@ -4,7 +4,6 @@ import {
     useRive,
     Layout,
     Fit,
-    Alignment,
     EventType,
     RiveEventType,
     useStateMachineInput,
@@ -17,7 +16,7 @@ import {
 function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
     const { rive, RiveComponent } = useRive({
         // src: riveURL,
-        src: 'layout_test.riv',
+        src: 'loadingscreen.riv',
         // src: riveAnimation,
         // src: 'vehicles.riv',
         stateMachines: 'State Machine',
