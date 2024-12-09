@@ -3,13 +3,33 @@ import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { LoadingScreen, Nav, Social, Footer } from '@components';
 import styled from 'styled-components';
-import { GlobalStyle } from '@styles';
+import { GlobalStyle, media } from '@styles';
+import { IconLogo } from '@components/icons';
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
     // eslint-disable-next-line global-require
     require('smooth-scroll')('a[href*="#"]');
 }
+
+const StyledLogo = styled.div`
+    width: 90px;
+    height: 90px;
+    top: -5px;
+    position: absolute;
+    z-index: 100;
+    margin-left: 50px;
+    ${media.desktop`margin-left: 40px;`};
+    ${media.tablet`margin-left: 25px;`};
+
+    transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
+    left: ${(props) => (props.$slideLogo ? 0 : props.$slideWidth)};
+    display: ${(props) => (props.$showLogo ? 'block' : 'none')};
+
+    svg {
+        user-select: none;
+    }
+`;
 
 const StyledContent = styled.div`
     display: flex;
@@ -40,6 +60,8 @@ export default function Layout({ children, location }) {
     }, []);
     const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
     const [showContent, setShowContent] = useState(!shouldLoad);
+    const [slideLogo, setSlideLogo] = useState(false);
+    const [showLogo, setShowLogo] = useState(false);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {
@@ -80,14 +102,25 @@ export default function Layout({ children, location }) {
             <GlobalStyle />
 
             {isLoading && isHome && (
-                <LoadingScreen
-                    riveURL={data.rive.edges[0].node.loadingScreen.asset.url}
-                    finishLoading={() => {
-                        setShowContent(true);
-                        setTimeout(() => setIsLoading(false), 2000);
-                        sessionStorage.setItem('beenHere', true);
-                    }}
-                />
+                <div>
+                    <LoadingScreen
+                        riveURL={data.rive.edges[0].node.loadingScreen.asset.url}
+                        moveLogo={() => {
+                            setSlideLogo(true);
+                        }}
+                        showLogo={() => {
+                            setShowLogo(true);
+                        }}
+                        finishLoading={() => {
+                            setShowContent(true);
+                            setTimeout(() => setIsLoading(false), 2000);
+                            sessionStorage.setItem('beenHere', true);
+                        }}
+                    />
+                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo} $slideWidth="300px">
+                        <IconLogo />
+                    </StyledLogo>
+                </div>
             )}
             {showContent && (
                 <StyledContent id="layout">
