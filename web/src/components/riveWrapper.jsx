@@ -26,7 +26,8 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
         }),
     });
 
-    // const externalScale = useStateMachineInput(rive, 'State Machine', 'Scale');
+    const riveAnimationXPos = useStateMachineInput(rive, 'State Machine', 'Move animation X');
+    const riveAnimationYPos = useStateMachineInput(rive, 'State Machine', 'Move animation Y');
     const skipRiveContent = useStateMachineInput(rive, 'State Machine', 'SkipAnimation');
 
     const onRiveEventReceived = (riveEvent) => {
@@ -48,48 +49,54 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
         }
     };
 
-    // const [windowDimensions, setWindowDimensions] = useState({
-    //     width: window.innerWidth,
-    //     height: window.innerHeight,
-    // });
+    const [windowDimensions, setWindowDimensions] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
 
-    // const [scale, setScale] = useState(100);
+    const [animationXPos, setAnimationXPos] = useState(0);
+    const [animationYPos, setAnimationYPos] = useState(0);
 
-    // useEffect(() => {
-    //     const windowSizeHandler = () => {
-    //         setWindowDimensions({
-    //             width: window.innerWidth,
-    //             height: window.innerHeight,
-    //         });
-    //     };
-    //     window.addEventListener('resize', windowSizeHandler);
-    //
-    //     return () => {
-    //         window.removeEventListener('resize', windowSizeHandler);
-    //     };
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    useEffect(() => {
+        const windowSizeHandler = () => {
+            setWindowDimensions({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+        window.addEventListener('resize', windowSizeHandler);
 
-    // useEffect(() => {
-    //     if (externalScale) {
-    //         if (windowDimensions.width <= 500) {
-    //             setScale(80);
-    //         }
-    //         if (windowDimensions.width <= 400) {
-    //             setScale(60);
-    //         }
-    //         if (windowDimensions.height <= 600) {
-    //             setScale(80);
-    //         }
-    //         if (windowDimensions.height <= 500) {
-    //             setScale(60);
-    //         }
-    //         if (windowDimensions.height <= 400) {
-    //             setScale(50);
-    //         }
-    //         externalScale.value = scale;
-    //     }
-    // }, [externalScale, scale, windowDimensions]);
+        return () => {
+            window.removeEventListener('resize', windowSizeHandler);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (riveAnimationXPos && riveAnimationYPos) {
+            // if (windowDimensions.width <= 500) {
+            //     setScale(80);
+            // }
+            // if (windowDimensions.width <= 400) {
+            //     setScale(60);
+            // }
+            // if (windowDimensions.height <= 600) {
+            //     setScale(80);
+            // }
+            // if (windowDimensions.height <= 500) {
+            //     setScale(60);
+            // }
+            // if (windowDimensions.height <= 400) {
+            //     setScale(50);
+            // }
+            const xPos = windowDimensions.width * 0.5;
+            const yPos = windowDimensions.height * 0.7;
+            setAnimationXPos(xPos - 500);
+            setAnimationYPos(700 - yPos);
+            riveAnimationXPos.value = animationXPos;
+            riveAnimationYPos.value = animationYPos;
+        }
+    }, [riveAnimationXPos, riveAnimationYPos, animationXPos, animationYPos, windowDimensions]);
 
     // Wait until the rive object is instantiated before adding the Rive
     // event listener

@@ -116,7 +116,7 @@ export default function Layout({ children, location }) {
                         }}
                         finishLoading={() => {
                             setShowContent(true);
-                            setTimeout(() => setIsLoading(false), 2000);
+                            setTimeout(() => setIsLoading(false), 3000);
                             sessionStorage.setItem('beenHere', true);
                         }}
                     />
