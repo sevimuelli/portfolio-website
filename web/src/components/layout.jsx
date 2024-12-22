@@ -74,13 +74,13 @@ export default function Layout({ children, location }) {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const windowSizeHandler = () => {
-                setLogoPos((window?.innerWidth || 500) / 2 - 130);
+                setLogoPos((window.innerWidth || 500) / 2 - 130);
             };
 
-            window?.addEventListener('resize', windowSizeHandler);
+            window.addEventListener('resize', windowSizeHandler);
 
             return () => {
-                window?.removeEventListener('resize', windowSizeHandler);
+                window.removeEventListener('resize', windowSizeHandler);
             };
         }
         return () => {};

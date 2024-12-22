@@ -26,8 +26,6 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
 
     const riveAnimationXPos = useStateMachineInput(rive, 'State Machine', 'Move animation X');
     const riveAnimationYPos = useStateMachineInput(rive, 'State Machine', 'Move animation Y');
-    const skipRiveContent = useStateMachineInput(rive, 'State Machine', 'SkipAnimation');
-    // const ladderSize = useStateMachineInput(rive, 'State Machine', 'AnimationBoard.Ladder size');
 
     const onRiveEventReceived = (riveEvent) => {
         const eventData = riveEvent.data;
@@ -57,10 +55,10 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     });
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof global.window !== 'undefined') {
             setWindowDimensions({
-                width: window.innerWidth,
-                height: window.innerHeight,
+                width: global.window.innerWidth,
+                height: global.window.innerHeight,
             });
         }
     }, []);
@@ -71,17 +69,17 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     const [animationYPos, setAnimationYPos] = useState(0);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof global.window !== 'undefined') {
             const windowSizeHandler = () => {
                 setWindowDimensions({
-                    width: window.innerWidth || 500,
-                    height: window.innerHeight || 500,
+                    width: global.window.innerWidth || 500,
+                    height: global.window.innerHeight || 500,
                 });
             };
-            window.addEventListener('resize', windowSizeHandler);
+            global.window.addEventListener('resize', windowSizeHandler);
 
             return () => {
-                window.removeEventListener('resize', windowSizeHandler);
+                global.window.removeEventListener('resize', windowSizeHandler);
             };
         }
         return () => {};
