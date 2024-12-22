@@ -52,9 +52,18 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     };
 
     const [windowDimensions, setWindowDimensions] = useState({
-        width: window?.innerWidth || 500,
-        height: window?.innerHeight || 500,
+        width: 1000,
+        height: 1000,
     });
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setWindowDimensions({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+    }, []);
 
     const [scale, setScale] = useState(1);
 
@@ -62,17 +71,20 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     const [animationYPos, setAnimationYPos] = useState(0);
 
     useEffect(() => {
-        const windowSizeHandler = () => {
-            setWindowDimensions({
-                width: window?.innerWidth || 500,
-                height: window?.innerHeight || 500,
-            });
-        };
-        window?.addEventListener('resize', windowSizeHandler);
+        if (typeof window !== 'undefined') {
+            const windowSizeHandler = () => {
+                setWindowDimensions({
+                    width: window.innerWidth || 500,
+                    height: window.innerHeight || 500,
+                });
+            };
+            window.addEventListener('resize', windowSizeHandler);
 
-        return () => {
-            window?.removeEventListener('resize', windowSizeHandler);
-        };
+            return () => {
+                window.removeEventListener('resize', windowSizeHandler);
+            };
+        }
+        return () => {};
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

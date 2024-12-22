@@ -48,6 +48,14 @@ export default function Layout({ children, location }) {
     // } else {
     //     console.log('No lighthouse :(');
     // }
+
+    const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
+    const [showContent, setShowContent] = useState(!shouldLoad);
+    const [slideLogo, setSlideLogo] = useState(false);
+    const [showLogo, setShowLogo] = useState(false);
+
+    const [logoPos, setLogoPos] = useState(330);
+
     if (typeof window !== 'undefined') {
         shouldLoad = !window.sessionStorage.getItem('beenHere');
         window.onbeforeunload = () => {
@@ -59,25 +67,23 @@ export default function Layout({ children, location }) {
             if (window.location.href === sessionStorage.getItem('origin')) {
                 sessionStorage.removeItem('beenHere');
             }
+            setLogoPos(window.innerWidth || 500 / 2 - 130);
         }
     }, []);
-    const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
-    const [showContent, setShowContent] = useState(!shouldLoad);
-    const [slideLogo, setSlideLogo] = useState(false);
-    const [showLogo, setShowLogo] = useState(false);
-
-    const [logoPos, setLogoPos] = useState((window?.innerWidth || 500) / 2 - 130);
 
     useEffect(() => {
-        const windowSizeHandler = () => {
-            setLogoPos((window?.innerWidth || 500) / 2 - 130);
-        };
+        if (typeof window !== 'undefined') {
+            const windowSizeHandler = () => {
+                setLogoPos((window?.innerWidth || 500) / 2 - 130);
+            };
 
-        window?.addEventListener('resize', windowSizeHandler);
+            window?.addEventListener('resize', windowSizeHandler);
 
-        return () => {
-            window?.removeEventListener('resize', windowSizeHandler);
-        };
+            return () => {
+                window?.removeEventListener('resize', windowSizeHandler);
+            };
+        }
+        return () => {};
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
