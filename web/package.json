@@ -13,7 +13,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "build": "gatsby build",
+        "build": "gatsby build && cp src/rive/loadingscreen.riv public",
         "clean-cache": "gatsby clean",
         "dev": "npm run clean-cache && mkdir public && cp src/rive/loadingscreen.riv public &&  gatsby develop -H 0.0.0.0",
         "lint": "eslint .",
