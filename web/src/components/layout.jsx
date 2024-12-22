@@ -22,7 +22,7 @@ const StyledLogo = styled.div`
     transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
 
     // to compenstate for margin-left of logo and start position
-    left: ${(props) => (props.$slideLogo ? `50` : props.$position)}px;
+    left: ${(props) => (props.$slideLogo ? `40` : props.$position)}px;
     /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`}; */
     ${media.tablet`left: ${(props) => (props.$slideLogo ? `25` : props.$position)}px;`};
     /* ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
@@ -49,27 +49,27 @@ export default function Layout({ children, location }) {
     //     console.log('No lighthouse :(');
     // }
 
+    const [logoPos, setLogoPos] = useState(330);
+
+    if (typeof window !== 'undefined') {
+        shouldLoad = !window.sessionStorage.getItem('beenHere');
+        window.onbeforeunload = () => {
+            sessionStorage.setItem('origin', window.location.href);
+        };
+    }
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (window.location.href === sessionStorage.getItem('origin')) {
+                sessionStorage.removeItem('beenHere');
+            }
+        }
+        setLogoPos((global.window.innerWidth || 500) / 2 - 130);
+    }, []);
+
     const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
     const [showContent, setShowContent] = useState(!shouldLoad);
     const [slideLogo, setSlideLogo] = useState(false);
     const [showLogo, setShowLogo] = useState(false);
-
-    const [logoPos, setLogoPos] = useState(330);
-
-    if (typeof global.window !== 'undefined') {
-        shouldLoad = !global.window.sessionStorage.getItem('beenHere');
-        global.window.onbeforeunload = () => {
-            sessionStorage.setItem('origin', global.window.location.href);
-        };
-    }
-    useEffect(() => {
-        if (typeof global.window !== 'undefined') {
-            if (global.window.location.href === sessionStorage.getItem('origin')) {
-                sessionStorage.removeItem('beenHere');
-            }
-            setLogoPos((global.window.innerWidth || 500) / 2 - 130);
-        }
-    }, []);
 
     useEffect(() => {
         if (typeof global.window !== 'undefined') {
