@@ -8,12 +8,10 @@ import {
     RiveEventType,
     useStateMachineInput,
 } from '@rive-app/react-canvas';
-// import riveAnimation from '@images/vehicles.riv';
-// import bla from '../rive/vehicles.riv?url';
 
 // Wrapper component to isolate useRive logic that
 // renders the <RiveComponent />
-function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
+function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     const { rive, RiveComponent } = useRive({
         // src: riveURL,
         src: 'loadingscreen.riv',
@@ -29,6 +27,7 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
     const riveAnimationXPos = useStateMachineInput(rive, 'State Machine', 'Move animation X');
     const riveAnimationYPos = useStateMachineInput(rive, 'State Machine', 'Move animation Y');
     const skipRiveContent = useStateMachineInput(rive, 'State Machine', 'SkipAnimation');
+    // const ladderSize = useStateMachineInput(rive, 'State Machine', 'AnimationBoard.Ladder size');
 
     const onRiveEventReceived = (riveEvent) => {
         const eventData = riveEvent.data;
@@ -40,11 +39,14 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
                 setTimeout(() => moveLogo(), 1000);
                 showLogo();
             }
-            if (eventData.name === 'moveLogo') {
+            if (eventData.name === 'MoveLogo') {
                 moveLogo();
             }
             if (eventData.name === 'ShowLogo') {
                 showLogo();
+            }
+            if (eventData.name === 'MoveCanvas') {
+                finishLoading();
             }
         }
     };
@@ -53,6 +55,8 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
         width: window.innerWidth,
         height: window.innerHeight,
     });
+
+    const [scale, setScale] = useState(1);
 
     const [animationXPos, setAnimationXPos] = useState(0);
     const [animationYPos, setAnimationYPos] = useState(0);
@@ -73,30 +77,42 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
     }, []);
 
     useEffect(() => {
-        if (riveAnimationXPos && riveAnimationYPos) {
-            // if (windowDimensions.width <= 500) {
-            //     setScale(80);
-            // }
-            // if (windowDimensions.width <= 400) {
-            //     setScale(60);
-            // }
-            // if (windowDimensions.height <= 600) {
-            //     setScale(80);
-            // }
-            // if (windowDimensions.height <= 500) {
-            //     setScale(60);
-            // }
-            // if (windowDimensions.height <= 400) {
-            //     setScale(50);
-            // }
+        if (riveAnimationXPos && riveAnimationYPos && rive) {
+            setScale(0.7);
+            if (windowDimensions.width <= 500) {
+                setScale(0.5);
+            }
+            if (windowDimensions.height <= 600) {
+                setScale(0.5);
+            }
             const xPos = windowDimensions.width * 0.5;
             const yPos = windowDimensions.height * 0.7;
             setAnimationXPos(xPos - 500);
             setAnimationYPos(700 - yPos);
             riveAnimationXPos.value = animationXPos;
             riveAnimationYPos.value = animationYPos;
+            // ladderSize.value = windowDimensions.height * 0.7 - 50;
+            rive?.setNumberStateAtPath(
+                'Ladder size',
+                windowDimensions.height * 0.7 * 0.97,
+                'Animation Board',
+            );
+            rive?.setNumberStateAtPath(
+                'Top distance',
+                (windowDimensions.height / scale) * 0.7 - 340,
+                'Animation Board',
+            );
+            rive?.setNumberStateAtPath('Scale', scale, 'Animation Board');
         }
-    }, [riveAnimationXPos, riveAnimationYPos, animationXPos, animationYPos, windowDimensions]);
+    }, [
+        riveAnimationXPos,
+        riveAnimationYPos,
+        animationXPos,
+        animationYPos,
+        windowDimensions,
+        rive,
+        scale,
+    ]);
 
     // Wait until the rive object is instantiated before adding the Rive
     // event listener
@@ -107,13 +123,6 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL, skip }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [rive]);
 
-    useEffect(() => {
-        if (skip === true) {
-            console.log('skip button pressed!');
-            skipRiveContent.fire();
-        }
-    }, [skip, skipRiveContent]);
-
     return <RiveComponent />;
 }
 
@@ -122,7 +131,6 @@ RiveWrapper.propTypes = {
     moveLogo: PropTypes.func.isRequired,
     showLogo: PropTypes.func.isRequired,
     riveURL: PropTypes.string.isRequired,
-    skip: PropTypes.bool.isRequired,
 };
 
 export default RiveWrapper;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { RiveWrapper } from '@components';
-import { theme, mixins, Button } from '@styles';
+import { theme, mixins } from '@styles';
 
 const { colors } = theme;
 
@@ -20,21 +20,11 @@ const StyledContainer = styled.div`
     z-index: 99;
 `;
 
-const StyledButton = styled(Button)`
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 5px;
-    z-index: 10;
-`;
-
 function LoadingScreen({ finishLoading, moveLogo, showLogo, riveURL }) {
     const [slideDown, setSlideDown] = useState(false);
-    const [skip, setSkip] = useState(false);
 
     return (
         <StyledContainer className="loader" $slideDown={slideDown}>
-            <StyledButton onClick={() => setSkip(true)}>SKIP</StyledButton>
             <RiveWrapper
                 finishLoading={() => {
                     finishLoading();
@@ -43,7 +33,6 @@ function LoadingScreen({ finishLoading, moveLogo, showLogo, riveURL }) {
                 moveLogo={moveLogo}
                 showLogo={showLogo}
                 riveURL={riveURL}
-                skip={skip}
             />
         </StyledContainer>
     );

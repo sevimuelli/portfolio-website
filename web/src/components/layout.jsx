@@ -22,10 +22,10 @@ const StyledLogo = styled.div`
     transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
 
     // to compenstate for margin-left of logo and start position
-    left: ${(props) => (props.$slideLogo ? `50px` : `40%`)};
-    ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`};
+    left: ${(props) => (props.$slideLogo ? `50` : props.$position)}px;
+    /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`};
     ${media.tablet`left: ${(props) => (props.$slideLogo ? `25px` : `40%`)};`};
-    ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`};
+    ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
 
     display: ${(props) => (props.$showLogo ? 'block' : 'none')};
 
@@ -65,6 +65,21 @@ export default function Layout({ children, location }) {
     const [showContent, setShowContent] = useState(!shouldLoad);
     const [slideLogo, setSlideLogo] = useState(false);
     const [showLogo, setShowLogo] = useState(false);
+
+    const [logoPos, setLogoPos] = useState(window.innerWidth / 2 - 130);
+
+    useEffect(() => {
+        const windowSizeHandler = () => {
+            setLogoPos(window.innerWidth / 2 - 130);
+        };
+
+        window.addEventListener('resize', windowSizeHandler);
+
+        return () => {
+            window.removeEventListener('resize', windowSizeHandler);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {
@@ -120,7 +135,7 @@ export default function Layout({ children, location }) {
                             sessionStorage.setItem('beenHere', true);
                         }}
                     />
-                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo}>
+                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo} $position={logoPos}>
                         <IconLogo />
                     </StyledLogo>
                 </div>
