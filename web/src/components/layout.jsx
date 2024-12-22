@@ -66,17 +66,17 @@ export default function Layout({ children, location }) {
     const [slideLogo, setSlideLogo] = useState(false);
     const [showLogo, setShowLogo] = useState(false);
 
-    const [logoPos, setLogoPos] = useState(window.innerWidth / 2 - 130);
+    const [logoPos, setLogoPos] = useState(global.window.innerWidth / 2 - 130);
 
     useEffect(() => {
         const windowSizeHandler = () => {
-            setLogoPos(window.innerWidth / 2 - 130);
+            setLogoPos(global.window.innerWidth / 2 - 130);
         };
 
-        window.addEventListener('resize', windowSizeHandler);
+        global.window.addEventListener('resize', windowSizeHandler);
 
         return () => {
-            window.removeEventListener('resize', windowSizeHandler);
+            global.window.removeEventListener('resize', windowSizeHandler);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
