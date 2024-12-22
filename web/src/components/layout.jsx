@@ -23,9 +23,9 @@ const StyledLogo = styled.div`
 
     // to compenstate for margin-left of logo and start position
     left: ${(props) => (props.$slideLogo ? `50` : props.$position)}px;
-    /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`};
-    ${media.tablet`left: ${(props) => (props.$slideLogo ? `25px` : `40%`)};`};
-    ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
+    /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`}; */
+    ${media.tablet`left: ${(props) => (props.$slideLogo ? `25` : props.$position)}px;`};
+    /* ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
 
     display: ${(props) => (props.$showLogo ? 'block' : 'none')};
 
@@ -56,31 +56,31 @@ export default function Layout({ children, location }) {
 
     const [logoPos, setLogoPos] = useState(330);
 
-    if (typeof window !== 'undefined') {
-        shouldLoad = !window.sessionStorage.getItem('beenHere');
-        window.onbeforeunload = () => {
-            sessionStorage.setItem('origin', window.location.href);
+    if (typeof global.window !== 'undefined') {
+        shouldLoad = !global.window.sessionStorage.getItem('beenHere');
+        global.window.onbeforeunload = () => {
+            sessionStorage.setItem('origin', global.window.location.href);
         };
     }
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            if (window.location.href === sessionStorage.getItem('origin')) {
+        if (typeof global.window !== 'undefined') {
+            if (global.window.location.href === sessionStorage.getItem('origin')) {
                 sessionStorage.removeItem('beenHere');
             }
-            setLogoPos(window.innerWidth || 500 / 2 - 130);
+            setLogoPos((global.window.innerWidth || 500) / 2 - 130);
         }
     }, []);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof global.window !== 'undefined') {
             const windowSizeHandler = () => {
-                setLogoPos((window.innerWidth || 500) / 2 - 130);
+                setLogoPos((global.window.innerWidth || 1000) / 2 - 130);
             };
 
-            window.addEventListener('resize', windowSizeHandler);
+            global.window.addEventListener('resize', windowSizeHandler);
 
             return () => {
-                window.removeEventListener('resize', windowSizeHandler);
+                global.window.removeEventListener('resize', windowSizeHandler);
             };
         }
         return () => {};
