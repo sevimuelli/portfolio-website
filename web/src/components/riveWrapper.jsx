@@ -52,8 +52,8 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     };
 
     const [windowDimensions, setWindowDimensions] = useState({
-        width: global.window.innerWidth,
-        height: global.window.innerHeight,
+        width: window?.innerWidth || 500,
+        height: window?.innerHeight || 500,
     });
 
     const [scale, setScale] = useState(1);
@@ -64,14 +64,14 @@ function RiveWrapper({ finishLoading, moveLogo, showLogo, riveURL }) {
     useEffect(() => {
         const windowSizeHandler = () => {
             setWindowDimensions({
-                width: global.window.innerWidth,
-                height: global.window.innerHeight,
+                width: window?.innerWidth || 500,
+                height: window?.innerHeight || 500,
             });
         };
-        global.window.addEventListener('resize', windowSizeHandler);
+        window?.addEventListener('resize', windowSizeHandler);
 
         return () => {
-            global.window.removeEventListener('resize', windowSizeHandler);
+            window?.removeEventListener('resize', windowSizeHandler);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
