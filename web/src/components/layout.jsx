@@ -1,15 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Loader, Nav, Social, Footer } from '@components';
+import { LoadingScreen, Nav, Social, Footer } from '@components';
 import styled from 'styled-components';
-import { GlobalStyle } from '@styles';
+import { GlobalStyle, media } from '@styles';
+import { IconLogo } from '@components/icons';
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
     // eslint-disable-next-line global-require
     require('smooth-scroll')('a[href*="#"]');
 }
+
+const StyledLogo = styled.div`
+    width: 90px;
+    height: 90px;
+    top: -5px;
+    position: absolute;
+    z-index: 100;
+
+    transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
+
+    // to compenstate for margin-left of logo and start position
+    left: ${(props) => (props.$slideLogo ? `40` : props.$position)}px;
+    /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`}; */
+    ${media.tablet`left: ${(props) => (props.$slideLogo ? `25` : props.$position)}px;`};
+    /* ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
+
+    display: ${(props) => (props.$showLogo ? 'block' : 'none')};
+
+    svg {
+        user-select: none;
+    }
+`;
 
 const StyledContent = styled.div`
     display: flex;
@@ -25,6 +48,9 @@ export default function Layout({ children, location }) {
     // } else {
     //     console.log('No lighthouse :(');
     // }
+
+    const [logoPos, setLogoPos] = useState(330);
+
     if (typeof window !== 'undefined') {
         shouldLoad = !window.sessionStorage.getItem('beenHere');
         window.onbeforeunload = () => {
@@ -37,8 +63,29 @@ export default function Layout({ children, location }) {
                 sessionStorage.removeItem('beenHere');
             }
         }
+        setLogoPos((global.window.innerWidth || 500) / 2 - 130);
     }, []);
+
     const [isLoading, setIsLoading] = useState(shouldLoad && isHome);
+    const [showContent, setShowContent] = useState(!shouldLoad);
+    const [slideLogo, setSlideLogo] = useState(false);
+    const [showLogo, setShowLogo] = useState(false);
+
+    useEffect(() => {
+        if (typeof global.window !== 'undefined') {
+            const windowSizeHandler = () => {
+                setLogoPos((global.window.innerWidth || 1000) / 2 - 130);
+            };
+
+            global.window.addEventListener('resize', windowSizeHandler);
+
+            return () => {
+                global.window.removeEventListener('resize', windowSizeHandler);
+            };
+        }
+        return () => {};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const data = useStaticQuery(graphql`
         query LayoutQuery {
@@ -60,6 +107,17 @@ export default function Layout({ children, location }) {
                     }
                 }
             }
+            rive: allSanitySiteSettings {
+                edges {
+                    node {
+                        loadingScreen {
+                            asset {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
         }
     `);
 
@@ -67,14 +125,28 @@ export default function Layout({ children, location }) {
         <div id="root">
             <GlobalStyle />
 
-            {isLoading && isHome && false ? (
-                <Loader
-                    finishLoading={() => {
-                        setIsLoading(false);
-                        sessionStorage.setItem('beenHere', true);
-                    }}
-                />
-            ) : (
+            {isLoading && isHome && (
+                <div>
+                    <LoadingScreen
+                        riveURL={data.rive.edges[0].node.loadingScreen.asset.url}
+                        moveLogo={() => {
+                            setSlideLogo(true);
+                        }}
+                        showLogo={() => {
+                            setShowLogo(true);
+                        }}
+                        finishLoading={() => {
+                            setShowContent(true);
+                            setTimeout(() => setIsLoading(false), 3000);
+                            sessionStorage.setItem('beenHere', true);
+                        }}
+                    />
+                    <StyledLogo $slideLogo={slideLogo} $showLogo={showLogo} $position={logoPos}>
+                        <IconLogo />
+                    </StyledLogo>
+                </div>
+            )}
+            {showContent && (
                 <StyledContent id="layout">
                     <Nav
                         isHome={isHome}
