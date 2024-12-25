@@ -22,10 +22,9 @@ const StyledLogo = styled.div`
     transition: left 0.4s cubic-bezier(0.08, 0.51, 0.86, 1.17);
 
     // to compenstate for margin-left of logo and start position
-    left: ${(props) => (props.$slideLogo ? `40` : props.$position)}px;
-    /* ${media.desktop`left: ${(props) => (props.$slideLogo ? `40px` : `40%`)};`}; */
+    left: ${(props) => (props.$slideLogo ? `50` : props.$position)}px;
+    ${media.desktop`left: ${(props) => (props.$slideLogo ? `40` : props.$position)}px;`};
     ${media.tablet`left: ${(props) => (props.$slideLogo ? `25` : props.$position)}px;`};
-    /* ${media.phablet`left: ${(props) => (props.$slideLogo ? `25px` : `30%`)};`}; */
 
     display: ${(props) => (props.$showLogo ? 'block' : 'none')};
 
