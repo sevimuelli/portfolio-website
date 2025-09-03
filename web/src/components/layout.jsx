@@ -146,7 +146,7 @@ export default function Layout({ children, location }) {
                 </div>
             )} */}
             {/* {showContent && ( */}
-            {showContent && (
+            {true && (
                 <StyledContent id="layout">
                     <Nav
                         isHome={isHome}
