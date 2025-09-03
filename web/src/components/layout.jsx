@@ -124,7 +124,7 @@ export default function Layout({ children, location }) {
         <div id="root">
             <GlobalStyle />
 
-            {isLoading && isHome && (
+            {/* {isLoading && isHome && (
                 <div>
                     <LoadingScreen
                         riveURL={data.rive.edges[0].node.loadingScreen.asset.url}
@@ -144,7 +144,8 @@ export default function Layout({ children, location }) {
                         <IconLogo />
                     </StyledLogo>
                 </div>
-            )}
+            )} */}
+            {/* {showContent && ( */}
             {showContent && (
                 <StyledContent id="layout">
                     <Nav
