@@ -40,14 +40,26 @@ const StyledTitle = styled.h2`
     ${media.phone`font-size: 40px;`};
 `;
 
-const StyledSubtitle = styled.h3`
-    font-size: 70px;
+const StyledRole = styled.h2`
+    font-size: 30px;
     line-height: 1.1;
+    margin: 0;
+    margin-bottom: 3em;
     color: ${colors.slate};
-    ${media.desktop`font-size: 70px;`};
-    ${media.tablet`font-size: 60px;`};
-    ${media.phablet`font-size: 50px;`};
-    ${media.phone`font-size: 40px;`};
+    ${media.desktop`font-size: 22px;`};
+    ${media.tablet`font-size: 20px;`};
+    ${media.phablet`font-size: 18px;`};
+    ${media.phone`font-size: 15px;`};
+`;
+
+const StyledSubtitle = styled.h3`
+    font-size: 60px;
+    line-height: 1.1;
+    /* color: ${colors.slate}; */
+    ${media.desktop`font-size: 50px;`};
+    ${media.tablet`font-size: 40px;`};
+    ${media.phablet`font-size: 30px;`};
+    ${media.phone`font-size: 20px;`};
 `;
 
 const StyledDescription = styled.div`
@@ -73,25 +85,26 @@ function Hero({ data }) {
         return () => clearTimeout(timeout);
     }, []);
 
-    const { name, subtitle, title, _rawDescription } = data[0].node;
+    const { name, role, subtitle, title, _rawDescription } = data[0].node;
 
-    const one = () => <StyledOverline style={{ transitionDelay: '100ms' }}>{title}</StyledOverline>;
-    const two = () => <StyledTitle style={{ transitionDelay: '200ms' }}>{name}</StyledTitle>;
-    const three = () => (
-        <StyledSubtitle style={{ transitionDelay: '300ms' }}>{subtitle}</StyledSubtitle>
-    );
+    const one = () => <StyledOverline style={{ transitionDelay: '150ms' }}>{title}</StyledOverline>;
+    const two = () => <StyledTitle style={{ transitionDelay: '300ms' }}>{name}</StyledTitle>;
+    const three = () => <StyledRole style={{ transitionDelay: '450ms' }}>{role}</StyledRole>;
     const four = () => (
-        <StyledDescription style={{ transitionDelay: '400ms' }}>
+        <StyledSubtitle style={{ transitionDelay: '600ms' }}>{subtitle}</StyledSubtitle>
+    );
+    const five = () => (
+        <StyledDescription style={{ transitionDelay: '750ms' }}>
             {_rawDescription && <PortableTextBlock value={_rawDescription || []} />}
         </StyledDescription>
     );
-    const five = () => (
-        <div style={{ transitionDelay: '500ms' }}>
+    const six = () => (
+        <div style={{ transitionDelay: '900ms' }}>
             <StyledContactLink to="/#contact">Get In Touch</StyledContactLink>
         </div>
     );
 
-    const items = [one, two, three, four, five];
+    const items = [one, two, three, four, five, six];
 
     return (
         <StyledContainer>

@@ -65,6 +65,7 @@ export const query = graphql`
             edges {
                 node {
                     name
+                    role
                     subtitle
                     title
                     _rawDescription
